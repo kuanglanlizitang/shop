@@ -30,7 +30,7 @@
 					<img src="../pic/login_logo.png" style="width: 200px;height: 110px;" />
 				</div>
 				<div class="pane">
-					<div class="logintype">
+					<div class="logintype flex-between">
 						<div id="maillogin" class="logintype_nav">
 							<img src="../pic/youxianglight.png" />
 							<span id="span_youxianglogin" language="邮箱登录" class="language" style="color:#7d7d7d">邮箱登录</span>
@@ -40,21 +40,20 @@
 						</div>
 					</div>
 					<div id="input_form">
-						<div class="mui-input-row inputform">
-							<div class="image_div"><img src="../pic/login_icon_user.png" style="width:20px;height:20px;" /></div>
-							<input id="input_content" type="text" value="" language="email" class="language" placeholder="请输入邮箱" style="width: 45%;float:left;background-color: #ccc;border: 0px;">
-							<div id="suffix" style="float:right;height:35px;padding-top:8px;padding-right:9px;"><span style="color:#7d7d7d;">@unilever.com</span></div>
+						<div class="inputform flex-between">
+							<img src="../pic/login_icon_user.png" class="img-20" />
+							<input id="input_content" type="text" value="" language="email" class="language" placeholder="请输入邮箱">
+							<div id="suffix"  class="input_right">
+								<span>@unilever.com</span>
+							</div>
+							<div id="com_placeholder" style="display: none;">
+							</div>
 						</div>
-
-						<div class="mui-input-row">
-							<div class="inputform">
-								<div class="image_div">
-									<img src="../pic/login_icon_lock.png" style="width:20px;height:20px;" />
-								</div>
-								<input id="input_pass" type="password" value="" language="请输入iVisit登录密码" class="language" placeholder="请输入iVisit登录密码" style="width: 60%;float:left;background-color: #ccc;border: 0px;" />
-								<div style="height:40px;padding-top:8px;padding-right: 10px;position: absolute;right:2px;">
-									<span id="wangjimima1" class="language" language="忘记密码" style="text-decoration:underline;font-size:12px;">忘记密码</span>
-								</div>
+						<div class="inputform flex-between">
+							<img src="../pic/login_icon_lock.png" class="img-20" />
+							<input id="input_pass" type="password" value="" language="请输入iVisit登录密码" class="language" placeholder="请输入iVisit登录密码"/>
+							<div class="input_right">
+								<span id="wangjimima1" class="input_line_height language" language="忘记密码" style="text-decoration:underline;font-size:12px;">忘记密码</span>
 							</div>
 						</div>
 					</div>
@@ -75,42 +74,41 @@
 					</div>
 					<div align="center" id="div_language" class="configpane">
 
-						<div id="div_chinese" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;">
-							<a style="width:100%;text-align:right;text-decoration:none;" data-transition="none" data-tap-toggle="false">
-								<span style="color:#ff8a00;font-weight:normal;text-shadow: 0px 0px #40730e; " language="简体中文" class="language">简体中文</span>
+						<div id="div_chinese" align="center" class="divrad flex-center">
+							<a data-transition="none" data-tap-toggle="false">
+								<span language="简体中文" class="language">简体中文</span>
 							</a>
 						</div>
-						<div id="div_English" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;">
-							<a style="width:100%;text-align:right;text-decoration:none;" data-transition="none" data-tap-toggle="false">
-								<span style="color:#ff8a00;font-weight:normal;text-shadow: 0px 0px #40730e; " language="English" class="language">English</span>
+						<div id="div_English" align="center" class="divrad flex-center">
+							<a data-transition="none" data-tap-toggle="false">
+								<span language="English" class="language">English</span>
 							</a>
 						</div>
-						<div onClick="cancelLanguage();" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;"><span id="span_lancancel" class="language" language="config[2]" style="color:#ff8a00;text-shadow: 0px 0px #40730e; ">取消</span></div>
-
+						<div onClick="cancelLanguage();" align="center" class="divrad flex-center">
+							<span id="span_lancancel" class="language" language="config[2]">取消</span>
+						</div>
 					</div>
 
 					<div align="center" id="div_wufa" class="configpane">
 
-						<div id="div_wufaregister" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;">
-							<a style="width:100%;text-align:right;text-decoration:none;" data-transition="none" data-tap-toggle="false">
-								<span id="span_wufaregister" style="color:#ff8a00;font-weight:normal;text-shadow: 0px 0px #40730e; " language="注册新账户" class="language">注册新账户</span>
+						<div id="div_wufaregister" align="center" class="divrad flex-center">
+							<a  data-transition="none" data-tap-toggle="false">
+								<span id="span_wufaregister" language="注册新账户" class="language">注册新账户</span>
 							</a>
 						</div>
-						<div id="div_wufasetting" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;">
-							<a style="width:100%;text-align:right;text-decoration:none;" data-transition="none" data-tap-toggle="false">
-								<span id="span_wufasetting" style="color:#ff8a00;font-weight:normal;text-shadow: 0px 0px #40730e; " language="设置" class="language">设置</span>
+						<div id="div_wufasetting" align="center" class="divrad flex-center">
+							<a data-transition="none" data-tap-toggle="false">
+								<span id="span_wufasetting" language="设置" class="language">设置</span>
 							</a>
 						</div>
-						<div onClick="cancelWufa();" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;"><span id="span_wufacancel" class="language" language="config[2]" style="color:#ff8a00;text-shadow: 0px 0px #40730e; ">取消</span></div>
+						<div onClick="cancelWufa();" align="center" class="divrad flex-center">
+							<span id="span_wufacancel" class="language" language="config[2]">取消</span>
+						</div>
 
 					</div>
-					<div class="config">
-						<div style="float:left;margin-left:36%;">
-							<a href="javascript:chooesLan();" style="text-decoration:none;" data-transition="none" data-tap-toggle="false"><span id="span_langg" style="font-weight:normal;font-size:13px;color:grey;" language="Language" class="language"></span></a>
-						</div>
-						<div style="">
-							<a href="javascript:chooesWufa();" style="text-decoration:none;" data-transition="none" data-tap-toggle="false"><span id="span_wufa" style="font-weight:normal;font-size:13px;color:grey;" language="登录助手" class="language" data-type="HTML"></span></a>
-						</div>
+					<div class="config flex-center">
+						<a href="javascript:chooesLan();" style="text-decoration:none;" data-transition="none" data-tap-toggle="false"><span id="span_langg" style="font-weight:normal;font-size:13px;color:grey;" language="Language" class="language"></span></a>
+						<a href="javascript:chooesWufa();" style="text-decoration:none;" data-transition="none" data-tap-toggle="false"><span id="span_wufa" style="font-weight:normal;font-size:13px;color:grey;" language="登录助手" class="language" data-type="HTML"></span></a>
 					</div>
 				</div>
 				<div class="share">

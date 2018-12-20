@@ -5,7 +5,8 @@ function switch_tab(i) {
 			document.getElementById("input_pass").placeholder = Language.getValue("请输入iVisit登录密码");
 			document.getElementById("loginimg").innerText = Language.getValue("邮箱登录");
 			document.getElementById("suffix").style.display = "block";
-			document.getElementById("input_content").style.width = "45%";
+			document.getElementById("com_placeholder").style.display = "none";
+			document.getElementById("input_content").style.width = "50%";
 			index = 0;
 			break;
 		case 1:
@@ -13,6 +14,7 @@ function switch_tab(i) {
 			document.getElementById("input_pass").placeholder = Language.getValue("请输入iVisit登录密码");
 			document.getElementById("loginimg").innerText = Language.getValue("工号登录");
 			document.getElementById("suffix").style.display = "none";
+			document.getElementById("com_placeholder").style.display = "block";
 			document.getElementById("input_content").style.width = "70%";
 			index = 1;
 			break;
@@ -176,21 +178,29 @@ function login() {
 }
 
 function chooesWufa() {
+	$("#div-languagebg").fadeIn(1000);
+	$("#div_wufa").fadeIn(1000);
 	document.getElementById("div-languagebg").style.display = 'block';
 	document.getElementById("div_wufa").style.display = 'block';
 }
 
 function cancelWufa() {
+	$("#div-languagebg").fadeOut(1000);
+	$("#div_wufa").fadeOut(1000);
 	document.getElementById("div-languagebg").style.display = 'none';
 	document.getElementById("div_wufa").style.display = 'none';
 }
 
 function chooesLan() {
+	$("#div-languagebg").fadeIn(1000);
+	$("#div_language").fadeIn(1000);
 	document.getElementById("div-languagebg").style.display = 'block';
 	document.getElementById("div_language").style.display = 'block';
 }
 
 function cancelLanguage() {
+	$("#div-languagebg").fadeOut(1000);
+	$("#div_language").fadeOut(1000);
 	document.getElementById("div-languagebg").style.display = 'none';
 	document.getElementById("div_language").style.display = 'none';
 }
