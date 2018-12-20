@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../../../js/iSlider.animate.min.js"></script>
+		<script type="text/javascript" src="../../../js/iSlider.min.js"></script>
+	</head>
+
+	<body>
+		<header id="header">
+			<div class="nvbt iback" style="margin-top: 8px;margin-left: 8px;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			</div>
+			<div class="nvtt">
+				<div>
+					详情
+				</div>
+			</div>
+		</header>
+
+		<div style="text-align:center;width: 100%;">
+			<div id="iSlider-wrapper" class="bigdiv">
+				<!--<div class="indexP"><span style="width: auto;height: 20px;background: rgba(0, 0, 0, 0.6);">	' + 4 + '/' + 4 + '</span></div><div class="bigname"><div style="width: 85%;padding-right: 40px; text-overflow:ellipsis;white-space: nowrap;overflow: hidden;float: left;">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div><img style="position: absolute;right: 40px;" width="17px" src="pic/activity_date.png"><span style="position: absolute;right: 20px;">11</span></div></div><img class="bigimgB"  src="http://be-fe.github.io/static/images/iSlider-card/5.jpg">-->
+			</div>
+
+		</div>
+		
+	</body>
+	<script>
+		var list ;
+		var index;
+		mui.plusReady(function () {
+		    var w = plus.webview.currentWebview();
+		    var imgs = w.imgs;
+		    index = w.index;
+		    console.log(imgs+"===="+index);
+		    list = imgs.split(",");
+		    setSlideImg();
+		})
+		
+		function setSlideImg() {
+			var imgs = new Array();
+
+			for(var i = 0; i < list.length; i++) {
+				var tmp = {};
+				var item = list[i];
+			
+
+				
+				tmp.content = '<div ><img  src="'+getImageUrl(item,"id")+'"/>';
+
+				tmp.width = 400;
+				tmp.height = 700;
+				imgs.push(tmp);
+			}
+
+			index = parseInt(index);
+
+			
+
+			var islider = new iSlider({
+				dom: document.getElementById('iSlider-wrapper'),
+				data: imgs,
+				isLooping: true,
+				isDebug: true,
+				initIndex: parseInt(index),
+				isAutoplay: false,
+				animateType: 'default',
+				onSlideChanged: function(idx) {
+					index = idx;
+				}
+			});
+
+			
+
+		}
+	</script>
+
+</html>

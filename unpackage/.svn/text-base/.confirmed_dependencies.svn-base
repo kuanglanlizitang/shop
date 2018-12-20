@@ -1,0 +1,242 @@
+{
+  "versioncheck.html": {
+    "refer": [
+      "versioncheck1.html"
+    ],
+    "resources": []
+  },
+  "versioncheck1.html": {
+    "refer": [
+      "versioncheck2.html",
+      "html/test/versioncheck2.html",
+      "html/versioncheck1.html"
+    ],
+    "resources": []
+  },
+  "html/hoverbtn.html": {
+    "refer": [
+      "html/test/other.html",
+      "html/help.html"
+    ],
+    "resources": []
+  },
+  "test-page/hoverbtn-test/main/hoverbtn.html": {
+    "refer": [
+      "test-page/hoverbtn-test/dir2/other.html",
+      "test-page/hoverbtn-test/dir1/help.html"
+    ],
+    "resources": []
+  },
+  "guide.html": {
+    "refer": [
+      "main/login/html/login.html"
+    ],
+    "resources": []
+  },
+  "index.html": {
+    "refer": [
+      "guide.html",
+      "main/login/html/login.html",
+      "main/main/tab-main.html"
+    ],
+    "resources": [
+      "js/utils.js",
+      "css/versioncheck.css",
+      "css/mui.min.css",
+      "js/language.js"
+    ]
+  },
+  "main/login/html/login.html": {
+    "refer": [
+      "guide.html",
+      "main/main/tab-webview-main.html",
+      "index.html",
+      "main/login/html/config.html",
+      "main/main/tab-main.html",
+      "main/main/menu-right.html",
+      "main/login/html/register.html",
+      "main/login/html/forget.html",
+      "main/main/menu-3.html"
+    ],
+    "resources": []
+  },
+  "main/main/tab-webview-main.html": {
+    "resources": [
+      "main/main/tab-webview-subpage-about.html"
+    ],
+    "refer": [
+      "main/main/tab-webview-subpage-contact.html",
+      "main/main/tab-webview-subpage-setting.html",
+      "main/main/tab-webview-subpage-chat.html",
+      "main/main/tab-webview-subpage-about.html",
+      "main/main/offcanvas-drag-right-plus-menu.html",
+      "main/main/offcanvas-drag-right-plus-menu1.html",
+      "main/main/menu-left.html",
+      "main/main/menu-right.html"
+    ]
+  },
+  "main/main/tab-main.html": {
+    "resources": [
+      "main/main/tab-1.html",
+      "main/main/tab-2.html",
+      "main/route/html/mainroute.html",
+      "main/photo/html/mainphoto.html"
+    ],
+    "refer": [
+      "main/main/menu-right.html",
+      "main/main/tab-1.html",
+      "main/main/menu-left.html",
+      "index.html",
+      "main/main/tab-3.html",
+      "main/main/tab-2.html",
+      "main/main/tab-4.html",
+      "main/route/html/mainroute.html",
+      "main/route/html/route_add_customer.html",
+      "main/photo/html/mainphoto.html",
+      "main/comment/html/maincomment.html",
+      "main/main/search.html"
+    ]
+  },
+  "main/main/menu-left.html": {
+    "refer": [
+      "main/main/menu-1.html",
+      "main/main/menu-2.html",
+      "main/main/menu-4.html",
+      "main/main/menu-3.html",
+      "main/login/html/login.html",
+      "main/main/opendetail.html"
+    ],
+    "resources": [
+      "img/pic_close.png",
+      "img/pic_fenxiang.png",
+      "img/pic_zuji.png",
+      "img/pic_kdsq.png",
+      "img/pic_setting.png",
+      "main/main/menu.css",
+      "img/image01.png",
+      "main/main/menu.js"
+    ]
+  },
+  "main/main/tab-1.html": {
+    "resources": [
+      "img/60x60.gif",
+      "js/commonUI.js",
+      "img/cash.png",
+      "js/hz2py.js",
+      "fonts/mui.ttf",
+      "js/bdmapv3.js",
+      "img/pic_map.png",
+      "main/main/tab-1.css",
+      "js/mui.lazyload.js",
+      "img/icon-H.png",
+      "js/mui.lazyload.img.js",
+      "img/house.png",
+      "main/main/tab-1.js",
+      "js/md5.js",
+      "img/rmb.png"
+    ],
+    "refer": [
+      "main/main/choosecity.html",
+      "main/customer/html/customerdetail.html"
+    ]
+  },
+  "main/route/html/mainroute.html": {
+    "resources": [
+      "/img/big.png",
+      "/img/small.png"
+    ],
+    "refer": [
+      "main/route/html/route_add_customer.html",
+      "main/route/html/routedetail.html"
+    ]
+  },
+  "main/route/html/route_add_customer.html": {
+    "resources": [
+      "/img/60x60.gif"
+    ],
+    "refer": [
+      "main/main/choosecity.html",
+      "main/main/search.html"
+    ]
+  },
+  "main/photo/html/mainphoto.html": {
+    "refer": [
+      "main/photo/html/storedetail.html",
+      "main/photo/html/imagedetail.html",
+      "main/main/choosecity.html"
+    ],
+    "resources": []
+  },
+  "main/photo/html/storedetail.html": {
+    "refer": [
+      "main/photo/html/imagedetail.html"
+    ],
+    "resources": []
+  },
+  "main/comment/html/maincomment.html": {
+    "refer": [
+      "main/comment/html/hotwordList.html",
+      "main/comment/html/comment_atgroup.html",
+      "main/comment/html/imgzoom.html"
+    ],
+    "resources": []
+  },
+  "main/comment/html/comment_atgroup.html": {
+    "refer": [
+      "main/comment/html/comment_atone.html"
+    ],
+    "resources": []
+  },
+  "main/customer/html/customerdetail.html": {
+    "refer": [
+      "main/customer/html/psdetail.html",
+      "main/customer/html/grade.html",
+      "main/comment/html/comment_atgroup.html",
+      "main/customer/html/saledetail.html",
+      "main/photo/html/imagedetail.html",
+      "main/photo/html/storedetail.html",
+      "main/customer/html/mapnavigate.html",
+      "main/customer/html/gradesubmit.html",
+      "main/customer/html/sign.html",
+      "main/customer/html/commentadd.html",
+      "main/customer/html/activitydetail.html"
+    ],
+    "resources": []
+  },
+  "main/customer/html/psdetail.html": {
+    "refer": [
+      "main/customer/html/osadetail.html"
+    ]
+  },
+  "main/photo/html/imagedetail.html": {
+    "refer": [
+      "main/customer/html/customerdetail.html"
+    ]
+  },
+  "main/customer/html/grade.html": {
+    "refer": [
+      "main/customer/html/gradesubmit.html"
+    ]
+  },
+  "main/route/html/routedetail.html": {
+    "refer": [
+      "main/customer/html/customerdetail.html"
+    ]
+  },
+  "main/customer/html/commentadd.html": {
+    "refer": [
+      "main/comment/html/comment_atgroup.html"
+    ]
+  },
+  "main/login/html/register.html": {
+    "refer": [
+      "main/login/html/login.html",
+      "main/login/html/group.html"
+    ]
+  },
+  "main/login/html/group.html": {
+    "refer": [
+      "main/login/html/login.html"
+    ]
+  }
+}

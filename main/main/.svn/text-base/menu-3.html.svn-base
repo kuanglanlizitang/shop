@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/ivisit.css">
+		<link rel="stylesheet" href="menu-1.css">
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/mui.lazyload.js"></script>
+		<script src="../../js/mui.lazyload.img.js"></script>
+		<script src="../../js/language.resources.js"></script>
+		<script src="../../js/language.js"></script>
+		<script src="../../js/utils.js"></script>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar-nav">
+			<div class="nvbt mui-icon mui-icon-back" onclick="mui.back()"></div>
+			<div id="title" class="nvtt language" language="spanfoot_erweima">
+			</div>
+		</header>
+		<div id="content" class="mui-content">
+			<img src="../../img/ivisit_barcode.png" style="width: 80%;margin: 10%;" />
+			<button onclick="showshare()" type="button" class="language mui-btn mui-btn-outlined" style="width: 80%;margin-left: 10%;height: 50px;font-size: 1em;background: #FF8A00;border: none;color: #FFF;" language="spanfoot_share"></button>
+			<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+				<!-- 可选择菜单 -->
+				<div class="mui-row" style="background: #FFF;margin: 8px;text-align: center;border-radius: 4px;">
+					<div style="padding: 5px;" class="language" language="shareTo"></div>
+					<div onclick="share('1')" class="mui-col-sm-4 mui-col-xs-4">
+						<img class="shareicon" src="../../img/yt_wechat.png" />
+						<div class="language" language="yt_wechat"></div>
+					</div>
+					<div onclick="share('2')" class="mui-col-sm-4 mui-col-xs-4">
+						<img class="shareicon" src="../../img/yt_wechatmoments.png" />
+						<div class="language" language="yt_wechatmoments"></div>
+					</div>
+					<div onclick="share('3')" class="mui-col-sm-4 mui-col-xs-4">
+						<img class="shareicon" src="../../img/yt_wechatfavorite.png" />
+						<div class="language" language="yt_wechatfavorite"></div>
+					</div>
+					<div onclick="share('4')" class="mui-col-sm-4 mui-col-xs-4">
+						<img class="shareicon" src="../../img/yt_shortmessage.png" />
+						<div class="language" language="yt_shortmessage"></div>
+					</div>
+					<div onclick="share('5')" class="mui-col-sm-4 mui-col-xs-4">
+						<img class="shareicon" src="../../img/yt_email.png" />
+						<div class="language" language="yt_email"></div>
+					</div>
+					<div onclick="share('6')" class="mui-col-sm-4 mui-col-xs-4">
+						<img class="shareicon" src="../../img/yt_copylink.png" />
+						<div class="language" language="yt_copylink"></div>
+					</div>
+				</div>
+				<!-- 取消菜单 -->
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a href="#sheet1"><b class="language" language="取消"></b></a>
+					</li>
+				</ul>
+			</div>
+			<script src="../../js/immersed.js"></script>
+			<script type="text/javascript" charset="utf-8">
+				mui.init({
+					swipeBack: false
+				});
+
+				function share(index) {
+					mui('#sheet1').popover('hide');
+					setTimeout(function() {
+						if(index == '4') {
+							if(plus.os.name == "Android") {
+								var Intent = plus.android.importClass("android.content.Intent");
+								var Uri = plus.android.importClass("android.net.Uri");
+								var intent = new Intent(Intent.ACTION_SEND);
+								intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								intent.setType("image/jpg");
+								intent.putExtra("compose_mode", false);
+								intent.putExtra("exit_on_sent", true);
+								intent.putExtra("sms_body", "iVisit 下载地址:http://139.198.189.47/ivisit_mobile/index.html");
+								intent.setClassName("com.android.mms", "com.android.mms.ui.ComposeMessageActivity");
+								var imgpath = plus.io.convertLocalFileSystemURL("../../img/ivisit_barcode.png");
+								intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + imgpath));
+								plus.android.runtimeMainActivity().startActivity(Intent.createChooser(intent, "请选择短信类应用"));
+							} else {
+								plus.MMS.sendMMS('', "/www/img/ivisit_barcode.png", 'mms', function() {
+
+								}, function(err) {
+									mui.alert(Language.getValue('shareerr')[2], Language.getValue('shareerr')[0], Language.getValue('shareerr')[5],null,'div');
+								});
+							}
+						} else if(index == '5') {
+							if(plus.os.name == "Android") {
+								var Intent = plus.android.importClass("android.content.Intent");
+								var Uri = plus.android.importClass("android.net.Uri");
+								var uri = Uri.parse("mailto:");
+								//String[] email = {"3802**92@qq.com"};  
+								var intent = new Intent(Intent.ACTION_SENDTO, uri);
+								intent.putExtra(Intent.EXTRA_CC, ""); // 抄送人  
+								intent.putExtra(Intent.EXTRA_SUBJECT, ""); // 主题  
+								intent.putExtra(Intent.EXTRA_TEXT, ""); // 正文  
+								var imgpath = plus.io.convertLocalFileSystemURL("../../img/ivisit_barcode.png");
+								intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + imgpath));
+								plus.android.runtimeMainActivity().startActivity(Intent.createChooser(intent, "请选择邮件类应用"));
+
+							} else {
+								plus.MMS.sendMMS('', "/www/img/ivisit_barcode.png", 'email', function() {
+
+								}, function(err) {
+									if(err == 1) {
+										mui.alert(Language.getValue('shareerr')[3], Language.getValue('shareerr')[1], Language.getValue('shareerr')[5],null,'div');
+									} else if(err == 2) {
+										mui.alert(Language.getValue('shareerr')[4], Language.getValue('shareerr')[1], Language.getValue('shareerr')[5],null,'div');
+									}
+								});
+							}
+						} else if(index == '6') {
+							if(plus.os.name == 'Android') {
+								var Context = plus.android.importClass("android.content.Context");
+								var main = plus.android.runtimeMainActivity();
+								var clip = main.getSystemService(Context.CLIPBOARD_SERVICE);
+								plus.android.invoke(clip, "setText", 'http://139.198.189.47/ivisit_mobile/index.html');
+							} else {
+								var UIPasteboard = plus.ios.importClass("UIPasteboard");
+								var generalPasteboard = UIPasteboard.generalPasteboard();
+								generalPasteboard.setValueforPasteboardType("http://139.198.189.47/ivisit_mobile/index.html", "public.utf8-plain-text");
+								var value = generalPasteboard.valueForPasteboardType("public.utf8-plain-text");
+							}
+							mui.toast(Language.getValue("copylink"), {
+								duration: 1000,
+								type: 'div'
+							});
+						} else {
+							var share = shares[shareids[index - 1].id];
+							if(share) {
+								if(share.authenticated) {
+									shareMessage(share, shareids[index - 1].ex, "../../img/ivisit_barcode.png");
+								} else {
+									share.authorize(function() {
+										shareMessage(share, shareids[index - 1].ex, "../../img/ivisit_barcode.png");
+									}, function(e) {
+										console.log("认证授权失败：" + e.code + " - " + e.message);
+									});
+								}
+							} else {
+								mui.toast("无法获取分享服务，请检查manifest.json中分享插件参数配置，并重新打包")
+							}
+						}
+
+					}, 300);
+				}
+
+				var bitmap = null;
+
+				function shareMessage(share, ex, path) {
+					var msg = {
+						extra: {
+							scene: ex
+						}
+					};
+					msg.title = "iVisit 下载地址:";
+					//msg.pictures = ['../../img/ivisit_barcode.png'];
+					msg.thumbs = ["_www/img/thumbs.png"];
+					msg.href = "http://139.198.189.47/ivisit_mobile/index.html";
+					msg.content = "http://139.198.189.47/ivisit_mobile/index.html";
+					share.send(msg, function() {}, function(e) {});
+				}
+
+				var shares = {};
+				var shareids = [{
+					id: "weixin",
+					ex: "WXSceneSession"
+				}, {
+					id: "weixin",
+					ex: "WXSceneTimeline"
+				}, {
+					id: "weixin",
+					ex: "WXSceneFavorite"
+				}];
+				mui.plusReady(function() {
+					if(plus.os.name != 'Android') {
+						var HyperingMms = {
+							sendMMS: function(arg1, arg2, arg3, successCallback, errorCallback) {
+								var success = typeof successCallback !== 'function' ? null : function(args) {
+										successCallback(args);
+									},
+									fail = typeof errorCallback !== 'function' ? null : function(code) {
+										errorCallback(code);
+									};
+								callbackID = window.plus.bridge.callbackId(success, fail);
+								// 通知Native层plugintest扩展插件运行”PluginTestFunction”方法
+								return window.plus.bridge.exec("HyperingMms", "sendMMS", [callbackID, arg1, arg2, arg3]);
+							}
+						};
+						window.plus.MMS = HyperingMms;
+					}
+					plus.share.getServices(function(s) {
+						if(s && s.length > 0) {
+							for(var i = 0; i < s.length; i++) {
+								var t = s[i];
+								shares[t.id] = t;
+							}
+						}
+					}, function() {
+						console.log("获取分享服务列表失败");
+					});
+
+					Language.init();
+					showshare();
+				});
+
+				function showshare() {
+					mui('#sheet1').popover('toggle');
+				}
+			</script>
+	</body>
+
+</html>

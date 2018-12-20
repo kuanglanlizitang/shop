@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+	
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../js/forget.js"></script>
+	</head>
+
+	<body>
+		<header id="header">
+			<div class="nvbt iback" style="margin-top: 8px;margin-left: 8px;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			</div>
+			<div class="nvtt">
+				<div class=" language" language="忘记密码">
+					忘记密码
+				</div>
+			</div>
+		</header>
+		<div style="margin: 10px 20px 0px 20px;">
+			<p style="position:absolute;top:55px;color:#7d7d7d;"><span id="span_resetpwd0" language="请拨打" class="language">1.请拨打</span>
+				<a style="text-decoration:none;" href="tel:4008810122"><span style="color:#ff8a00">4008810122</span></a><span id="span_resetpwd1" class="language" language="联系客服">联系客服重置密码</span><br><br>
+				<span id="span_resetpwd2" class="language" language="使用联合利华邮箱重置密码">2.使用联合利华邮箱重置密码</span>
+			</p>
+
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<div style="width:100%;height:38px;background-color:#cccccc;margin-top: 30px;">
+				<input data-role="none" style="padding-left:10px;border:0px;float:left;color:#fff;width: 45%;height:38px;background:transparent;outline:none" type="text" id="pwd-input" value="" placeholder="请输入邮箱" language="email" class="language" />
+				<div style="float:right;height:35px;padding-top:10px;padding-right:14px;"><span style="color:#7d7d7d;">@unilever.com</span></div>
+			</div>
+
+			<br>
+
+			<Button style="background-color:#ff8a00;width: 100%;" onClick="pwdsubmit();"><span style="color:#eee;font-weight:normal;display:block;text-shadow: 0px 0px #40730e; " id="span_pw_subm" class="language" language="提交" >提交</span></Button>
+		</div>
+
+	</body>
+
+</html>

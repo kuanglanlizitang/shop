@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/utils.js"></script>
+		<script type="text/javascript" src="js/language.resources.js"></script>
+		<script type="text/javascript" src="js/language.js"></script>
+		<script type="text/javascript" src="js/versioncheck.js"></script>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/versioncheck.css" />
+	</head>
+
+	<body style="background: #FFFFFF;">
+		<img class="top" src="loading_top.png" />
+		<img class="bottom" src="loading_bottom.png" />
+		<div id="progress" class="mui-progressbar">
+			<span></span>
+		</div>
+		<div id="label"></div>
+	</body>
+	<script>
+		var guideVersion = 1;
+		mui.init();
+		mui.plusReady(function() {
+			Language.init();
+			//检测新版本
+			mui("#progress").progressbar({
+				progress: 0
+			}).show();
+			//			plus.webview.currentWebview().loadURL("main/main/tab-main.html");
+			Version.init("progress", "label", function() {
+				mui("#progress").progressbar().setProgress(100);
+				document.getElementById("label").innerText = '未检测到新版本';
+				if(plus.storage.getItem("guide") == null || plus.storage.getItem("guide") < guideVersion) {
+					//跳转到引导页
+					plus.webview.currentWebview().loadURL("guide.html");
+				} else {
+					console.log("staff_code=" + plus.storage.getItem("staff_code"));
+					if(plus.storage.getItem("staff_code") == null || plus.storage.getItem("staff_code") == "") {
+						//登陆
+						plus.webview.currentWebview().loadURL("main/login/html/login.html");
+					} else {
+						//主界面
+						plus.webview.currentWebview().loadURL("main/main/tab-main.html");
+					}
+				}
+			});
+		});
+	</script>
+
+</html>

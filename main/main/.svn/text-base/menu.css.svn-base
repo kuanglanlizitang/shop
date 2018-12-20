@@ -1,0 +1,49 @@
+body,
+.mui-content {
+	background-color: #FFF;
+	color: #333;
+}
+
+.userinfo {
+	text-align: center;
+	padding: 20px 10px 10px 10px;
+	background: #FF8A00;
+	color: #FFFFFF;
+	font-size: 0.8em;
+	padding-top: 60px;
+}
+
+.userinfo img {
+	width: 30%;
+	border-radius: 50%;
+}
+
+ul {
+	padding: 0px;
+}
+
+ul li {
+	list-style-type: none;
+	color: #333333;
+	padding: 10px 0px 10px 20px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+ul li img {
+	height: 24px;
+	width: 24px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+ul li span {
+	padding-left: 20px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.new {
+	color: #dd524d;
+	padding-left: 10px;
+}

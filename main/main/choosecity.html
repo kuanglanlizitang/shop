@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="mui.indexedlist.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/ivisit.css">
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/language.resources.js"></script>
+		<script src="../../js/language.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script src="../../js/hz2py.js"></script>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar-nav">
+			<div class="nvbt mui-icon mui-icon-back" onclick="mui.back()"></div>
+			<div id="title" class="nvtt">
+				<div class="mui-indexed-list-search mui-input-row mui-search">
+					<input id="input" type="search" class="mui-input-clear mui-indexed-list-search-input language" language="choosecity[0]" placeholder="">
+				</div>
+			</div>
+		</header>
+		<div id="content" class="mui-content">
+			<div id='list' class="mui-indexed-list">
+				<div class="mui-indexed-list-bar">
+					<a>#</a>
+					<a>A</a>
+					<a>B</a>
+					<a>C</a>
+					<a>D</a>
+					<a>E</a>
+					<a>F</a>
+					<a>G</a>
+					<a>H</a>
+					<a>I</a>
+					<a>J</a>
+					<a>K</a>
+					<a>L</a>
+					<a>M</a>
+					<a>N</a>
+					<a>O</a>
+					<a>P</a>
+					<a>Q</a>
+					<a>R</a>
+					<a>S</a>
+					<a>T</a>
+					<a>U</a>
+					<a>V</a>
+					<a>W</a>
+					<a>X</a>
+					<a>Y</a>
+					<a>Z</a>
+				</div>
+				<div class="mui-indexed-list-alert"></div>
+				<div class="mui-indexed-list-inner">
+					<div class="mui-indexed-list-empty-alert">没有数据</div>
+					<ul id="citys" class="mui-table-view">
+						<li class="mui-table-view-divider mui-indexed-list-group language" data-group="#" language="choosecity[1]">定位</li>
+						<li id="geo" class="mui-table-view-cell">
+							<div><span class="mui-spinner" style="vertical-align: middle;width: 20px;height: 20px;"></span><span language="geoing" class="language" style="color: #6c6c6c"></span></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/immersed.js"></script>
+		<script src="mui.indexedlist.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: false,
+				beforeback: function() {
+					if(selectedCity != '') {
+						mui.fire(plus.webview.currentWebview().opener(), "setCity", {
+							city: selectedCity,
+							isAuto: isAuto
+						});
+					}
+				}
+			});
+			var list = document.getElementById('list');
+			list.style.height = (document.body.offsetHeight - document.getElementById("header").offsetHeight) + 'px';
+
+			var selectedCity = ''; //使用中文
+			var isAuto = '';
+
+			mui("#citys").on('tap', '.mui-table-view-cell.mui-indexed-list-item', function(e) {
+				selectedCity = this.getAttribute("city");
+				var p = eval('(' + plus.storage.getItem("geolocation") + ')');
+				p.coords.latitude = 0;
+				p.coords.longitude = 0;
+				p.address.city = selectedCity;
+				plus.storage.setItem("geolocation", JSON.stringify(p));
+				isAuto = '2';
+				mui.back();
+			})
+
+			mui.plusReady(function() {
+				Language.init();
+				HttpGet({
+					type: 'cityList'
+				}, function(datas) {
+					var table = document.getElementById("citys");
+					mui.each(datas, function(index, obj) {
+						var li = document.createElement('li');
+						li.setAttribute('data-group', obj.PYFirst);
+						li.className = 'mui-table-view-divider mui-indexed-list-group';
+						li.innerText = obj.PYFirst;
+						table.appendChild(li);
+						mui.each(obj.City, function(i, o) {
+							var li = document.createElement('li');
+							li.setAttribute('data-value', o.Tags);
+							li.setAttribute('data-tags', o.Quanpin);
+							li.setAttribute('city', o.CityName);
+							li.className = 'mui-table-view-cell mui-indexed-list-item';
+							if(plus.storage.getItem("language") == 'cn') {
+								li.innerText = o.CityName;
+							} else {
+								li.innerText = o.Quanpin;
+							}
+							table.appendChild(li);
+						});
+					});
+					window.indexedList = new mui.IndexedList(document.body);
+				}, function(error) {
+					alert(JSON.stringify(error));
+				}, 'getData');
+
+				plus.geolocation.getCurrentPosition(function(p) {
+
+					//将坐标信息缓存,除非重新获取.
+					plus.storage.setItem("geolocation", JSON.stringify(p));
+					if(plus.storage.getItem("language") == 'cn') {
+						document.getElementById("geo").innerHTML = p.address.city;
+					} else {
+						document.getElementById("geo").innerHTML = ConvertPinyin(p.address.city);
+					}
+					document.getElementById("geo").onclick = function() {
+						selectedCity = p.address.city;
+						isAuto = '1';
+						mui.back();
+					}
+				}, function(e) {
+
+					document.getElementById("geo").innerHTML = "<div>" + Language.getValue("geo") + "</div>";
+				}, {
+					enableHighAccuracy: true,
+					provider: 'baidu',
+					coordsType: "bd09ll"
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

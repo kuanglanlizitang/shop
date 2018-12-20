@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../main/tab-1.css" />
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/highcharts.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/mui.lazyload.js"></script>
+		<script type="text/javascript" src="../../../js/mui.lazyload.img.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../js/comment.js"></script>
+		<script type="text/javascript" src="../js/customerdetail.js"></script>
+		
+
+		<style>
+			.sectionheader {
+				height: 20px;
+				background: #ff8a00;
+				line-height: 20px;
+				display: flex;
+				justify-content: space-between;
+			}
+			#dt{
+				width: 200px;
+				overflow: hidden;
+			    white-space: nowrap;
+			    text-overflow: ellipsis;
+			}
+			.sectionheader div {
+				display: flex;
+				margin-left: 5px;
+			}
+			
+			.sectionheader img {
+				height: 20px;
+			}
+			
+			.sectionheader span {
+				font-size: 14px;
+				color: white;
+			}
+			
+			#refreshContainer {}
+			
+			.mui-media-body .mui-ellipsis {
+				padding-right: 0px;
+			}
+			
+			.mui-popover-arrow {
+				display: none;
+			}
+			
+			.mui-bar-tab~.mui-content {
+				margin-bottom: 0px;
+			}
+			
+			.section {
+				margin-left: 50px;
+				margin-right: 30px;
+			}
+			
+			.item {
+				display: flex;
+				flex-direction: column;
+				margin: 5px 10px;
+			}
+			
+			.topitem {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+			}
+			
+			.mui-table-view-cell {
+				padding: 0px;
+			}
+			
+			#centercon {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				margin-left: 10px;
+				font-size: 12px;
+			}
+			
+			.img100 {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.img25px {
+				width: 25px;
+				height: 25px;
+			}
+			
+			#bottomitem {
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-end;
+				margin-bottom: 10px;
+			}
+			
+			.zan {
+				width: 26px;
+				height: 22px;
+				margin-right: 20px;
+			}
+			
+			.huifu {
+				width: 26px;
+				height: 22px;
+				margin-right: 10px;
+			}
+			
+			textarea {
+				height: 60px;
+				border: none;
+				background: transparent;
+				font-size: 16px;
+			}
+			
+			.line {
+				margin-left: 10px;
+				margin-right: 10px;
+				border: none;
+				height: 1px;
+				background: rgb(204, 204, 204)
+			}
+			
+			.commentpane {
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 5px;
+			}
+			
+			.atsm {
+				padding-left: 15px;
+				color: #ff8a00;
+				font-size: 20px;
+			}
+			
+			.commitbtn {
+				height: 26px;
+				float: right;
+				text-align: right;
+				margin-right: 10px;
+				font-size: 16px;
+				background: #ff8a00;
+				color: #FFFFFF;
+				line-height: 26px;
+				padding: 0px 10px
+			}
+			
+			.mui-table-view-chevron .mui-table-view-cell {
+				padding: 0px;
+			}
+			
+			.subheader {
+				display: flex;
+				justify-content: space-between;
+				padding: 2px 10px;
+				background: #f1f1f1;
+				font-size: 12px;
+				color: #333;
+			}
+			
+			.activityname {
+				padding: 2px 10px;
+				background: #E5E5E5;
+				color: #333;
+			}
+			
+			.subcontent {
+				padding: 2px 10px;
+				font-size: 12px;
+				color: #666;
+				word-break: break-word;
+			}
+			
+			.noactivity {
+				display: none;
+				text-align: center;
+			}
+			
+			#topdetail {
+				background: white;
+			}
+			
+			#address {
+				font-size: 12px;
+				margin-left: 10px;
+			}
+			
+			.saletop {
+				display: flex;
+				justify-content: space-between;
+			}
+			
+			#saledate {
+				color: #b3b3b3;
+				font-size: 10px;
+			}
+			
+			#ytd {
+				color: #f6a0c8;
+				font-size: 10px;
+			}
+			
+			#salenum {
+				color: #000;
+				font-size: 10px;
+			}
+			
+			.mui-popover .mui-popover-arrow:after {
+				width: 0px;
+			}
+			
+			.mui-popover {}
+			
+			#popover div div {
+				padding: 0;
+			}
+			
+			#popover span {
+				width: auto;
+			}
+			
+			table {
+				width: 100%;
+			}
+			
+			table td {
+				padding: 10px;
+				background: white;
+			}
+			
+			.mui-scroll {
+				position: static;
+			}
+		</style>
+	</head>
+
+	<body class="body">
+		<header id="header">
+			<div class="nvbt iback" style="margin-top: 8px;margin-left: 8px;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			</div>
+			<div class="nvtt">
+				<div class="language" language="customerdetail[0]">
+					门店详情
+				</div>
+			</div>
+		</header>
+		
+		<div id="gradetip" style="position: fixed;bottom: 5px;right:5px; width: 60px;background-color: rgb(236,236,236);z-index: 30;text-align: center;">
+			<img src="../../../img/assess.png" style="margin-top: 5px;width: 50px;" />
+			<div>
+				<span id="pmgcomment" style="font-size: 12px;color: #FF8A00;" class="language" language="customerdetail[6]">PMG点评</span>
+			</div>
+		</div>
+		<div id="popover" class="mui-popover" style="width: 96%;height: 220px;">
+
+		</div>
+
+		<section id="container" style="margin-top: 44px;display: flex;flex-direction: column;">
+			<div style="top">
+				<div id="topdetail">
+
+				</div>
+				<style type="text/css">
+				#popover{
+					height: 100px;
+					width:200px;
+					position: fixed;
+					margin-left: 2%;
+				}
+				</style>
+				<div id="popover2" class="mui-popover" style="margin: 0px 5px;border: greenyellow 2px solid;padding: 5px 5px;">
+					<div style="display: flex;">
+						<img src="../../../img/phone.png" style="width: 20px;height: 20px;margin-right: 10px;"/>
+						<div id="phone">111</div>
+					</div>
+					<div style="display: flex;">
+						<img src="../../../img/area.png" style="width: 20px;height: 20px;margin-right: 10px;"/>
+						<div id="area">111<span>平米</span></div>
+					</div>
+					<div style="display: flex;">
+						<img src="../../../img/cash.png" style="width: 20px;height: 20px;margin-right: 10px;"/>
+						<div id="cash">111</div>
+					</div>
+					<div style="display: flex;">
+						<img src="../../../img/company.png" style="width: 20px;height: 20px;margin-right: 10px;"/>
+						<div id="company">111</div>
+					</div>
+					<div style="display: flex;">
+						<img src="../../../img/dt.png" style="width: 20px;height: 20px;margin-right: 10px;"/>
+						<div id="dt">111</div>
+					</div>
+				</div>
+				
+				
+				<div id="navigate" style="display: flex;flex-direction: row;justify-content:space-between;margin: 0px 10px;">
+					<div style="display: flex;">
+						<img src="../../../img/detail_icon_adress.png" style="width: 11px;margin-left: 10px;height: 15px;margin-top: 3px;" />
+						<span id="address" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;"></span>
+					</div>
+
+					<img src="../../../img/go_tag.png" height="14px" style="margin-top: 3px;" />
+				</div>
+			</div>
+
+			<div id="ulcustdetail" style="display: none;">
+				<div style="background: #FFFFFF;padding-left: 10px;">
+					<div style="margin-top: 3px;">
+						<div style="display: inline;">
+							<img style="width: 11px;height: 13px;margin-top: 1px;margin-bottom: 1px;margin-left: 0px;" src="../../../img/nierson01.png" />
+							<div id="ul_symbol" class="language" language="customerdetail1[5]" style="display: inline;">附近标志</div>
+						</div>
+						<div id="ul_location" style="margin-left: 20px;">黄鹤楼</div>
+					</div>
+					<div>
+						<div style="display: inline;">
+							<img style="width: 11px;height: 13px;margin-top: 1px;margin-bottom: 1px;margin-left: 0px;" src="../../../img/nierson02.png" />
+							<div id="consumption" class="language" language="customerdetail1[6]" style="display: inline;">消费指数：</div>
+							<div id="ul_trans" style="display: inline;"></div>
+						</div>
+					</div>
+				</div>
+				<div style="padding:20px;">
+					<table style="border: #CCCCCC solid 1px ; text-align: center; border-collapse: collapse;">
+						<tr>
+							<td id="SPARETO_TT" style="color: #000000;border: #CCCCCC solid 1px ;" class="language" language="uldetail[0]"></td>
+							<td id="SPARETO_TT_text" style="color: #000000;border: #CCCCCC solid 1px ;"></td>
+						</tr>
+						<tr>
+							<td id="REST" style="color: #000000;border: #CCCCCC solid 1px ;" class="language" language="uldetail[1]"></td>
+							<td id="REST_text" style="color: #000000;border: #CCCCCC solid 1px ;"></td>
+						</tr>
+						<tr>
+							<td id="SHOP" style="color: #000000;border: #CCCCCC solid 1px ;" class="language" language="uldetail[2]"></td>
+							<td id="SHOP_text" style="color: #000000;border: #CCCCCC solid 1px ;"></td>
+						</tr>
+						<tr>
+							<td id="TRANS" style="color: #000000;border: #CCCCCC solid 1px ;" class="language" language="uldetail[3]"></td>
+							<td id="TRANS_text" style="color: #000000;border: #CCCCCC solid 1px ;"></td>
+						</tr>
+						<tr>
+							<td id="FINA" style="color: #000000;border: #CCCCCC solid 1px ;" class="language" language="uldetail[4]"></td>
+							<td id="FINA_text" style="color: #000000;border: #CCCCCC solid 1px ;"></td>
+						</tr>
+						<tr>
+							<td id="BUILDING" style="color: #000000;border: #CCCCCC solid 1px ;" class="language" language="uldetail[5]"></td>
+							<td id="BUILDING_text" style="color: #000000;border: #CCCCCC solid 1px ;"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="normaldetail" style="display: block;">
+				<div>
+					<div class="sectionheader">
+						<div>
+							<img src="../../../img/title_icon_wanmei.png" />
+							<span class="language" language="customerdetail[1]">完美门店</span>
+						</div>
+						<div id="psdetail">
+							<span class="language" language="customerdetail[5]">查看详情</span>
+							<img src="../../../img/title_arrow.png" />
+						</div>
+					</div>
+					<div id="pscontainer" style="height:150px">
+
+					</div>
+				</div>
+				<div>
+					<div class="sectionheader">
+						<div>
+							<img src="../../../img/title_icon_xiaoliang.png" />
+							<span class="language" language="customerdetail[2]">门店销量</span>
+						</div>
+						<div id="saledetail">
+							<span class="language" language="customerdetail[5]">查看详情</span>
+							<img src="../../../img/title_arrow.png" />
+						</div>
+
+					</div>
+					<div class="saletop">
+						<div id="saledate">
+							
+						</div>
+						<div id="ytd">
+							ytd:
+						</div>
+						<div id="salenum">
+							
+						</div>
+					</div>
+					<div id="bar_div" style="width: 100%;height: 165px;background-color: #fff;overflow: scroll;">
+						<div id="chart_div" style="height: 165px;width: 200%;">
+						</div>
+					</div>
+
+				</div>
+				<div>
+					<div id="activitydetail" class="sectionheader">
+						<div>
+							<img src="../../../img/title_icon_cuxiao.png" />
+							<span class="language" language="customerdetail[3]">店内活动</span>
+						</div>
+						<div>
+							<span class="language" language="customerdetail[5]">查看详情</span>
+							<img src="../../../img/title_arrow.png" />
+						</div>
+
+					</div>
+					<div id="divpmgperson">
+
+					</div>
+					<div class="agactivity">
+						<div class="activityname">AG活动</div>
+						<ul class="mui-table-view">
+
+						</ul>
+
+					</div>
+					<div class="isaactivity">
+						<div class="activityname">ISA买赠</div>
+						<ul class="mui-table-view">
+
+						</ul>
+					</div>
+					<div class="noactivity">
+						<div class="language" language="noactivity"></div>
+					</div>
+
+				</div>
+			</div>
+			<div style="display: flex;flex-direction: column;">
+				<div id="commentadd" class="sectionheader">
+					<div>
+						<img src="../../../img/title_icon_cuxiao.png" />
+						<span class="language" language="customerdetail[4]">添加评论</span>
+					</div>
+					<div>
+						<span id="num"></span>
+						<img src="../../../img/title_arrow.png" />
+					</div>
+
+				</div>
+
+				<div id="refreshContainer" class="mui-content" style="background: white;">
+					<div class="mui-scroll">
+						<!--数据列表-->
+						<ul id="commentlist" class="mui-table-view mui-table-view-chevron" style="background: #f7f7f7;">
+							<div class="y_loading_easy" id="J_loadmore">加载中...</div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script type="text/javascript" src="../../../js/immersed.js" ></script>
+		
+	</body>
+
+</html>

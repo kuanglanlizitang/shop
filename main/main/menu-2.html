@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/ivisit.css">
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/language.resources.js"></script>
+		<script src="../../js/language.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script type="text/javascript" src="../../js/versioncheck.js"></script>
+		<style>
+			#copyright {
+				text-align: center;
+				position: fixed;
+				bottom: 10px;
+				width: 100%;
+			}
+			
+			.mui-table-view-cell:after,
+			.mui-table-view:before,
+			.mui-table-view:after {
+				height: 0px;
+			}
+			
+			.mui-table-view{
+				width: 90%;
+				margin-left: 5%;
+			}
+			
+			.mui-table-view-cell span {
+				font-size: 1em;
+				display: inline-block;
+			}
+			
+			.mui-table-view-cell div {
+				display: inline-block;
+				font-size: 1em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar-nav">
+			<div class="nvbt mui-icon mui-icon-back" onclick="mui.back()"></div>
+			<div id="title" class="nvtt language" language="关于看店神器">
+			</div>
+		</header>
+		<div id="content" class="mui-content">
+			<img src="../../img/version.png" style="width: 50%;margin: 5% 25%;" />
+			<ul class="mui-table-view" style="background: transparent;">
+				<li class="mui-table-view-cell"><span></span>
+					<span></span>
+				</li>
+				<li class="mui-table-view-cell"><span></span>
+					<div id="version"></div>
+				</li>
+				<li class="mui-table-view-cell"><span></span>
+					<div id="versiontime"></div>
+				</li>
+				<li class="mui-table-view-cell"><span></span>
+					<div>4008810122</div>
+				</li>
+				<li class="mui-table-view-cell"><span></span>
+					<div>4008810122</div>
+				</li>
+				<li class="mui-table-view-cell" style="text-align: center;">
+					<span style="color: #333333;text-align: center;width: 60%;background: #D3D3D3;padding: 10px;border-radius: 5px;" onclick="getVersion()"></span>
+					<div id="progress" class="mui-progressbar" style="display: none;">
+						<span></span>
+					</div>
+					<div id="label" style="display: none;"></div>
+				</li>
+			</ul>
+			<div id="copyright">
+				<span></span>
+				<div>Copyright (C) Hypering 2012</div>
+			</div>
+
+			<script src="../../js/immersed.js"></script>
+			<script type="text/javascript" charset="utf-8">
+				mui.init({
+					swipeBack: false
+				});
+				mui.plusReady(function() {
+					Language.init();
+					mui.each(document.querySelectorAll('span'), function(index, obj) {
+						if(index == 7) {
+
+						} else if(index == 8) {
+							obj.innerText = Language.getValue('about')[index - 1];
+						} else {
+							obj.innerText = Language.getValue('about')[index];
+						}
+					});
+
+					plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+						document.getElementById("progress").style.display = 'none';
+						document.getElementById("label").style.display = 'none';
+						document.getElementById("version").innerText = plus.runtime.version + '(' + inf.version + ')';
+						document.getElementById("versiontime").innerText = '2018-03-11';
+					});
+
+				});
+
+				function getVersion() {
+					Version.init("progress", "label", function() {
+						mui.alert(Language.getValue('versioncheck')[1], Language.getValue('versioncheck')[0], Language.getValue('versioncheck')[2], null, 'div');
+					});
+				}
+			</script>
+	</body>
+
+</html>

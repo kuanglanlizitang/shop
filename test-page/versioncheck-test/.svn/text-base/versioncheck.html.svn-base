@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/language.resources.js"></script>
+		<script src="../../js/language.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script src="../../js/versioncheck.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/versioncheck.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div id="progress" class="mui-progressbar">
+			<span></span>
+		</div>
+		<div id="label"></div>
+	</body>
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		mui.plusReady(function() {
+			mui("#progress").progressbar({
+				progress: 0
+			}).show();
+			Version.init("progress", "label", function() {
+			});
+		});
+	</script>
+
+</html>

@@ -1,0 +1,569 @@
+{
+	"@platforms": [
+		"android",
+		"iPhone",
+		"iPad"
+	],
+	"id": "H5E9CE1F1",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "看店神器",/*应用名称，程序桌面图标名称*/
+	"version": {
+		"name": "1",/*应用版本名称*/
+		"code": "1"
+	},
+	"description": "",/*应用描述信息*/
+	"icons": {
+		"72": "icon.png"
+	},
+
+	"launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"developer": {
+		"name": "",/*开发者名称*/
+		"email": "",/*开发者邮箱地址*/
+		"url": ""
+	},
+	"permissions": {
+		"HyperingMms":{
+			"description": "短信分享"
+		},
+		
+		"Accelerometer": {
+			"description": "加速度传感器"
+		},
+		"Audio": {
+			"description": "音频录制与播放"
+		},
+		
+		"Cache": {
+			"description": "缓存管理"
+		},
+		"Camera": {
+			"description": "摄像头"
+		},
+		"Console": {
+			"description": "调试输出日志"
+		},
+		"Contacts": {
+			"description": "系统通讯录"
+		},
+		"Device": {
+			"description": "设备信息"
+		},
+		"Downloader": {
+			"description": "文件下载"
+		},
+		"Events": {
+			"description": "扩展事件"
+		},
+		"File": {
+			"description": "本地文件系统"
+		},
+		"Gallery": {
+			"description": "系统相册"
+		},
+		"Geolocation": {
+			"description": "位置信息"
+		},
+		"Invocation": {
+			"description": "Native.js能力"
+		},
+		"Messaging": {
+			"description": "消息通讯"
+		},
+		"Orientation": {
+			"description": "方向传感器"
+		},
+		"Proximity": {
+			"description": "距离传感器"
+		},
+		"Storage": {
+			"description": "本地数据存储"
+		},
+		"Webview": {
+			"description": "窗口管理"
+		},
+		"NativeUI": {
+			"description": "原生UI控件"
+		},
+		"Navigator": {
+			"description": "浏览器信息"
+		},
+		"Uploader": {
+			"description": "文件上传"
+		},
+		"Runtime": {
+			"description": "运行环境"
+		},
+		"XMLHttpRequest": {
+			"description": "跨域网络请求"
+		},
+		"Zip": {
+			"description": "压缩与解压"
+		},
+		"Barcode": {
+			"description": "二维码扫描"
+		},
+		"Maps": {
+			"description": "地图"
+		},
+		"Speech": {
+			"description": "语音识别"
+		},"Share":{},"Push":{}
+	},
+	"plus": {
+		"splashscreen": {
+			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"waiting": false,
+			"delay": "0"
+		},
+		"immersed": true,
+		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+		"distribute": {"plugins":{"push":{"igexin":{"appid":"tkyFDkhx577gOCwbMyByg2","appkey":"EaSHYxy1Pb7VPTEQpUBQN2","appsecret":"C5ADZriCrM9PJmFuJgPeU8"}},"maps":{"baidu":{"appkey_ios":"bk54EmA6kHYQBzH5Ay1ZvFrGdTu3IA9l","appkey_android":"8XGz9hHqmb5oR3VxbKeGAByh6m3Y9Pyk","appkey":"","description":""}},"share":{"weixin":{"appid":"wx9f47aa598d65cc1c","appsecret":"47ac4f4797d92c46ad81529ff7bd8914","description":"可选，微信分享"}}},
+			"apple": {
+				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+				"mobileprovision": "",/*iOS应用打包配置文件*/
+				"password": "",/*iOS应用打包个人证书导入密码*/
+				"p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+				"devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+				"frameworks": []
+			},
+			"google": {
+				"packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
+				"keystore": "",/*Android应用打包使用的密钥库文件*/
+				"password": "",/*Android应用打包使用密钥库中证书的密码*/
+				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
+				"permissions": ["<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.SEND_SMS\"/>","<uses-permission android:name=\"android.permission.INTERNET\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.WRITE_SMS\"/>","<uses-permission android:name=\"android.permission.READ_SMS\"/>"]
+			},
+			"orientation": [
+				"portrait-primary"
+			],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+			"icons": {
+				"ios": {
+					"prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+					/*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+					"iphone": {
+						"normal": "",/*iPhone普通屏幕程序图标，分辨率：57x57*/
+						"retina": "",/*iPhone高分屏程序图标，分辨率：114x114*/
+						/*iPhone iOS7高分屏程序图标，分辨率：120x120*/
+						"spotlight-normal": "", /*iPhone Spotlight搜索程序图标，分辨率：29x29*/
+						"spotlight-retina": "", /*iPhone高分屏Spotlight搜索程序图标，分辨率：58x58*/
+						/*iPhone iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "", /*iPhone设置页面程序图标，分辨率：29x29*/
+						"app@2x": "unpackage/res/icons/120x120.png",
+						"app@3x": "unpackage/res/icons/180x180.png",
+						"settings@3x": "unpackage/res/icons/87x87.png",
+						"settings@2x": "unpackage/res/icons/58x58.png",
+						"spotlight@2x": "unpackage/res/icons/80x80.png",
+						"spotlight@3x": "unpackage/res/icons/120x120.png",
+						"notification@3x": "unpackage/res/icons/60x60.png",
+						"notification@2x": "unpackage/res/icons/40x40.png"
+					},
+					"ipad": {
+						"normal": "", /*iPad普通屏幕程序图标，分辨率：72x72*/
+						"retina": "", /*iPad高分屏程序图标，分辨率：144x144*/
+						/*iPad iOS7程序图标，分辨率：76x76*/
+						/*iPad iOS7高分屏程序图标，分辨率：152x152*/
+						"spotlight-normal": "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+						"spotlight-retina": "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+						/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+						/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						/*iPad设置页面程序图标，分辨率：29x29*/
+						"app": "unpackage/res/icons/76x76.png",
+						"app@2x": "unpackage/res/icons/152x152.png",
+						"settings": "unpackage/res/icons/29x29.png",
+						"proapp@2x": "unpackage/res/icons/167x167.png",
+						"spotlight": "unpackage/res/icons/40x40.png",
+						"settings@2x": "unpackage/res/icons/58x58.png",
+						"spotlight@2x": "unpackage/res/icons/80x80.png",
+						"notification": "unpackage/res/icons/20x20.png",
+						"notification@2x": "unpackage/res/icons/40x40.png"
+					},
+					"appstore": "unpackage/res/icons/1024x1024.png"
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+					"ldpi": "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+					"hdpi": "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+					"xhdpi": "unpackage/res/icons/96x96.png",/*720P高分屏程序图标，分辨率：96x96*/
+					"xxhdpi": "unpackage/res/icons/144x144.png",
+					"xxxhdpi": "unpackage/res/icons/192x192.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						"default": "", /*iPhone3启动图片选，分辨率：320x480*/
+						"retina35": "",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+						"retina40": ""
+					},
+					"ipad": {
+						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
+						"portrait-retina": "",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+						"landscape": "", /*iPad横屏启动图片，分辨率：1024x748*/
+						"landscape-retina": "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+						"portrait7": "", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+						"portrait-retina7": "",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+						"landscape7": "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+						"landscape-retina7": ""
+					}
+				},
+				"android": {
+					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
+					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
+					"hdpi": "", /*高分屏启动图片，分辨率：480x762*/
+					"xhdpi": "", /*720P高分屏启动图片，分辨率：720x1242*/
+					"xxhdpi": ""
+				}
+			},
+			"debug": true
+		},"ads":{"rp":false,"splash":false,"push":false},"adid":""
+	},
+	"dependencies": {
+		"pages": {
+			"main/login/html/login.html": {
+				"resources": [],
+				"refer": [
+					"main/login/html/config.html",
+					"main/login/html/forget.html",
+					"main/customer/html/customer.html",
+					"main/customer/html/main.html",
+					"guide.html",
+					"main/main/tab-webview-main.html",
+					"index.html",
+					"main/main/tab-main.html",
+					"main/main/menu-right.html",
+					"main/login/html/register.html",
+					"main/main/menu-3.html"
+				],
+				"priority": 0
+			},
+			"main/customer/html/customer.html": {
+				"resources": [
+					"main/photo/html/mainphoto.html",
+					"main/comment/html/maincomment.html"
+				],
+				"refer": [
+					"main/route/html/mainroute.html",
+					"main/menu/html/menu.html"
+				],
+				"priority": 0
+			},
+			"main/customer/html/main.html": {
+				"resources": [
+					"main/customer/html/customer.html"
+				],
+				"refer": [
+					"main/comment/html/maincomment.html",
+					"main/route/html/mainroute.html",
+					"main/photo/html/mainphoto.html"
+				],
+				"priority": 0
+			},
+			"versioncheck1.html": {
+				"resources": [],
+				"refer": [
+					"versioncheck2.html",
+					"html/test/versioncheck2.html",
+					"html/versioncheck1.html"
+				],
+				"priority": 0
+			},
+			"html/hoverbtn.html": {
+				"resources": [],
+				"refer": [
+					"html/test/other.html",
+					"html/help.html"
+				],
+				"priority": 0
+			},
+			"test-page/hoverbtn-test/main/hoverbtn.html": {
+				"resources": [],
+				"refer": [
+					"test-page/hoverbtn-test/dir2/other.html",
+					"test-page/hoverbtn-test/dir1/help.html"
+				],
+				"priority": 0
+			},
+			"guide.html": {
+				"resources": [],
+				"refer": [
+					"main/login/html/login.html"
+				],
+				"priority": 0
+			},
+			"index.html": {
+				"resources": [
+					"js/utils.js",
+					"css/versioncheck.css",
+					"css/mui.min.css",
+					"js/language.js",
+					"js/versioncheck.js",
+					"js/mui.min.js",
+					"js/language.resources.js"
+				],
+				"refer": [
+					"guide.html",
+					"main/login/html/login.html",
+					"main/main/tab-main.html"
+				],
+				"priority": 0
+			},
+			"main/main/tab-webview-main.html": {
+				"resources": [
+					"main/main/tab-webview-subpage-about.html"
+				],
+				"refer": [
+					"main/main/tab-webview-subpage-contact.html",
+					"main/main/tab-webview-subpage-setting.html",
+					"main/main/tab-webview-subpage-chat.html",
+					"main/main/offcanvas-drag-right-plus-menu.html",
+					"main/main/offcanvas-drag-right-plus-menu1.html",
+					"main/main/menu-left.html",
+					"main/main/menu-right.html"
+				],
+				"priority": 0
+			},
+			"main/main/tab-main.html": {
+				"resources": [
+					"main/main/tab-webview-subpage-about.html",
+					"main/main/tab-1.html",
+					"main/main/tab-2.html",
+					"main/route/html/mainroute.html",
+					"main/photo/html/mainphoto.html",
+					"main/comment/html/maincomment.html",
+					"img/delete.png"
+				],
+				"refer": [
+					"main/main/menu-right.html",
+					"main/main/tab-webview-subpage-contact.html",
+					"main/main/tab-webview-subpage-setting.html",
+					"main/main/menu-left.html",
+					"main/main/tab-webview-subpage-chat.html",
+					"main/main/tab-3.html",
+					"main/main/tab-4.html",
+					"index.html",
+					"main/route/html/route_add_customer.html",
+					"main/main/search.html",
+					null
+				],
+				"priority": 0
+			},
+			"main/main/tab-1.html": {
+				"resources": [
+					"css/mui.min.css",
+					"main/main/tab-1.css",
+					"fonts/mui.ttf",
+					"img/60x60.gif",
+					"main/main/maps_map_sub.html",
+					"main/main/tab-1-top.html",
+					"img/pic_dingwei.png",
+					"img/pic_pinglun.png",
+					"js/commonUI.js",
+					"img/cash.png",
+					"js/hz2py.js",
+					"js/bdmapv3.js",
+					"img/pic_map.png",
+					"js/mui.lazyload.js",
+					"img/icon-H.png",
+					"js/mui.lazyload.img.js",
+					"img/house.png",
+					"main/main/tab-1.js",
+					"js/md5.js",
+					"img/rmb.png"
+				],
+				"refer": [
+					"main/main/choosecity.html",
+					"main/customer/html/customerdetail.html"
+				],
+				"priority": 0
+			},
+			"main/main/menu-left.html": {
+				"resources": [
+					"css/mui.min.css",
+					"main/main/menu.css",
+					"img/pic_close.png",
+					"img/pic_fenxiang.png",
+					"img/pic_zuji.png",
+					"img/pic_kdsq.png",
+					"img/pic_setting.png",
+					"img/image01.png",
+					"main/main/menu.js"
+				],
+				"refer": [
+					"main/main/menu-1.html",
+					"main/main/menu-3.html",
+					"main/main/menu-2.html",
+					"main/main/menu-4.html",
+					"main/login/html/login.html",
+					"main/main/opendetail.html"
+				],
+				"priority": 0
+			},
+			"main/route/html/mainroute.html": {
+				"resources": [
+					"/img/big.png",
+					"/img/small.png"
+				],
+				"refer": [
+					"main/route/html/route_add_customer.html",
+					"main/route/html/routedetail.html"
+				],
+				"priority": 0
+			},
+			"main/route/html/route_add_customer.html": {
+				"resources": [
+					"/img/60x60.gif"
+				],
+				"refer": [
+					"main/main/choosecity.html",
+					"main/main/search.html"
+				],
+				"priority": 0
+			},
+			"main/photo/html/mainphoto.html": {
+				"resources": [],
+				"refer": [
+					"main/photo/html/storedetail.html",
+					"main/photo/html/imagedetail.html",
+					"main/main/choosecity.html"
+				],
+				"priority": 0
+			},
+			"main/photo/html/storedetail.html": {
+				"resources": [],
+				"refer": [
+					"main/photo/html/imagedetail.html"
+				],
+				"priority": 0
+			},
+			"main/comment/html/maincomment.html": {
+				"resources": [],
+				"refer": [
+					"main/comment/html/hotwordList.html",
+					"main/comment/html/comment_atgroup.html",
+					"main/comment/html/imgzoom.html"
+				],
+				"priority": 0
+			},
+			"main/comment/html/comment_atgroup.html": {
+				"resources": [],
+				"refer": [
+					"main/comment/html/comment_atone.html"
+				],
+				"priority": 0
+			},
+			"main/customer/html/customerdetail.html": {
+				"resources": [],
+				"refer": [
+					"main/customer/html/psdetail.html",
+					"main/customer/html/grade.html",
+					"main/comment/html/comment_atgroup.html",
+					"main/customer/html/saledetail.html",
+					"main/photo/html/imagedetail.html",
+					"main/photo/html/storedetail.html",
+					"main/customer/html/mapnavigate.html",
+					"main/customer/html/gradesubmit.html",
+					"main/customer/html/sign.html",
+					"main/customer/html/commentadd.html",
+					"main/customer/html/activitydetail.html"
+				],
+				"priority": 0
+			},
+			"main/customer/html/psdetail.html": {
+				"resources": [],
+				"refer": [
+					"main/customer/html/osadetail.html"
+				],
+				"priority": 0
+			},
+			"main/photo/html/imagedetail.html": {
+				"resources": [],
+				"refer": [
+					"main/customer/html/customerdetail.html"
+				],
+				"priority": 0
+			},
+			"main/customer/html/grade.html": {
+				"resources": [],
+				"refer": [
+					"main/customer/html/gradesubmit.html"
+				],
+				"priority": 0
+			},
+			"main/route/html/routedetail.html": {
+				"resources": [],
+				"refer": [
+					"main/customer/html/customerdetail.html"
+				],
+				"priority": 0
+			},
+			"main/customer/html/commentadd.html": {
+				"resources": [],
+				"refer": [
+					"main/comment/html/comment_atgroup.html"
+				],
+				"priority": 0
+			},
+			"main/login/html/register.html": {
+				"resources": [],
+				"refer": [
+					"main/login/html/login.html",
+					"main/login/html/group.html"
+				],
+				"priority": 0
+			},
+			"main/login/html/group.html": {
+				"resources": [],
+				"refer": [
+					"main/login/html/login.html"
+				],
+				"priority": 0
+			},
+			"main/login/html/forget.html": {
+				"resources": [],
+				"refer": [
+					"main/login/html/login.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"main/login/pic/gonghaobutton.png",
+				"versioncheck.html",
+				"main/login/pic/gonghao.png",
+				"js/init.js",
+				"js/http.js",
+				"main/login/pic/login_btn_binding.png",
+				"main/login/js/login.js",
+				"main/login/pic/e_login_btn_binding.png",
+				"main/login/pic/login_icon_user.png",
+				"locales/en.json",
+				"main/login/pic/ivisit_flag.png",
+				"main/login/pic/youxianglight.png",
+				"js/common.js",
+				"main/login/pic/youxiang.png",
+				"css/ivisit.css",
+				"js/mui.js",
+				"main/login/pic/ivisit_barcode.png",
+				"main/login/css/login.css",
+				"main/login/js/config.js",
+				"locales/cn.json",
+				"release/H5E9CE1F1.wgt",
+				"main/login/pic/ivisit_share_barcode.png",
+				"main/login/pic/e_login_btn_binding2.png",
+				"main/login/pic/login_btn_mailLogin.png",
+				"css/mui.css",
+				"main/login/pic/login_logo.png",
+				"main/login/pic/login_checkbox_checked.png",
+				"main/login/pic/e_login_btn_mailLogin.png",
+				"main/login/pic/login_bg.png",
+				"main/login/pic/login_checkbox_checkbg.png",
+				"main/login/pic/gonghaobutton_en.png",
+				"main/login/pic/login_icon_lock.png",
+				"main/login/pic/gonghaolight.png",
+				"main/login/pic/login_btn_binding2.png"
+			]
+		}
+	}
+}

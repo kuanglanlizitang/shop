@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/uuid.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../js/commentadd.js"></script>
+		<style type="text/css">
+			#popover {
+				height: 400px;
+				width: 200px;
+			}
+			
+			#pics li {
+				float: left;
+				width: 25%;
+				height: 90px;
+			}
+			textarea::-webkit-input-placeholder {
+				color: #CCCCCC;
+			}
+			.nav_lan .language{
+				width: 80px;
+				overflow: hidden;
+			    white-space: nowrap;
+			    text-overflow: ellipsis;
+			}
+		</style>
+	</head>
+
+	<body style="background: white;">
+		<header id="header">
+			<div id="close" class="nvbt iback" style="margin-top: 8px;margin-left: 8px;">
+				<a  class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			</div>
+			<div class="nvtt" style="width: 65%;">
+				<div class="language" language="customerdetail[4]">
+					添加评论
+				</div>
+			</div>
+			<div id="submit" style="color:white" class="language" language="changepassword[4]">提交</div>
+		</header>
+		<div id="container">
+			<div style="width:90%;height:220px;margin-left:5%;margin-top:70px;border:1px solid #cccccc;">
+				<div class="listtags"></div>
+				<textarea id="text" placeholder="#在这里输入你想要说的话题#" class="language" language="commentadd[0]" style="outline:none;resize:none;display: block;border:0px;font-size:16px;"></textarea>
+			</div>
+			<div id="pics" style="margin: 10px 20px;width: 90%;">
+				<ul style="float: left;width: 100%;">
+					<li id="picadd">
+						<img style="width: 80px;" src="../../../img/photo_add.png" />
+					</li>
+				</ul>
+			</div>
+
+			<div class="nav_lan" style="position: fixed;bottom: 0px;display: flex;justify-content: space-around;width: 100%;background: #E0E0E0;padding: 10px;">
+				<a href="#popover" style="display:flex;flex-grow:1; background: #EFEFF4;padding: 5px 20px;border-radius: 5px;margin: 0 10px;justify-content: center;" id="openPopover">
+					<div id="hot" class="language" language="热词">热词</div>
+				</a>
+				<div id="at" style="display:flex;flex-grow:1;background: #EFEFF4;padding: 5px 20px;border-radius: 5px;margin: 0 10px;justify-content: center;"> @ </div>
+				<div id="pic" class="language" language="opendetail[9]" style="display:flex;flex-grow:1;background: #EFEFF4;padding: 5px 20px;border-radius: 5px;margin: 0 10px;justify-content: center;">拍照</div>
+			</div>
+
+			<div id="popover" class="mui-popover">
+				<div style="text-align: center;">选择话题</div>
+				<div id="titles" class="mui-scroll-wrapper" style="margin-top: 25px;">
+
+					<div class="mui-scroll">
+
+						<ul class="mui-table-view">
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../js/immersed.js"></script>
+	</body>
+
+</html>

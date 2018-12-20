@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/ivisit.css">
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/language.resources.js"></script>
+		<script src="../../js/language.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script type="text/javascript" src="../../js/versioncheck.js"></script>
+		<style>
+			body,
+			.mui-content {
+				background: #FFFFFF;
+			}
+			
+			span {
+				display: block;
+				color: #333333;
+				width: 90%;
+				margin-left: 5%;
+				text-align: left;
+				font-size: 1em;
+				line-height: 40px;
+				height: 40px;
+			}
+			
+			#content span:nth-child(1) {
+				color: #FF8A00;
+				text-align: center;
+				background: #FDFDFD;
+				margin-left: 0;
+				width: 100%;
+			}
+			
+			input[type=password] {
+				background-color: #FDFDFD;
+			}
+			
+			#content span:nth-child(8) {
+				color: #FFFFFF;
+				background: #FF8A00;
+				text-align: center;
+				border-radius: 5px;
+			}
+			
+			.mui-input-row {
+				width: 90%;
+				margin-left: 5%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar-nav">
+			<div class="nvbt mui-icon mui-icon-back" onclick="mui.back()"></div>
+			<div id="title" class="nvtt language" language="设置">
+			</div>
+		</header>
+		<div id="content" class="mui-content">
+			<span></span>
+			<span></span>
+			<div class="mui-input-row">
+				<input type="password" class="" placeholder="">
+			</div>
+			<span></span>
+			<div class="mui-input-row">
+				<input type="password" class="" placeholder="">
+			</div>
+			<span></span>
+			<div class="mui-input-row">
+				<input type="password" class="" placeholder="">
+			</div>
+			<span></span>
+
+			<script src="../../js/immersed.js"></script>
+			<script type="text/javascript" charset="utf-8">
+				mui.init({
+					swipeBack: false
+				});
+				mui.plusReady(function() {
+					Language.init();
+					mui.each(document.querySelectorAll('span'), function(index, obj) {
+						obj.innerText = Language.getValue('changepassword')[index];
+					});
+				});
+			</script>
+	</body>
+
+</html>

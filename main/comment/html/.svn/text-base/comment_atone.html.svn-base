@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<style>
+			#input {
+				background: #FA9A29;
+				height: 34px;
+				line-height: 34px;
+				text-align: left;
+				padding-left: 17px;
+				margin: 5px 0px;
+				border-radius: 17px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header">
+			<div class="nvbt iback" style="margin-top: 8px;margin-left: 8px;width: 10%;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			</div>
+			<div id="title" class="nvtt mui-input-row" style="clear: none;">
+				<!--首页-->
+				<!--<div id="input">门店名称...</div>-->
+				<input id="input" type="text" placeholder="" style="border: 0px;" class="mui-input-clear language" language="commentat" />
+			</div>
+
+			<div id="search" language="search" class="nvbt language"></div>
+
+		</header>
+		<div id="container">
+			<ul class="mui-table-view" style="margin-top: 44px;">
+				<!--<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">
+					Item 1
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">
+					Item 2
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">
+					Item 3
+				</a>
+			</li>-->
+			</ul>
+		</div>
+		<script type="text/javascript" src="../../../js/immersed.js"></script>
+
+	</body>
+
+	<script>
+		mui.init({
+
+		})
+
+		mui.plusReady(function() {
+			Language.init();
+			var w = plus.webview.currentWebview();
+			console.log(w.gcode);
+			var groupcondition = {
+				type: "aTGroup",
+				parent_gcode: w.gcode,
+				g_name: "",
+				email: ""
+			}
+
+			HttpGet(groupcondition, function(data) {
+				console.log(data);
+				var content = "";
+				for(var i = 0; i < data.data.length; i++) {
+					content += '<li name=' + data.data[i].STAFF_NAME + ' text=' + data.data[i].STAFF_CODE + ' class="mui-table-view-cell"><a class="mui-navigate">' + data.data[i].STAFF_NAME + "   " + data.data[i].EMAIL + '</a></li>';
+				}
+				$(".mui-table-view").append(content);
+			}, function() {}, "loading");
+
+			mui('.mui-table-view').on('tap', 'li', function() {
+				var ww = plus.webview.getWebviewById("comment_atgroup");
+				ww.close();
+				var maincomment = plus.webview.getWebviewById("../comment/html/maincomment.html");
+
+				if(maincomment == null) {
+					maincomment = plus.webview.getWebviewById("commentadd");
+					if(maincomment == null) {
+						maincomment = plus.webview.getWebviewById("customerdetail");
+					}
+
+				}
+				mui.fire(maincomment, "atresult", {
+					code: $(this).attr("text"),
+					name: $(this).attr("name"),
+					gcode: w.code
+				});
+
+				mui.back();
+			})
+
+			document.getElementById('search').addEventListener('tap', function() {
+				var t = document.getElementById("input").value;
+				console.log(t);
+				groupcondition.g_name = t;
+				groupcondition.email = t;
+				HttpGet(groupcondition, function(data) {
+					console.log(data);
+					
+					var content = "";
+					$(".mui-table-view").html("");
+					if(data==1){
+						return;
+					}
+					for(var i = 0; i < data.data.length; i++) {
+						content += '<li name=' + data.data[i].STAFF_NAME + ' text=' + data.data[i].STAFF_CODE + ' class="mui-table-view-cell"><a class="mui-navigate">' + data.data[i].STAFF_NAME + "   " + data.data[i].EMAIL + '</a></li>';
+					}
+					$(".mui-table-view").append(content);
+				}, function() {}, "loading");
+			})
+
+		});
+	</script>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+	</head>
+
+	<body>
+		<header id="header">
+			<div class="nvbt iback" style="margin-top: 8px;margin-left: 8px;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			</div>
+			<div class="nvtt">
+				<div class="language" language="热词">
+					热词
+				</div>
+			</div>
+		</header>
+		<div id="container">
+			<ul id="hotlist" class="mui-table-view" style="margin-top: 44px;">
+
+			</ul>
+			<!--<div style="position: absolute;margin: 0 auto;">
+		</div>-->
+
+		</div>
+		<script type="text/javascript" src="../../../js/immersed.js"></script>
+	</body>
+
+	<script>
+		//		 <li class="mui-table-view-cell">
+		//		            <a class="mui-navigate">
+		//		                Item 1
+		//		            </a>
+		//		        </li>
+
+		var condition;
+
+		mui.init({
+
+		})
+
+		mui.plusReady(function() {
+			condition = {
+				type: "select"
+			}
+
+			HttpGet(condition, function(data) {
+
+				var content = '<li text="All" class="mui-table-view-cell"><a class="mui-navigate">All</a></li>';
+				for(var i = 0; i < data.data.length; i++) {
+					content += '<li text=' + data.data[i].HEAT_WORDS + ' class="mui-table-view-cell"><a class="mui-navigate">' + data.data[i].HEAT_WORDS + '</a></li>';
+				}
+				$("#hotlist").append(content);
+
+			}, function() {}, "loading");
+
+			mui('#hotlist').on('tap', 'li', function() {
+				var maincomment = plus.webview.getWebviewById("../comment/html/maincomment.html");
+				mui.fire(maincomment, "getHotword", {
+					"hotword": $(this).attr("text")
+				});
+				mui.back();
+			})
+
+		})
+	</script>
+
+</html>

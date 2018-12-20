@@ -1,0 +1,200 @@
+/*日期最外层*/
+
+#logCalendar {
+	width: 100%;
+	border: none;
+}
+
+.dateRangeDateTable td{
+	padding: 0;
+	text-align: center;
+}
+
+
+/*日期内部所有单元格*/
+
+#logCalendar td {
+	padding-left: 5px;
+	text-align: center;
+	height: 22px;
+	line-height: 22px;
+}
+
+#daysList {
+	/*border-top: 1px solid #ccc;
+				border-left: 1px solid #ccc*/
+	border: none;
+}
+
+
+/*日期列表所有单元格*/
+
+#daysList td {
+	text-align: center;
+	height: 22px;
+	color: #000000;
+	border: none;
+}
+
+
+/*周次及星期几的输入框*/
+
+.bd {
+	border: 0;
+	text-align: center;
+	color: #00f
+}
+
+
+/*日期默认样式*/
+
+.unSelectDay {
+	font-weight: normal;
+	padding: 3px;
+	cursor: pointer;
+	text-decoration: none;
+	border-radius: 50%;
+	padding: 5px;
+}
+
+
+/*当前点击的日期样式*/
+
+.selectDay {
+	color: #000;
+	font-weight: bold;
+	padding: 1px;
+	text-decoration: none;
+	cursor: normal;
+	border-radius: 50%;
+	position: relative;
+	border-radius: 50%;
+	padding: 5px;
+	background: #FFC128;
+}
+
+
+/*周末样式*/
+
+.weekEnd {
+	color: #f00
+}
+
+.test {
+	color: #f00;
+	text-decoration: none
+}
+
+.addbutton {
+	width: 40px;
+	height: 40px;
+	margin-right: 40px;
+	vertical-align: bottom;
+}
+
+.title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-decoration: none;
+	color: #FF8A00;
+	font-size: 12px;
+	font-weight: normal;
+	width: 150px;
+}
+
+i {
+	display: none;
+	background: #f00;
+	border-radius: 50%;
+	width: 5px;
+	height: 5px;
+	top: 0px;
+	right: -8px;
+	position: absolute;
+}
+
+.datetime {
+	display: none;
+	position: relative;
+	top: 50px;
+	right: 8px;
+	z-index: 100;
+	background: #FFFFFF;
+	border: 1px solid #FFFFFF;
+}
+
+#schedule-sel {
+	width: 80%;
+	margin: 0 auto;
+	padding: 20px 10px;
+	font-size: 13px;
+}
+
+.schedule-hd {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 5px;
+}
+
+.today {
+	flex: 1;
+	text-align: center;
+}
+
+.ul-box {
+	overflow: hidden;
+}
+
+.ul-box>li {
+	float: left;
+	width: 14.28%;
+	text-align: center;
+	padding: 5px 0;
+}
+
+.other-month {
+	color: #ECECEC;
+}
+
+.current-month {
+	color: #111111;
+}
+
+.today-style {
+	border-radius: 50%;
+	background: #58d321;
+}
+
+.arrow {
+	cursor: pointer;
+}
+
+.dayStyle {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+.current-month>.dayStyle:hover {
+	background: #00BDFF;
+	color: #ffffff;
+}
+
+.today-flag {
+	background: #00C2B1;
+	color: #fff;
+}
+
+.boxshaw {
+	box-shadow: 2px 2px 15px 2px #ffffff;
+}
+
+.selected-style {
+	background: #ff8a00;
+	color: #ffffff;
+}

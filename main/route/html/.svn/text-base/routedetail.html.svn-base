@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../main/tab-1.css" />
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=8XGz9hHqmb5oR3VxbKeGAByh6m3Y9Pyk"></script>
+	</head>
+
+	<body>
+		<header id="header">
+			<div class="nvbt iback" style="margin-top: 8px;margin-left: 8px;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			</div>
+			<div class="nvtt">
+				<div class="language" language="choosecity[2]">
+					详细线路
+				</div>
+			</div>
+		</header>
+		<div id="container" style="width: 100%;height: 100%;margin-top: 44px;">
+
+		</div>
+		<script type="text/javascript" src="../../../js/immersed.js"></script>
+		<div align="left" style="left:0px;z-index:1;position:absolute;bottom:30px;margin-left: 10px;">
+			<div style="float:left;">
+				<img id="map_img_xia" style="width: 177px;height:80px;" src="../../../img/xia.png" alt="">
+			</div>
+
+		</div>
+		<div class="divrad" align="right" style="z-index:1;width:35px;position:absolute;bottom:30px;right:5px;">
+			<img id="route_locate" style="margin-top:5px;margin-right:7px;height:35px;width:35px;" src="../../../img/looo.png" />
+		</div>
+		<div id="route_div_trans" onClick="dismissbggg1();" style="display:none;position:absolute;top:0px;width:100%;height:100%;z-index:79;">
+
+		</div>
+		<div id="route_div_trans2" style="position:absolute;top:100px;width:80%;z-index:80;margin-left:10%;">
+
+		</div>
+
+		<script>
+			var latitude, longitude;
+
+			mui.plusReady(function() {
+				Language.init();
+				var w = plus.webview.currentWebview();
+				var ditem = w.ditem;
+				var p = eval('(' + plus.storage.getItem("geolocation") + ')');
+				latitude = p.coords.latitude;
+				longitude = p.coords.longitude;
+				initMap(ditem);
+			})
+
+			function initMap(ditem) {
+				var tmp = ditem;
+				var map = new BMap.Map("container", {
+					enableMapClick: false
+				});
+
+				map.addOverlay(new BMap.Marker(new BMap.Point(window.localStorage.getItem("lontitude"), window.localStorage.getItem("latitude"))));
+				map.centerAndZoom(new BMap.Point(parseFloat(tmp[0]["PICTURE_YY"]), parseFloat(tmp[0]["PICTURE_XX"])), 15);
+				//	map.disableScrollWheelZoom();
+				//	map.disableDoubleClickZoom();
+				//	map.disablePinchToZoom();
+				//	map.disableDragging();
+
+				// 添加带有定位的导航控件
+				var navigationControl = new BMap.NavigationControl({
+					// 靠左上角位置
+					anchor: BMAP_ANCHOR_TOP_LEFT,
+					// LARGE类型
+					type: BMAP_NAVIGATION_CONTROL_LARGE,
+					// 启用显示定位
+					enableGeolocation: true
+				});
+				map.addControl(navigationControl);
+
+				console.log("" + tmp);
+				//var tmp = routeList[index];
+				if(tmp.length == 1) {
+					var p1 = new BMap.Point(parseFloat(tmp[0]["PICTURE_YY"]), parseFloat(tmp[0]["PICTURE_XX"]));
+					var myIcon = new BMap.Icon(getImgUrl(tmp[0].CHANNEL_CODE),
+						new BMap.Size(28, 46), {
+
+							anchor: new BMap.Size(7, 20),
+						});
+					setImageSize(tmp[0].CHANNEL_CODE, myIcon);
+					var marker = new BMap.Marker(p1, {
+						icon: myIcon
+					}); // 创建标注
+					map.addOverlay(marker); // 将标注添加到地图中
+					var col = new ttsd2(tmp[0], 0, marker, map);
+					marker.addEventListener("click", col.clickMarker);
+					var label = new BMap.Label(tmp[0]["STORE_NAME"], {
+						offset: new BMap.Size(30, 0)
+					});
+					label.setStyle({
+						color: "white",
+						fontSize: "12px",
+						height: "20px",
+						lineHeight: "20px",
+						backgroundColor: "#FFC128",
+						border: "none",
+						fontFamily: "微软雅黑"
+					});
+					marker.setLabel(label);
+				} else {
+					var p1 = new BMap.Point(parseFloat(tmp[0]["PICTURE_YY"]), parseFloat(tmp[0]["PICTURE_XX"]));
+					var myIcon = new BMap.Icon(getImgUrl(tmp[0].CHANNEL_CODE),
+						new BMap.Size(28, 46), {
+
+							anchor: new BMap.Size(7, 20),
+						});
+					setImageSize(tmp[0].CHANNEL_CODE, myIcon);
+					var marker = new BMap.Marker(p1, {
+						icon: myIcon
+					}); // 创建标注
+					map.addOverlay(marker); // 将标注添加到地图中
+					var label = new BMap.Label(tmp[0]["STORE_NAME"], {
+						offset: new BMap.Size(30, 0)
+					});
+					label.setStyle({
+						color: "white",
+						fontSize: "12px",
+						height: "20px",
+						lineHeight: "20px",
+						backgroundColor: "#FFC128",
+						border: "none",
+						fontFamily: "微软雅黑"
+					});
+					marker.setLabel(label);
+					var col = new ttsd2(tmp[0], 0, marker, map);
+					marker.addEventListener("click", col.clickMarker);
+					label.addEventListener("click", col.clickMarker);
+
+					var p2 = new BMap.Point(parseFloat(tmp[tmp.length - 1]["PICTURE_YY"]), parseFloat(tmp[tmp.length - 1]["PICTURE_XX"]));
+					var myIcon = new BMap.Icon(getImgUrl(tmp[tmp.length - 1].CHANNEL_CODE),
+						new BMap.Size(28, 46), {
+
+							anchor: new BMap.Size(7, 20),
+						});
+					setImageSize(tmp[tmp.length - 1].CHANNEL_CODE, myIcon);
+					var marker2 = new BMap.Marker(p2, {
+						icon: myIcon
+					}); // 创建标注
+					map.addOverlay(marker2); // 将标注添加到地图中
+					var label = new BMap.Label(tmp[tmp.length - 1]["STORE_NAME"], {
+						offset: new BMap.Size(30, 0)
+					});
+					label.setStyle({
+						color: "white",
+						fontSize: "12px",
+						height: "20px",
+						lineHeight: "20px",
+						backgroundColor: "#FFC128",
+						border: "none",
+						fontFamily: "微软雅黑"
+					});
+					marker2.setLabel(label);
+					var col = new ttsd2(tmp[tmp.length - 1], tmp.length - 1, marker2, map);
+					marker2.addEventListener("click", col.clickMarker);
+					label.addEventListener("click", col.clickMarker);
+					var wayps = [];
+					for(var i = 1; i < tmp.length - 1; i++) {
+						var p1 = new BMap.Point(parseFloat(tmp[i]["PICTURE_YY"]), parseFloat(tmp[i]["PICTURE_XX"]));
+						var myIcon = new BMap.Icon(getImgUrl(tmp[i].CHANNEL_CODE),
+							new BMap.Size(28, 46), {
+
+								anchor: new BMap.Size(7, 20),
+							});
+						setImageSize(tmp[i].CHANNEL_CODE, myIcon);
+						var marker = new BMap.Marker(p1, {
+							icon: myIcon
+						}); // 创建标注
+						map.addOverlay(marker); // 将标注添加到地图中
+						var label = new BMap.Label(tmp[i]["STORE_NAME"], {
+							offset: new BMap.Size(30, 0)
+						});
+						label.setStyle({
+							color: "white",
+							fontSize: "12px",
+							height: "20px",
+							lineHeight: "20px",
+							backgroundColor: "#FFC128",
+							border: "none",
+							fontFamily: "微软雅黑"
+						});
+						marker.setLabel(label);
+						var col = new ttsd2(tmp[i], i, marker, map);
+						marker.addEventListener("click", col.clickMarker);
+						label.addEventListener("click", col.clickMarker);
+						wayps.push(p1);
+					}
+					var driving = new BMap.DrivingRoute(map, {
+							renderOptions: {
+								map: map,
+								autoViewport: true,
+
+							},
+							onMarkersSet: function(routes) {
+								/*map.removeOverlay(routes[0].marker); //删除起点
+								map.removeOverlay(routes[1].marker); //删除终点*/
+								for(var r in routes) {
+									map.removeOverlay(routes[r].marker);
+								}
+
+								for(var i = 0; i < routes.length; i++) {
+									if(i != 0 && i != routes.length - 1) {
+										routes[i].Km.Yc.innerHTML = '';
+										routes[i].Km.Yc.innerHTML = '';
+									}
+								}
+
+							}
+						}
+
+					);
+					driving.search(p1, p2, {
+						waypoints: wayps
+					}); //waypoints表示途经点
+				}
+				$("#route_locate").on("tap", function() {
+					map.setCenter(new BMap.Point(longitude, latitude));
+				});
+			}
+
+			function ttsd2(obj, i, _marker, map) {
+
+				this.clickMarker = function() {
+
+					document.getElementById("route_div_trans").style.display = 'block';
+					document.getElementById("route_div_trans2").style.display = 'block';
+					//alert("这是第" + obj.STORE_NAME);
+					console.log("" + obj.PICTURE_XX);
+					console.log("" + obj.PICTURE_YY);
+					console.log("" + obj.ADDRESS);
+
+					//    alert(obj.ADDRESS);
+					//    alert(obj.STATUS);
+
+					//var uu = "http://api.map.baidu.com/direction?origin=latlng:"+document.getElementById("currentp-lat").value+","+document.getElementById("currentp-lng").value+"|name:"+curr_address+"&destination=latlng:"+obj.PICTURE_XX+","+obj.PICTURE_YY+"|name:"+obj.ADDRESS+"&mode=driving&region=北京&output=html&src=iVisit ";
+					//        alert(obj.LASTUPDATE_DATE);
+					var reach = ''
+					if(obj.TAG2 == '1') {
+						reach = Language.getValue("maptags")[9];
+					} else {
+						reach = Language.getValue("maptags")[10];
+					}
+					var sContent = '<div class="mappop"><div id="route_tocustdetail" class="top"><span>' + obj.STORE_CODE + '</span><span class="mui-navigate-right" style="color:#FFF">' + obj.STORE_NAME + '</span></div><div class="bottom"><div><span>' + Language.getValue("maptags")[7] + reach + '</span><span>' + Language.getValue("maptags")[8] + '</span></div><div id="route_navigator" >' + Language.getValue("maptags")[6] + '<img src="../../../img/daohang.png" style="height:15px;vertical-align:middle"></div></div></div>';
+
+					//					var sContent =
+					//						"<div class=\"divradd\" style=\"padding:0px;background:white\">" +
+					//						"<a id = \"route_tocustdetail\" style=\"text-decoration:none;\" > " +
+					//						"<div class=\"divradd1\" style=\"background-color:#ff8a00;padding-left:10px\"><p style='color:#5f5f5f;margin:0;line-height:1.5;font-size:13px;'>" + obj.STORE_CODE + "</p>" +
+					//						"<p style='margin:0;line-height:1.5;font-size:13px;width:100%;'><span style=\"width:100px;color:#fff\">" + obj.STORE_NAME + "</span>" +
+					//
+					//						" <img src=\"../../../img/left.png\" style=\"float:right;margin-right:5px;height:15px;width:10px;\"  />  " +
+					//
+					//						"</p></div></a>" +
+					//						"<div  style=\"overflow:hidden;\"><div style=\"width: 70%;padding:5px;height: 50px;display: inline;float: left;\" ><p style='margin:0;line-height:1.5;font-size:13px;'>" + Language.getValue("route[0]") + "<span style=\"color:#ff8a00\">" + (obj.TAG2 == '1' ? "" + Language.getValue("route[2]") : "" + Language.getValue("route[1]")) +
+					//
+					//						"</span>" +
+					//						"</p>" +
+					//
+					//						//"<p style='margin:0;line-height:1.5;font-size:13px;'>最近三月销量总和：<span style=\"color:#ff8a00\">"+obj.SALES+"</span></p></div></div> " ;
+					//
+					//						"<p style='margin:0;line-height:1.5;font-size:13px;'>" + Language.getValue("route[3]") + "<span id=\"route_sales_span\" style=\"color:#ff8a00\"></span></p> " +
+					//						"</div><div style='width: 25%;height: 50px;background-color:#FFFFFF;color:#eee;font-weight:normal;display: inline;position: absolute;'><div id=\"route_navigator\" style=\"background-color:#ff8a00;margin-top: 15px;margin-right:5px\"><span style=\"margin-left: 5px;\">" + Language.getValue("route[4]") + "</span><img src=\"../../../img/daohang.png\" width=\"14px\" style=\"margin-left:10px;padding-top: 2px;\" /></div></div></div>";
+					//
+					//					//"<a class='ui-btn ui-corner-all' style='background-color:#1284c6;color:#eee;font-weight:normal;display:block;text-shadow: 0px 0px #40730e;'  href='http://api.map.baidu.com/direction?origin=latlng:34.264642646862,108.95108518068|name:我家&destination=大雁塔&mode=driving&region=西安&output=html&src=iVisit'><span>到这里去</span></a>";
+					//"<a class='ui-btn ui-corner-all' style='background-color:#1284c6;color:#eee;font-weight:normal;display:block;text-shadow: 0px 0px #40730e;'  href=\"javascript:goHere('"+uu+"')\"><span style=\"font-size:13px;\">到这里去</span></a>";
+
+					//		console.log("http://api.map.baidu.com/direction?origin=latlng:39.915,116.404|name:故宫&destination=latlng:"+obj.LATITUDE+","+obj.LONGITUDE+"&mode=driving&region=北京&output=html&src=iVisit");									
+					//console.log(sContent);
+					//		infoWindow = new BMap.InfoWindow(sContent,{opacity: 0.1});  // 创建信息窗口对象     
+
+					//		map.openInfoWindow(infoWindow,_marker.getPosition());      // 打开信息窗口
+
+					//map.removeOverlay(mySquare);
+
+					// 添加自定义覆盖物     
+					//mySquare  = new SquareOverlay(_marker.getPosition(), 150, "green");      
+					// map.addOverlay(mySquare);
+					// mySquare.show(); 
+
+					//$('#div_trans2').html(sContent);
+					document.getElementById("route_div_trans2").innerHTML = '';
+					document.getElementById("route_div_trans2").innerHTML = sContent;
+					map.setCenter(_marker.getPosition());
+					console.log('over ');
+					$("#route_navigator").off("tap");
+					$("#route_navigator").on("tap", function() {
+						//						var latitude = window.localStorage.getItem("latitude");
+						//						var lontitude = window.localStorage.getItem("lontitude");
+						//						if(latitude == null) {
+						//							if(window.localStorage.getItem("language") == "chinese") {
+						//								navigator.notification.confirm(
+						//
+						//									'未获取到坐标',
+						//									ensure,
+						//									getStringTips(),
+						//									getStringOk());
+						//							} else {
+						//								navigator.notification.confirm(
+						//									'No coordinates are obtained',
+						//									ensure,
+						//									getStringTips(),
+						//									getStringOk());
+						//							}
+						//
+						//						} else {
+						//							var uu = "http://api.map.baidu.com/direction?origin=latlng:" + latitude + "," + lontitude + "|name:" + window.localStorage.getItem("addr") + "&destination=latlng:" + obj.PICTURE_XX + "," + obj.PICTURE_YY + "|name:" + obj.ADDRESS + "&mode=driving&region=北京&output=html&src=iVisit ";
+						//							console.log('start go goHeree ... ');
+						//							navigator.app.loadUrl(encodeURI(uu), {
+						//								openExternal: true
+						//							});
+						//						}
+
+						var uu = "http://api.map.baidu.com/direction?origin=latlng:" + latitude + "," + longitude + "|name:" + "" + "&destination=latlng:" + obj.PICTURE_XX + "," + obj.PICTURE_YY + "|name:" + "" + "&mode=driving&region=北京&output=html&src=iVisit ";
+						console.log('start go goHeree ... ');
+						var urlStr = encodeURI(uu)
+						plus.runtime.openURL(urlStr);
+					});
+					$("#route_tocustdetail").on("tap", function() {
+
+						mui.openWindow({
+							url: "../../customer/html/customerdetail.html",
+							id: "customerdetail",
+							extras: {
+								storeCode: obj.STORE_CODE
+							}
+						});
+					});
+
+					HttpGet({
+						type: "threeMonthSales",
+						store_code: obj.STORE_CODE
+					}, function(d) {
+						if(d != 1) {
+							console.log('length is ' + d.rows);
+							if(d.data[0].SUM != '') {
+								$("#route_sales_span").text((d.data[0].SUM / 1000).toFixed(1));
+							} else {
+								$("#route_sales_span").text('0');
+							}
+						} else {
+							//navigator.notification.confirm('未取到数据！',ensure,getStringTips(),getStringOk());
+							$("#route_sales_span").text('0');
+						}
+					}, function() {}, "loading");
+
+				}
+			}
+
+			function getImgUrl(channel_code) { // 创建图标对象
+				if(channel_code == 'H' || channel_code == 'LS') {
+					return "../../../img/big.png";
+				} else if(channel_code == 'SS' || channel_code == 'CVS' || channel_code == 'Gro' || channel_code == 'Cos/HD' || channel_code == 'W') {
+					return "../../../img/small.png";
+				} else {
+					return "../../../img/other.png";
+				}
+
+			}
+
+			function dismissbggg1() {
+				document.getElementById("route_div_trans").style.display = 'none';
+				document.getElementById("route_div_trans2").style.display = 'none';
+
+			}
+		</script>
+	</body>
+
+</html>

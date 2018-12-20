@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/psdetail.css" />
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../js/psdetail.js"></script>
+		<style>
+			#psnew_divmonth {
+				font-size: 12px;
+				height: 25px;
+			}
+			
+			#tipdiv {
+				position: absolute;
+				z-index: 39;
+				background-color: #151515;
+				border-radius: 5px;
+				color: #eee;
+				right: 2%;
+				max-width: 96%;
+			}
+			
+			#tipdiv p {
+				margin-bottom: 0px;
+				margin-top: 5px;
+				padding-bottom: 3px;
+			}
+			
+			#tipdiv>p>span {
+				width: 45%;
+				display: inline-block;
+				font-size: 10px;
+			}
+			
+			#tipdiv>p>span:first-child {
+				width: 30%;
+				text-align: left;
+				padding-left: 5px;
+			}
+			
+			#tipdiv>p>span:last-child {
+				width: 20%;
+				text-align: right;
+			}
+			
+			.ruledialog thead td {
+				height: 40px;
+				font-size: 12px;
+				border: 1px solid white;
+				color: #fd8b0c;
+				background-color: #000;
+				text-align: center;
+			}
+			
+			.ruledialog tbody td {
+				height: 40px;
+				font-size: 12px;
+				border: 1px solid white;
+				color: #FFFFFF;
+				background-color: #000;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" style="display: flex;justify-content: space-between;">
+			<div class="nvbt iback" style="margin-top: 8px;margin-left: 8px;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			</div>
+			<div style="color:white">
+				<div class="language" language="pstop[4]">
+					完美门店
+				</div>
+			</div>
+			<div id="openrule" style="font-size: 12px;margin-right: 5px;color: white;" class="language" language="pstop[3]">积分逻辑</div>
+		</header>
+		<div id="container">
+			<div id="psnewtop" class="top" style="background-color: #eff0f1;padding-bottom: 3px; height: 64px;margin-top: 44px;">
+				<div class="toptab">
+					<div class="language" language="pstop[0]"></div>
+					<div>
+						<img src="../../../img/icon_score.png" />
+						<span class="pstop1">0</span>
+					</div>
+				</div>
+				<div class="toptab">
+					<div class="language" language="pstop[1]"></div>
+					<div>
+						<img src="../../../img/icon_product.png" />
+						<span class="pstop2">0</span>
+					</div>
+				</div>
+				<div class="toptab">
+					<div class="language" language="pstop[2]">缺核心单品</div>
+					<div>
+						<img src="../../../img/icon_product.png" />
+						<span class="pstop3">0</span>
+					</div>
+				</div>
+
+			</div>
+
+			<div id="pssmallnewtop" class="top" style="background-color: #eff0f1;padding-bottom: 3px; height: 64px;margin-top: 44px;display: none;">
+				<div class="toptab">
+					<div class="language" language="pstop[6]"></div>
+					<div>
+						<img src="../../../img/icon_score.png" />
+						<span id="pstop1">0</span>
+					</div>
+				</div>
+				<div class="toptab">
+					<div class="language" language="pstop[5]"></div>
+					<div>
+						<img src="../../../img/icon_product.png" />
+						<span id="pstop2">0</span>
+					</div>
+				</div>
+				<div class="toptab">
+					<div class="language" language="pstop[2]">缺核心单品</div>
+					<div>
+						<img src="../../../img/icon_product.png" />
+						<span id="pstop3">0</span>
+					</div>
+				</div>
+
+			</div>
+
+			<div id="pssmall2newtop" class="top" style="background-color: #eff0f1;padding-bottom: 3px; height: 64px;margin-top: 44px;display: none;">
+				<div class="toptab">
+					<div class="language" language="pstop[5]"></div>
+					<div>
+						<img src="../../../img/icon_score.png" />
+						<span id="pstop1">0</span>
+					</div>
+				</div>
+				<div class="toptab">
+					<div class="language" language="pstop[2]"></div>
+					<div>
+						<img src="../../../img/icon_product.png" />
+						<span id="pstop2">0</span>
+					</div>
+				</div>
+
+			</div>
+
+			<div id="psnew_divmonth">
+				<img src="../../../img/wanmei_icon_clock.png" />
+				<span class="language" language="pstop[7]">统计区间:</span><span id="month0" style="background-color: transparent;font-size: 12px;text-align: left;color: #261e0f;"></span>
+				<span onclick="exchangeMonth(3);" id="month3" style="width: 13%;border-radius:15px;background-color: #FFA329;float: right;margin-right: 1px;color: #fff;">7月</span>
+				<span onclick="exchangeMonth(2);" id="month2" style="width: 13%;float: right;border-radius:15px;">6月</span>
+				<span onclick="exchangeMonth(1);" id="month1" style="width: 13%;float: right;border-radius:15px;">5月</span>
+			</div>
+			<div id="psbgdiv" onclick="hidetipdiv();">
+				<div id="tipdiv">
+					<!--<p><span>Hair Care</span><span>历史洗发水</span><span>200</span></p>
+					<p><span>Hair Care</span><span>历史洗发水</span><span>200</span></p>
+					<p><span>Hair Care</span><span>历史洗发水</span><span>200</span></p>-->
+				</div>
+				<div id="ttipdiv">
+					<!--<p><span>Hair Care</span><span>历史洗发水</span><span>200</span></p>
+					<p><span>Hair Care</span><span>历史洗发水</span><span>200</span></p>
+					<p><span>Hair Care</span><span>历史洗发水</span><span>200</span></p>-->
+				</div>
+				<div id="ruletipdiv" style="width:96%; background: black;position: relative;">
+					<!--<div style="background-color: #FFA329; border-top-left-radius: 5px;border-top-right-radius:5px ;padding: 10px;text-align: center;">大店积分逻辑</div>-->
+					<table id="ruledialog_big" class="ruledialog" border="1" cellspacing="1" bordercolor="#FFA329" style="display: none;">
+
+						<thead>
+							<td class="language" language="pstop1[0]">积分名称</td>
+							<td class="language" language="pstop1[1]">定义</td>
+							<td colspan="2"  class="language" language="pstop1[2]">积分分值</td>
+							<td class="language" language="pstop1[3]">对应DSR奖金</td>
+						</thead>
+						<tr>
+							<td rowspan="7" class="language" language="pstop1[4]">单项积分</td>
+							<td rowspan="7"  class="language" language="pstop1[5]">完成每一个单独的KPI对应的积分</td>
+							<td>OSA</td>
+							<td class="language" language="pstop1[7]">2分</td>
+							<td rowspan="7" class="language" language="pstop1[6]">1分 = 3元</td>
+						</tr>
+						<tr>
+							<td>SOS</td>
+							<td class="language" language="pstop1[8]">1分</td>
+						</tr>
+						<tr>
+							<td>PSP</td>
+							<td class="language" language="pstop1[8]">1分</td>
+						</tr>
+						<tr>
+							<td>CTA</td>
+							<td class="language" language="pstop1[8]">1分</td>
+						</tr>
+						<tr>
+							<td>NPD</td>
+							<td class="language" language="pstop1[8]">1分</td>
+						</tr>
+						<tr>
+							<td>TCP</td>
+							<td class="language" language="pstop1[9]">每档期1分</td>
+						</tr>
+						<tr>
+							<td>AG</td>
+							<td class="language" language="pstop1[9]">每档期1分</td>
+						</tr>
+						<tr>
+							<td class="language" language="pstop1[10]"> 品类积分（仅DSR）</td>
+							<td class="language" language="pstop1[11]">品类OSA/SOS/CTA都完成时获得的积分值</td>
+							<td class="language" language="pstop1[9]" colspan="2">1分</td>
+							<td class="language" language="pstop1[12]">1分 = 10元</td>
+						</tr>
+					</table>
+
+					<table id="ruledialog_ss" class="ruledialog" border="1" cellspacing="1" style="display: none;">
+						<thead>
+							<td class="language" language="pstop1[0]">积分名称</td>
+							<td class="language" language="pstop1[1]">定义</td>
+							<td class="language" language="pstop1[2]">积分分值</td>
+							<td class="language" language="pstop1[3]">对应DSR奖金</td>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="language" language="pstop2[0]">品类积分</td>
+								<td class="language" language="pstop2[1]">品类OSA/SOS/CTA都完成时获得的积分值</td>
+								<td class="language" language="pstop1[8]">1分</td>
+								<td class="language" language="pstop1[12]">1分 = 10元</td>
+							</tr>
+							<tr>
+								<td class="language" language="pstop2[2]">OSA全品类达成积分</td>
+								<td class="language" language="pstop2[3]">小店所有指定单品都达成时额外获得的积分</td>
+								<td class="language" language="pstop1[8]">1分</td>
+								<td class="language" language="pstop1[12]">1分 = 10元</td>
+							</tr>
+						</tbody>
+					</table>
+					<table id="ruledialog_cos" class="ruledialog" border="1" cellspacing="1" style="display: none;">
+						<thead>
+							<td class="language" language="pstop1[0]">积分名称</td>
+							<td class="language" language="pstop1[1]">定义</td>
+							<td class="language" language="pstop1[2]">积分分值</td>
+							<td class="language" language="pstop1[3]">对应DSR奖金</td>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="language" language="pstop2[2]">OSA全品类达成积分</td>
+								<td class="language" language="pstop2[4]">化妆品店所有指定单品都达成时获得的积分</td>
+								<td class="language" language="pstop1[8]">1分</td>
+								<td class="language" language="pstop1[12]">1分 = 10元</td>
+							</tr>
+
+						</tbody>
+					</table>
+					<table id="tcpdialog" class="ruledialog" border="1" cellspacing="1" style="display: none;">
+						<thead>
+							<td class="language" language="pstop_tcpdialog[0]">档期</td>
+							<td class="language" language="pstop_tcpdialog[1]">目标</td>
+							<td class="language" language="pstop_tcpdialog[2]">填报</td>
+							<td class="language" language="pstop_tcpdialog[3]">达成</td>
+							<td class="language" language="pstop_tcpdialog[4]">审核状态</td>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+					<table id="agdialog" class="ruledialog" border="0" cellspacing="1" style="display: none;">
+						<thead>
+							<td class="language" language="pstop_tcpdialog[0]">档期</td>
+							<td class="language" language="pstop_tcpdialog[5]">活动</td>
+							<td class="language" language="pstop_tcpdialog[6]">TG目标</td>
+							<td class="language" language="pstop_tcpdialog[7]">TG填报</td>
+							<td class="language" language="pstop_tcpdialog[8]">POSM提报</td>
+							<td class="language" language="pstop_tcpdialog[9]">总达成</td>
+							<td class="language" language="pstop_tcpdialog[4]">审核状态</td>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<table border="0" id="pefectnewtable0" data-store="big">
+
+				<thead id="prefectnewheader" style="">
+					<tr>
+						<th rowspan="2" id="qwrqeqeq_new" style="font-size: 10px;" class="language" language="pstop[8]">品类</th>
+						<th style="font-size: 10px;">OSA</th>
+						<th style="font-size: 10px;">SOS</th>
+						<th style="font-size: 10px;">PSP</th>
+						<th style="font-size: 10px;">CTA</th>
+						<th style="font-size: 10px;">NPD</th>
+						<th id="adadada5k_new" style="width: 12%;font-size: 10px;" class="language" language="pstop[11]">缺</th>
+						<th style="font-size: 10px;">TCP</th>
+						<th style="font-size: 10px;">AG</th>
+					</tr>
+					<tr>
+						<th colspan="6" style="font-size: 10px;"><span id="psbigauditstatus12_new" class="language" language="pstop[9]">审计状态:</span>
+							<span id="psbig_status_store_new"></span>
+						</th>
+						<th id="achi_num" colspan="2" style="font-size: 10px;" class="language" language="pstop[10]">达成档数</th>
+					</tr>
+				</thead>
+				<tbody id="psbig_tbody">
+					<tr>
+						<td class="colhead">Hair Care</td>
+						<td>
+
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td rowspan="2"></td>
+						<td rowspan="10"></td>
+					</tr>
+					<tr>
+						<td class="colhead">Hair others</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="colhead">PW</td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+					</tr>
+					<tr>
+						<td class="colhead">OMO Powder</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td rowspan="2"></td>
+					</tr>
+					<tr>
+						<td class="colhead">OMO Liquid</td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+					</tr>
+					<tr>
+						<td class="colhead">CFT</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="colhead">Oral Care</td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+					</tr>
+
+					<tr>
+						<td class="colhead">Deo</td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+					</tr>
+					<tr>
+						<td class="colhead">Vaseline</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="colhead">Tea</td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+					</tr>
+				</tbody>
+			</table>
+			<table border="0" id="pefectnewtable1" style="margin-top: 10px;display:none" data-store="small">
+				<thead>
+					<tr>
+						<th id="category12jkjklj3" style="font-size: 10px;">品类</th>
+						<th id="audit_status123" style="font-size: 10px;">审计状态</th>
+						<th style="font-size: 10px;">OSA</th>
+						<th style="font-size: 10px;">SOS</th>
+						<th id="smallcta" style="display:table-cell;font-size: 10px;">CTA</th>
+						<th id="que_hexin123" style="font-size: 10px;">缺核心单品</th>
+					</tr>
+				</thead>
+				<tbody id="pssmall_tbody">
+					<tr>
+						<td class="colhead">Tea</td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+
+					</tr>
+					<tr>
+						<td class="colhead">Tea</td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+
+					</tr>
+					<tr>
+						<td class="colhead">Tea</td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+
+					</tr>
+					<tr>
+						<td class="colhead">Tea</td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+
+					</tr>
+				</tbody>
+
+			</table>
+
+			<table border="0" id="pefectnewtable1" style="margin-top: 10px;display:none" data-store="small2">
+				<thead>
+					<tr>
+						<th id="category12jkjklj3" style="font-size: 10px;">品类</th>
+						<th id="audit_status123" style="font-size: 10px;">审计状态</th>
+						<th style="font-size: 10px;">OSA</th>
+						<th style="font-size: 10px;">SOS</th>
+						<th id="que_hexin123" style="font-size: 10px;">缺核心单品</th>
+					</tr>
+				</thead>
+				<tbody id="pssmall2_tbody">
+					<tr>
+						<td class="colhead">Tea</td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+
+					</tr>
+					<tr>
+						<td class="colhead">Tea</td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+						<td class="dark"></td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+			<div id="sefsewewtw" class="tipdiv" style="display:none" data-store="small">
+				点击达成,查看该考核项的目标值 <br/> 红色-不达标;绿色-达标；蓝色-仅完成SOS门店目标<br/>
+			</div>
+			<div id="adgrhrdb" class="tipdiv" data-store="big">
+				点击达成,查看该考核项的目标值<br/> 红色-不达标;绿色-达标；蓝色-仅完成SOS门店目标<br/><span style="color: red;">TCP和AG,如果是跨月档期,积分归档在档期结束月份</span>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../js/immersed.js"></script>
+	</body>
+
+</html>

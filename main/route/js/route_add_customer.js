@@ -1,0 +1,424 @@
+var page = 0;
+var condition;
+var modifyList, dataListRoute;
+var savecondition;
+var route_id;
+var route_date;
+var isModify;
+
+mui.init({
+	beforeback: function() {
+		var wobj = plus.webview.getWebviewById("../route/html/mainroute.html"); //注意 HBuilder 是   1.html 的 ID  你如果1.html 有ID   要替换掉HBuilder，  
+		wobj.reload(true);
+	},
+//	pullRefresh: {
+//		container: "#refreshContainer", //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+//		up: {
+//			height: 50, //可选.默认50.触发上拉加载拖动距离
+//			auto: false, //可选,默认false.自动上拉加载一次
+//			contentrefresh: Language.getValue("choosecity[4]"), //可选，正在加载状态时，上拉加载控件上显示的标题内容
+//			contentnomore: Language.getValue("choosecity[3]"), //可选，请求完毕若没有更多数据时显示的提醒内容；
+//			callback: pullupfresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+//		}
+//	}
+})
+
+mui.plusReady(function() {
+	Language.init();
+	document.getElementById("title").innerHTML = "<div id='input' onclick=searchPage('" + "route_add_customer" + "')>"+Language.getValue("门店名称")+"<div id='deletekey' style='float: right;display: none;' onclick='deletekey()'><img src='../../../img/delete.png' /></div></div>";
+
+	condition = {
+		type: "customerListSearch2",
+		cust_type: '',
+		channel: '',
+		svalue: '',
+		latitude: '',
+		lontitude: '',
+		page: page,
+		city_code: '',
+		filter: '',
+		filterva: '',
+		language: plus.storage.getItem("language")
+	}
+	dataListRoute = [];
+	route_id = "";
+	var cur = plus.webview.currentWebview();
+	route_date = cur.setDate;
+	isModify = cur.modify;
+	console.log(cur.modifyList);
+	if(cur.modifyList == undefined) {
+		modifyList = [];
+	} else {
+		modifyList = JSON.parse(cur.modifyList);
+	}
+	if(cur.routeid == undefined) {
+		route_id = "";
+	} else {
+		route_id = cur.routeid;
+	}
+	
+	mui("#refreshContainer").pullRefresh({
+		up: {
+			height: 50, //可选.默认50.触发上拉加载拖动距离
+			auto: false, //可选,默认false.自动上拉加载一次
+			contentrefresh: Language.getValue("choosecity[4]"), //可选，正在加载状态时，上拉加载控件上显示的标题内容
+			contentnomore: Language.getValue("choosecity[3]"), //可选，请求完毕若没有更多数据时显示的提醒内容；
+			callback: pullupfresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+		}
+	});
+
+	initTabs(getList, condition);
+	checkSameData(modifyList);
+	setListener();
+//	mui('li').off('tap', '.addbutton', function() {});
+		mui('#storelist').on('tap', '.addbutton', function() {
+			if(modifyList == null || modifyList == undefined) {
+				modifyList = new Array();
+			}
+			var arrNodes = Array.prototype.slice.call(document.querySelectorAll("li"));
+			var index = arrNodes.indexOf(this.parentNode.parentNode.parentNode);
+			modifyList.push(dataListRoute[index]);
+			//			window.sessionStorage.setItem("modifyList", JSON.stringify(modifyList));
+			addRouteItem(this, index);
+			return false;
+		});
+
+	
+
+});
+
+function checkSameData(modifyList, list) {
+
+	if(modifyList == null || modifyList.length == 0) {
+		return;
+	}
+	addRouteItemWithData(modifyList);
+}
+
+window.addEventListener('setCity', function(e) {
+	if(plus.storage.getItem("language") == 'cn') {
+		document.getElementById("citylabel").innerHTML = '<div>' + e.detail.city + '</div>';
+	} else {
+		document.getElementById("citylabel").innerHTML = '<div>' + ConvertPinyin(e.detail.city) + '</div>';
+	}
+	if(e.detail.isAuto == '1') {
+		//自动
+		var p = eval('(' + plus.storage.getItem("geolocation") + ')');
+		condition.latitude = p.coords.latitude;
+		condition.lontitude = p.coords.longitude;
+		condition.city_name = p.address.city;
+	} else {
+		condition.city_name = e.detail.city;
+	}
+	getList(0);
+});
+
+window.addEventListener('result', function(event) {
+	var storeCode = event.detail.storeCode;
+	var storeName = event.detail.storeName;
+	condition.svalue = storeCode;
+	document.getElementById("title").innerHTML = "<div id='input' onclick=searchPage('" + "route_add_customer" + "')>" + storeName + "<div id='deletekey' style='float: right;display: block;' onclick='deletekey()'><img src='../../../img/delete.png' /></div></div>";
+	dataListRoute = [];
+	getList(0);
+});
+
+function deletekey() {
+	var event = window.event || arguments[0];
+	document.getElementById("title").innerHTML = "<div id='input' onclick=searchPage('" + "route_add_customer" + "')>"+Language.getValue("门店名称")+"<div id='deletekey' style='float: right;display: none;' onclick='deletekey()'><img src='../../../img/delete.png' /></div></div>";
+
+	//document.getElementById("deletekey").style.display = "none";
+	event.stopPropagation();
+	condition.svalue = "";
+	dataListRoute = [];
+	getList(0);
+	
+	
+}
+
+function searchPage(){
+	mui.openWindow({
+			url: "../../main/search.html",
+			id: "search",
+			extras: {
+				tag: "route_add_customer"
+			}
+		})
+}
+
+function checkSameDataWithOutAdd(modifyList, list) {
+	for(var i = 0; i < modifyList.length; i++) {
+		for(var j = 0; j < list.length; j++) {
+			console.log("1111" + modifyList[i].STORE_CODE + "=====" + list[j].STORE_CODE);
+			if(modifyList[i].STORE_CODE == list[j].STORE_CODE) {
+				//alert($(".addbutton").eq(j));
+				//	replaceData(modifyList[i].STORE_CODE, j);
+				document.querySelectorAll(".addbutton")[j + page * 10].style.display = 'none';
+			}
+		}
+
+	}
+}
+
+function addRouteItemWithData(data) {
+	for(var i = 0; i < data.length; i++) {
+		document.querySelector("#items").innerHTML += '<li class="mui-table-view-cell" style="line-height: 60px;height:60px;display:block">' + '<i class="iconfont icon-shanchujinzhi delitem" pcode="' + data[i].STORE_CODE + '" pindex="' + i + '" onclick=\"removeItem(this);\"  style="font-size: 20px;color: red;position: absolute;" ></i><span class="serial" style="margin-left: 20px;position: relative;font-size:14px;vertical-align: top;">' + (document.querySelectorAll("#items li").length + 1) + '.' + '</span><span style="position: relative;font-size:14px;width: 60%;text-overflow: ellipsis;overflow: auto;white-space: nowrap;display: inline-block;">' + data[i].STORE_NAME + '</span><i  class="iconfont icon-gengduo moveroute" style="font-size:28px;float: right;"/></li>';
+	}
+
+	document.querySelector("#num").innerHTML = document.querySelectorAll("#items li").length;
+}
+
+function setListener() {
+	var el = document.getElementById('items');
+	new Sortable(el, {
+		handle: ".moveroute",
+		// Element is chosen
+		onChoose: function( /**Event*/ evt) {
+			evt.oldIndex; // element index within parent
+		},
+
+		// Element dragging started
+		onStart: function( /**Event*/ evt) {
+			evt.oldIndex; // element index within parent
+		},
+
+		// Element dragging ended
+		onEnd: function( /**Event*/ evt) {
+			var itemEl = evt.item; // dragged HTMLElement
+			evt.to; // target list
+			evt.from; // previous list
+			evt.oldIndex; // element's old index within old parent
+			evt.newIndex; // element's new index within new parent
+
+			for(var i = 0; i < document.querySelectorAll(".serial").length; i++) {
+				document.querySelectorAll(".serial")[i].innerHTML = (i + 1) + '.';
+			}
+		},
+
+		// Element is dropped into the list from another list
+		onAdd: function( /**Event*/ evt) {
+			// same properties as onEnd
+		},
+
+		// Changed sorting within list
+		onUpdate: function( /**Event*/ evt) {
+			// same properties as onEnd
+		},
+
+		// Called by any change to the list (add / update / remove)
+		onSort: function( /**Event*/ evt) {
+			// same properties as onEnd
+		},
+
+		// Element is removed from the list into another list
+		onRemove: function( /**Event*/ evt) {
+			// same properties as onEnd
+			//alert('remove');
+		},
+
+		// Attempt to drag a filtered element
+		onFilter: function( /**Event*/ evt) {
+			var itemEl = evt.item; // HTMLElement receiving the `mousedown|tapstart` event.
+		},
+
+		// Event when you move an item in the list or between lists
+		onMove: function( /**Event*/ evt, /**Event*/ originalEvent) {
+			// Example: http://jsbin.com/tuyafe/1/edit?js,output
+			evt.dragged; // dragged HTMLElement
+			evt.draggedRect; // TextRectangle {left, top, right и bottom}
+			evt.related; // HTMLElement on which have guided
+			evt.relatedRect; // TextRectangle
+			originalEvent.clientY; // mouse position
+			// return false; — for cancel
+		},
+
+		// Called when creating a clone of element
+		onClone: function( /**Event*/ evt) {
+			var origEl = evt.item;
+			var cloneEl = evt.clone;
+		}
+	});
+
+	document.getElementById('routeshowlist').addEventListener('tap', function() {
+
+	})
+
+	//	$("#routeshowlist").tap(function() {
+	//		var $this = $(this);
+	//		//	$this.addClass('m_up').removeClass('m_down');
+	//		/*var $menu = $this.prev();*/
+	//		var t = 50;
+	//		$(($("#bottom_menu")).find('li').get().reverse()).each(function() {
+	//
+	//			var $li = $(this);
+	//			if($li.is(':hidden')) {
+	//				var showmenu = function() {
+	//					$li.show();
+	//				};
+	//				setTimeout(showmenu, t += 50);
+	//				document.getElementById("route_add_customer_list_out").style.overflow = "hidden";
+	//				$("#bottom_shadow").show();
+	//			} else {
+	//				var hidemenu = function() {
+	//					$li.hide();
+	//				};
+	//				setTimeout(hidemenu, t += 50);
+	//				document.getElementById("route_add_customer_list_out").style.overflow = "scroll";
+	//				$("#bottom_shadow").hide();
+	//			}
+	//
+	//		});
+	//	});
+	//	$("#bottom_shadow").tap(function(e) {
+	//		e.preventDefault();
+	//		var $this = $(this);
+	//		//	$this.addClass('m_up').removeClass('m_down');
+	//		/*var $menu = $this.prev();*/
+	//		var t = 50;
+	//		$(($("#bottom_menu")).find('li').get().reverse()).each(function() {
+	//			var $li = $(this);
+	//			var hidemenu = function() {
+	//				$li.hide();
+	//			};
+	//			setTimeout(hidemenu, t += 50);
+	//			document.getElementById("route_add_customer_list_out").style.overflow = "scroll";
+	//			$("#bottom_shadow").hide();
+	//
+	//		});
+	//	});
+
+}
+
+function getList(pages) {
+	console.log(pages);
+	if(pages == 0) {
+		document.getElementById("storelist").innerHTML = '';
+		mui('#refreshContainer').pullRefresh().enablePullupToRefresh();
+
+	}
+	condition.page = pages;
+	HttpGet(condition, function(data) {
+		page = pages;
+		if(data == '1') {
+			//无数据
+			mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);
+			return;
+		}
+
+		var storelist = document.getElementById("storelist");
+		mui.each(data.data, function(index, obj) {
+			dataListRoute.push(obj);
+			var li = document.createElement('li');
+			li.className = 'mui-table-view-cell mui-media';
+			li.innerHTML = '<img class="mui-media-object mui-pull-left" src="' + getImageUrl(obj.STORE_PICTURE, 'name') + '"><div class="mui-media-body">' + obj.STORE_NAME + '<p class="mui-ellipsis">' + obj.STORE_CODE + '<div style="float: right;height:40px"><img src="../../../img/pic_route_tianjia.png" class="addbutton" style="width:40px;"></div></p><p class="mui-ellipsis address">' + obj.ADDRESS + '</p><p class="mui-ellipsis"><div class="lastline"><img src="../../../img/pic_dingwei.png" class="pic_dingwei">(' + obj.SIGN_COUNT + ')<img src="../../../img/pic_pinglun.png" class="pic_pinglun">(' + obj.COMMENTS_COUNT + ')</div></p></div>';
+			storelist.appendChild(li);
+		});
+		if(pages != 0) {
+			if(data.rows < 10) {
+				mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);
+			} else {
+				mui('#refreshContainer').pullRefresh().endPullupToRefresh(false);
+			}
+		} else {
+
+			mui('#refreshContainer').pullRefresh().endPullupToRefresh(false);
+		}
+		//lazyLoadApi.refresh(true);
+		checkSameDataWithOutAdd(modifyList, data.data);
+		
+	}, function() {
+		mui('#refreshContainer').pullRefresh().endPulldownToRefresh(true);
+	}, "loading");
+
+}
+
+function pullupfresh() {
+
+	getList(page + 1);
+}
+
+function addRouteItem(i, index) {
+
+	i.style.display = "none";
+	console.log("数量："+document.querySelectorAll("#items li").length);
+	document.querySelector("#items").innerHTML += '<li class="mui-table-view-cell" style="line-height: 60px;height:60px;display:block">' + '<i class="iconfont icon-shanchujinzhi delitem" pcode="' + dataListRoute[index].STORE_CODE + '" pindex="' + index + '" onclick=\"removeItem(this);\"  style="font-size: 20px;color: red;position: absolute;" ></i><span class="serial" style="margin-left: 20px;position: relative;font-size:14px;vertical-align: top;">' + (document.querySelectorAll("#items li").length + 1) + '.' + '</span><span style="position: relative;font-size:14px;width: 60%;text-overflow: ellipsis;overflow: auto;white-space: nowrap;display: inline-block;">' + dataListRoute[index].STORE_NAME + '</span><i  class="iconfont icon-gengduo moveroute" style="font-size:28px;float: right;"/></li>';
+	//	} else {
+	//		$("#items").append('<li class="list-group-item" style="line-height: 40px;height:40px;display:block">' + '<img class="delitem" src="pic/delroute.png" pcode="' + dataListRoute[tmpindex].STORE_CODE + '" pindex="' + tmpindex + '" onclick=\"removeItem(this);\"  style="width: 20px;height: 20px;position: relative;vertical-align: top;margin-top: 10px;margin-left: 5px;" /><span class="serial" style="margin-left: 20px;position: relative;font-size:14px;vertical-align: top;">' + ($("#items").children().length + 1) + '.' + '</span><span style="position: relative;font-size:14px;width: 60%;text-overflow: ellipsis;overflow: auto;white-space: nowrap;display: inline-block;">' + dataListRoute[tmpindex].STORE_NAME + '</span><img src="pic/moveroute.png" class="moveroute" style="margin-right: 10px;width: 30px;height: 30px;padding-top: 5px;float: right;"/></li>');
+	//	}
+	//	routeType = "-1";
+	//	window.sessionStorage.setItem("routetype", "-1");
+	console.log("数量："+document.querySelectorAll("#items li").length);
+	document.querySelector("#num").innerHTML = document.querySelectorAll("#items li").length;
+}
+
+function removeItem(im) {
+
+	//	var index = $(im).attr("pindex");
+	var code = im.getAttribute("pcode");
+
+	im.parentNode.remove();
+	console.log(document.getElementById("bottom_menu").style.top);
+	document.getElementById("bottom_menu").style.top = (parseInt(document.getElementById("bottom_menu").style.top.slice(0, -2)) + 60) + 'px';
+	console.log(document.getElementById("bottom_menu").style.top);
+	console.log("删除后的数量："+document.getElementById("items").children.length);
+	document.getElementById("num").innerHTML = (document.getElementById("items").children.length);
+	//	if(document.getElementById("items").children.length == 0) {
+	//		//document.getElementById("route_add_customer_list_out").style.overflow = "scroll";
+	//	}
+
+	for(var i = 0; i < document.querySelectorAll(".serial").length; i++) {
+		document.querySelectorAll(".serial")[i].innerHTML = (i + 1) + '.';
+	}
+
+	for(var i = 0; i < modifyList.length; i++) {
+		if(modifyList[i].STORE_CODE == code) {
+			modifyList.splice(i, 1);
+			window.sessionStorage.setItem("modifyList", JSON.stringify(modifyList));
+			break;
+		}
+	}
+
+	for(var j = 0; j < dataListRoute.length; j++) {
+		if(dataListRoute[j].STORE_CODE == code) {
+			var addbutton = document.querySelectorAll(".addbutton")[j];
+			addbutton.style.display = "block";
+			break;
+		}
+	}
+
+}
+
+function saveRoute() {
+	mui('#bottom_menu').popover('hide');
+	var storeCode = "";
+	var routeName = "";
+	var len = document.querySelectorAll("#items li i.delitem").length;
+	if(len <= 0) {
+		plus.nativeUI.alert(Language.getValue("getRouteListFailed"),null,"",Language.getValue("customerSearchPop1Condition[2]"))
+		return;
+	}
+	for(var i = 0; i < len; i++) {
+		var t = document.querySelectorAll("#items li i.delitem")[i].getAttribute("pcode");
+		storeCode += t + "#";
+	}
+	storeCode = storeCode.substr(0, storeCode.length - 1);
+	var qurl;
+
+	savecondition = {
+		"type": "routeSubmit",
+		"store_code": storeCode,
+		"route_date": route_date,
+		"route_id": route_id
+	}
+
+	HttpGet(savecondition, function(data) {
+		if(data == 2) {
+			plus.nativeUI.alert("保存失败",null,"",Language.getValue("customerSearchPop1Condition[2]"));
+		}
+		saving = false;
+		mui.back();
+	}, function() {
+		saving = false;
+	}, "loading");
+
+	//return true;
+}

@@ -1,0 +1,215 @@
+body,
+.mui-content {
+	background: #FFFFFF;
+}
+
+.linearr {
+	width: 100%;
+	height: 180px;
+	background-image: -webkit-linear-gradient(left, #ffae01 0%, #ff8a00 100%);
+	background-image: -o-linear-gradient(left, #ffae01 0%, #ff8a00 100%);
+	background-image: -webkit-gradient(linear, left right, left right, from(#ffae01), to(#ff8a00));
+	background-image: linear-gradient(to right, #ffae01 0%, #ff8a00 100%);
+	background-image: -moz-linear-gradient(left, #ffae01, #ff8a00);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffae01', endColorstr='#ff8a00', GradientType=0);
+}
+
+#imgstaffpic {
+	border-radius: 28px;
+	width: 56px;
+	height: 56px;
+	text-align: center;
+	z-index: 1;
+	position: relative;
+	top: -20px;
+}
+
+.line-process {
+	height: 12px;
+	width: 90%;
+	margin-left: 5%;
+	text-align: left;
+	margin-top: 10px;
+}
+
+.circle {
+	width: 10px;
+	height: 10px;
+	border-radius: 6px;
+	position: absolute;
+	background: #fff;
+	z-index: 999;
+}
+
+.reach {
+	background: #FFF;
+}
+
+.processtab {
+	width: 100%;
+	z-index: 1;
+	position: relative;
+	top: -5px;
+}
+
+.processtab div span {
+	font-size: 10px;
+	color: #fff;
+}
+
+.processtab .tab20 {
+	width: 20%;
+	float: left;
+	text-align: center;
+}
+
+.processtab .tab30 {
+	width: 30%;
+	float: left;
+	text-align: center;
+}
+
+#footpop {
+	margin-left: 50px;
+	background: #ffb957;
+	width: 70px;
+	position: absolute;
+	margin-top: -25px;
+	border-radius: 5px;
+}
+
+#footpop .top {
+	font-size: 10px;
+	line-height: 18px;
+	text-align: center;
+	height: 18px;
+	color: #ff8a00;
+	width: 70px;
+}
+
+#footpop .bottom {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background: #ffb957;
+	-webkit-transform: rotate(45deg);
+	margin-top: -5px;
+	left: 30px;
+}
+
+.linebg {
+	width: 75%;
+	height: 2px;
+	background: #CCC;
+	left: 12.5%;
+	position: absolute;
+	margin-top: 4px;
+}
+
+.linereach {
+	width: 0%;
+	height: 2px;
+	background: #FFF;
+	left: 12.5%;
+	position: absolute;
+	margin-top: 4px;
+}
+
+.xtableView {
+	position: relative;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
+	list-style: none;
+	background-color: #fff;
+}
+
+.xcell {
+	list-style-type: none;
+	background: #00C795;
+	margin: 0px;
+	padding: 0px;
+	height: 60px;
+	background: #FFF;
+}
+
+.xcell img {
+	width: 40px;
+	height: 40px;
+	margin: 10px;
+}
+
+.xcell .xbody {
+	display: inline-block;
+	height: 40px;
+	margin: 10px 0px 10px 0px;
+	width: -webkit-calc(100% - 70px);
+	vertical-align: top;
+}
+
+.xcell .xbody .xline1 div {
+	width: 65%;
+	display: inline-block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #ff8a00;
+	font-size: 14px;
+}
+
+.xcell .xbody span {
+	float: right;
+	color: #000;
+	font-size: 14px;
+}
+
+.xcell .xbody .xtime {
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	width: 100%;
+	vertical-align: top;
+	margin: 0px;
+	padding: 0px;
+	color: #777777;
+	font-size: 12px;
+}
+
+.xcell .xbody .xline1 {
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	width: 100%;
+}
+
+.xcell::after {
+	display: block;
+	right: 10px;
+	left: 10px;
+	bottom: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: -5px;
+	height: 1px;
+	content: '';
+	-webkit-transform: scaleY(.5);
+	transform: scaleY(.5);
+	background-color: #c8c7cc;
+}
+
+#refreshContainer{
+	margin-top: 313px;
+}
+
+#storelist{
+	margin:0px 10px 0px 10px;
+}
+
+.mui-col-xs-4{
+	padding: 5px;
+	font-size: 0.8em;
+}
+
+.shareicon{
+	width: 60px;
+}

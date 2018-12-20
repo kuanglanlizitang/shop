@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>菜单</title>
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="menu.css">
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/language.resources.js"></script>
+		<script src="../../js/language.js"></script>
+		<script src="../../js/jquery-3.3.1.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="menu.js"></script>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="userinfo">
+				<img id="userimg" style="width: 106px;height: 106px;" src="../../img/image01.png"  onerror="this.src='../../img/image01.png'"/>
+				<div id="username"></div>
+				<div id="lastdate"></div>
+				<div id="logincount"></div>
+			</div>
+			<ul>
+				<li onclick="openMenuTab('menu-1.html')">
+					<img src="../../img/pic_zuji.png"/><span class="language" language="spanfoot_zuji"></span>
+				</li>
+				<li onclick="openMenuTab('menu-2.html')" >
+					<img src="../../img/pic_kdsq.png" /><span class="language" language="关于看店神器"></span><span class="new"><i>new</i></span>
+				</li>
+				<li onclick="openMenuTab('menu-3.html')">
+					<img src="../../img/pic_fenxiang.png" /><span class="language" language="分享安装地址"></span>
+				</li>
+				<li onclick="openMenuTab('menu-4.html')">
+					<img src="../../img/pic_setting.png" /><span class="language" language="设置"></span>
+				</li>
+				<li onclick="signout()">
+					<img src="../../img/pic_close.png" /><span class="language" language="注销"></span>
+				</li>
+			</ul>
+		</div>
+	</body>
+
+</html>

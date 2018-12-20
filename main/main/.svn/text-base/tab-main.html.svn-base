@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>主界面</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<script type="text/javascript" src="../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../js/language.js"></script>
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="../../css/ivisit.css">
+		<link rel="stylesheet" href="tab-main.css">
+		<style type="text/css">
+			#input span {
+				display: inline-block;
+				width: 150px;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+		</style>
+		<script type="text/javascript" src="../../js/sha256.js"></script>
+		<script type="text/javascript" src="../../js/common.js"></script>
+		<script type="text/javascript" src="../../js/utils.js"></script>
+	</head>
+
+	<body>
+
+		<header id="header">
+			<div class="nvbt u" onclick="openMenu()"></div>
+			<div id="title" class="nvtt">
+				<!--首页-->
+				<div id="input">
+					<span class="language" language="门店名称"></span>
+					<div id="deletekey" style="float: right;display: none;" onclick="deletekey()"><img src="../../img/delete.png" /></div>
+				</div>
+
+				<div id="route" style="display: none;">
+					行程
+				</div>
+
+			</div>
+			<div id="add" class="nvbt language" style="display: none;" language="routetip[2]">新增</div>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a id="defaultTab" class="mui-tab-item tab1 mui-active" href="tab-1.html">
+				<div class="img"></div>
+				<div class="mui-tab-label language" language="maintabs[0]">看店</div>
+			</a>
+			<a class="mui-tab-item tab2" href="../route/html/mainroute.html">
+				<div class="img"></div>
+				<div class="mui-tab-label language" language="maintabs[1]">行程</div>
+			</a>
+			<a class="mui-tab-item tab3" href="../comment/html/maincomment.html">
+				<div class="img"><span class="mui-badge mui-right" style="display: none;"></span></div>
+				<div class="mui-tab-label language" language="maintabs[2]">评论</div>
+			</a>
+			<a class="mui-tab-item tab4" href="../photo/html/mainphoto.html">
+				<div class="img"></div>
+				<div class="mui-tab-label language" language="maintabs[3]">照片墙</div>
+			</a>
+		</nav>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/immersed.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//mui初始化
+			mui.init({
+				swipeBack: false,
+				beforeback: back
+			});
+			var subpages = ['tab-1.html', '../route/html/mainroute.html', 'tab-3.html', 'tab-4.html'];
+
+			var menu, menu2;
+			var showMenu = false;
+			var aniShow = {};
+			var sub;
+			var subpage_style;
+			//创建子页面，首个选项卡页面显示，其它均隐藏；
+			mui.plusReady(function() {
+				Language.init();
+				var height = (plus.display.resolutionHeight - 56) + "px";
+				subpage_style = {
+					top: 44 + immersed + 'px',
+					bottom: '56px',
+					scrollIndicator: "none"
+				};
+				document.getElementById("title").innerHTML = "<div id='input' onclick=searchPage('" + "tab-1.html" + "')>" + Language.getValue("门店名称") + "<div id='deletekey' style='float: right;display: none;' onclick='deletekey()'><img src='../../img/delete.png' /></div></div>";
+				var p = eval('(' + plus.storage.getItem("geolocation") + ')');
+				if(p == undefined) {
+					p = new Object();
+					p.coords = {};
+					p.address = {};
+					p.coords.latitude = 0;
+					p.coords.longitude = 0;
+					p.address.city = "";
+					plus.storage.setItem("geolocation", JSON.stringify(p));
+				}
+
+				setTimeout(function() {
+					sub = plus.webview.create(subpages[0], subpages[0], subpage_style);
+					plus.webview.currentWebview().append(sub);
+
+					//侧滑菜单默认隐藏，这样可以节省内存；
+					menu = mui.preload({
+						id: 'menu-left',
+						url: 'menu-left.html',
+						styles: {
+							left: '-100%',
+							width: '70%',
+							zindex: 9999
+						}
+					});
+					if(plus.os.name == 'Android') {
+						menu2 = mui.preload({
+							id: 'menu-right',
+							url: 'menu-right.html',
+							styles: {
+								left: '-100%',
+								width: '30%',
+								zindex: 9999,
+								opacity: 0.5
+							}
+						});
+					} else {
+						menu2 = mui.preload({
+							id: 'menu-right',
+							url: 'menu-right.html',
+							styles: {
+								left: '-100%',
+								width: '30%',
+								zindex: 9999,
+								opacity: 0.5,
+								mask: "rgb(0,0,0,0.5)"
+							}
+						});
+					}
+				}, 300);
+
+				if('Android' == plus.os.name) {
+					var first = null;
+					mui.back = function() {
+						if(!first) {
+							first = new Date().getTime();
+							mui.toast('再按一次退出应用');
+							setTimeout(function() {
+								first = null;
+							}, 1000);
+							return;
+						} else {
+							if(new Date().getTime() - first < 2000) {
+								plus.runtime.quit();
+							}
+						}
+					}
+
+				}
+				authgetui();
+				//bindalias();
+				//sendRequest();
+				plus.push.getClientInfo().clientid;
+				plus.push.getClientInfo().token;
+				console.log("clientid" + plus.push.getClientInfo().clientid);
+				plus.push.addEventListener("receive", function(msg) {
+					console.log("收到msg" + JSON.stringify(msg));
+					if(msg.payload != "LocalMSG") {
+						createLocalPushMsg(msg.content);
+					}
+					//					var options = {
+					//						cover: true
+					//					};
+					//					var str = dateToStr(new Date());
+					//					str += ": 欢迎使用HTML5+创建本地消息！";
+					//					plus.push.createMessage(str, "LocalMSG", options);
+					//plus.push.clear();
+				}, false);
+
+			});
+
+			//当前激活选项
+			var activeTab = subpages[0];
+			//选项卡点击事件
+			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+				var targetTab = this.getAttribute('href');
+				if(targetTab == activeTab) {
+					sub.reload();
+					return;
+				}
+				sub.close();
+				sub = plus.webview.create(targetTab, targetTab, subpage_style);
+				plus.webview.currentWebview().append(sub);
+				var route_add = null;
+				if(targetTab == "../route/html/mainroute.html") {
+					document.getElementById("add").style.display = '';
+					document.getElementById("title").innerText = Language.getValue("maintabs[1]");
+					document.getElementById('add').addEventListener('tap', function() {
+						//						mui.openWindow(
+						//							'../route/html/route_add_customer.html',
+						//							'route_add_customer', {});
+						//	clicked('../route/html/route_add_customer.html')
+						if(!route_add) {
+							route_add = plus.webview.getWebviewById('../route/html/mainroute.html');
+						}
+						mui.fire(route_add, 'route_add', {
+
+						});
+					})
+				} else if(targetTab == "../photo/html/mainphoto.html") {
+
+					document.getElementById("add").style.display = 'none';
+					document.getElementById("title").innerText = Language.getValue("maintabs[3]");
+
+				} else {
+					document.getElementById("add").style.display = 'none';
+					document.getElementById("title").innerHTML = "<div id='input' onclick=searchPage('" + targetTab + "')><span class='mingcheng'>" + Language.getValue("门店名称") + "</span> <div id='deletekey' style='float: right;display: none;' onclick='deletekey()'><img src='../../img/delete.png' /></div></div>";
+				}
+				activeTab = targetTab;
+			});
+
+			function createLocalPushMsg(content) {
+				var options = {
+					cover: false,
+				};
+
+				plus.push.createMessage(content, "LocalMSG", options);
+				//				if(plus.os.name == "iOS") {
+				//					alert('*如果无法创建消息，请到"设置"->"通知"中配置应用在通知中心显示!');
+				//				}
+			}
+
+			function back() {
+				if(showMenu) {
+					closeMenu();
+					return false;
+				} else {
+					menu.close('none');
+					return true;
+				}
+			}
+			/**
+			 * 显示菜单菜单
+			 */
+			function openMenu() {
+				if(!showMenu) {
+					//侧滑菜单处于隐藏状态，则立即显示出来；
+					//显示完毕后，根据不同动画效果移动窗体；
+					menu.show('none', 0, function() {
+						menu.setStyle({
+							left: '0%',
+							transition: {
+								duration: 300
+							}
+						});
+					});
+					menu2.show('none', 0, function() {
+						menu2.setStyle({
+							left: '70%',
+							transition: {
+								duration: 300
+							}
+						});
+					});
+					//显示遮罩
+					showMenu = true;
+				}
+			}
+
+			function closeMenu() {
+				_closeMenu();
+			}
+
+			function _closeMenu() {
+				if(showMenu) {
+					//关闭遮罩；
+					menu.setStyle({
+						left: '-70%',
+						transition: {
+							duration: 150
+						}
+					});
+					menu.setStyle({
+						left: '-100%',
+						transition: {
+							duration: 150
+						}
+					});
+					menu2.setStyle({
+						left: '-30%',
+						transition: {
+							duration: 150
+						}
+					});
+					setTimeout(function() {
+						menu.hide();
+						menu2.hide();
+					}, 200);
+					//改变标志位
+					showMenu = false;
+				}
+			};
+
+			window.addEventListener('setResult', function(e) {
+				var storeName = e.detail.storeName;
+				console.log("获取到的名称：" + storeName);
+				document.getElementById("input").innerHTML = "<div id='input' onclick=searchPage('" + "tab-1.html" + "')><span class='mingcheng'>" + storeName + "</span><div id='deletekey' style='float: right;display: block;' onclick='deletekey()'><img src='../../img/delete.png' /></div></div>";
+			});
+
+			window.addEventListener('photochange', function(e) {
+				console.log(e.detail.page);
+				if(e.detail.page == 1) {
+					document.getElementById("add").style.display = 'none';
+					//	document.getElementById("input").style.display = 'block';
+					document.getElementById("title").innerHTML = "<div id='input' onclick=searchPage('" + '../photo/html/mainphoto.html' + "')>" + Language.getValue("门店名称") + "<div id='deletekey' style='float: right;display: none;' onclick='deletekey()'><img src='../../img/delete.png' /></div></div>";
+				} else {
+					document.getElementById("add").style.display = 'none';
+					document.getElementById("title").innerHTML = "照片墙";
+				}
+
+			});
+
+			window.addEventListener("setCommentCount", function(e) {
+				console.log("dddd" + e.detail.commentCount);
+				var count = e.detail.commentCount;
+				plus.storage.setItem("commentcount", count);
+				if(count == 0) {
+					document.getElementsByClassName("mui-badge")[0].style.display = "none";
+					document.getElementsByClassName("mui-badge")[0].innerText = count;
+				} else {
+					document.getElementsByClassName("mui-badge")[0].innerText = count;
+					document.getElementsByClassName("mui-badge")[0].style.display = "inline-block";
+
+				}
+			});
+
+			var height = document.documentElement.clientHeight || document.body.clientHeight;
+
+			window.addEventListener("resize", function() {
+				console.log("resize");
+				console.log(plus.webview.getTopWebview().id);
+				console.log(plus.webview.getLaunchWebview().id);
+				if(plus.webview.getTopWebview().id == plus.webview.getLaunchWebview().id) {
+					var heightView = document.documentElement.clientHeight || document.body.clientHeight;
+					if(heightView < height) {
+						plus.webview.currentWebview().setStyle({
+							height: height
+						});
+
+					}
+				}
+
+			});
+
+			window.addEventListener('dragright', function(e) {
+				e.detail.gesture.preventDefault();
+			});
+			window.addEventListener('dragleft', function(e) {
+				e.detail.gesture.preventDefault();
+			});
+			//主界面向右滑动，若菜单未显示，则显示菜单；否则不做任何操作；
+			window.addEventListener("swiperight", openMenu);
+			//主界面向左滑动，若菜单已显示，则关闭菜单；否则，不做任何操作；
+			window.addEventListener("swipeleft", closeMenu);
+			//menu页面向左滑动，关闭菜单；
+			window.addEventListener("menu:swipeleft", closeMenu);
+
+			//重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
+			mui.menu = function() {
+				if(showMenu) {
+					closeMenu();
+				} else {
+					openMenu();
+				}
+			}
+
+			function searchPage(tag) {
+				console.log("1111" + tag);
+				mui.openWindow({
+					url: "search.html",
+					id: "search",
+					extras: {
+						tag: tag
+					}
+				})
+			}
+
+			function deletekey() {
+				var event = window.event || arguments[0];
+				document.getElementById("input").innerText = Language.getValue("门店名称");
+				//document.getElementById("deletekey").style.display = "none";
+				event.stopPropagation();
+				console.log(plus.webview.currentWebview().id);
+				console.log("点击事件");
+				//				var w = plus.webview.getDisplayWebview()[1];
+				var tab1 = plus.webview.getWebviewById('tab-1.html')
+				mui.fire(tab1, 'deletekey', {});
+				//mui.fire("",'deletekey',{})
+			}
+		</script>
+	</body>
+
+</html>

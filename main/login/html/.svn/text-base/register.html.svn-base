@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>看店神器</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			header {
+				width: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				font-size: 17px;
+				text-align: center;
+				line-height: 44px;
+				background: #ff8a00;
+				z-index: 9999;
+				line-height: 44px;
+			}
+			
+			#header .nvbt {
+				width: 15%;
+				height: 100%;
+				float: left;
+				color: #FFFFFF;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				line-height: 44px;
+			}
+			
+			#title span {
+				width: 15%;
+				height: 100%;
+				color: #FFFFFF;
+				overflow: hidden;
+				line-height: 44px;
+				margin-left: -56px;
+			}
+			
+			#content {
+				margin: 50px 20px 0px 20px;
+			}
+			
+			#content .page_tishi {
+				color: #ff8a00;
+				margin-bottom: 5px;
+			}
+			
+			#suffix {
+				float: right;
+				height: 35px;
+				padding-top: 8px;
+				padding-right: 9px;
+			}
+			
+			#re_email {
+				width: 45%;
+				float: left;
+				background-color: #ccc;
+				border: 0px;
+			}
+			
+			.inputform,
+			.inputform1 {
+				width: 90%;
+				height: 40px;
+				background-color: #cccccc;
+				color: #ffffff;
+				margin-top: 12px;
+				margin-left: 20px;
+				display: inline-block;
+				position: relative;
+			}
+			
+			.inputform input {
+				border: 0px;
+				float: left;
+				width: 40%;
+				height: 38px;
+				background: transparent;
+				outline: none
+			}
+			
+			input::-webkit-input-placeholder {
+				color: #ffffff;
+			}
+			
+			.inputform1 input {
+				border: 0px;
+				float: left;
+				width: 90%;
+				height: 38px;
+				background: transparent;
+				outline: none
+			}
+			
+			.span {
+				color: red;
+				float: right;
+				width: 20px;
+				line-height: 35px;
+			}
+			
+			.form_tijiao {
+				width: 90%;
+				height: 40px;
+				color: #ffffff;
+				margin-top: 12px;
+				margin-left: 20px;
+				display: inline-block;
+				position: relative;
+			}
+			.form_tijiao input{
+				width: 100%;
+				height: 40px;
+				background-color: #ff8a00;
+				color: #fffff;
+				border: 0px;
+			}
+		</style>
+		<script src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/init.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../js/register.js"></script>
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+	</head>
+
+	<body>
+		<div id="page_register">
+			<header id="header" class="mui-bar-nav">
+				<a class="nvbt mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<div id="title" class="nvtt">
+					<span class="language" language="register[0]">注册</span>
+				</div>
+			</header>
+		</div>
+		<div id="content">
+			<p class="page_tishi language" language="register[1]>仅限联合利华员工使用</p>
+			<!--注册信息-->
+			<div id="input_form">
+				<div class="mui-input-row inputform">
+					<input type="text" language="请输入邮箱" class="language" id="re_email" value="" placeholder="请输入邮箱" />
+					<span class="span">*</span>
+					<div id="suffix">
+						<span style="color:#7d7d7d;">@unilever.com</span>
+					</div>
+				</div>
+				<div class="mui-input-row inputform1">
+					<input type="text" language="请输入姓名" class="language" id="staff_name" value="" placeholder="请输入姓名" />
+				</div>
+				<div class="mui-input-row inputform1">
+					<input type="text" language="请输入员工号" class="language" id="staff_code" value="" placeholder="请输入员工号" />
+				</div>
+				<div class="mui-input-row inputform1">
+					<input type="text" language="请输入密码" class="language" id="pwd1" value="" placeholder="请输入密码" />
+					<span class="span">*</span>
+				</div>
+				<div class="mui-input-row inputform1">
+					<input type="text" language="请再次输入密码" class="language" id="pwd2" value="" placeholder="请再次输入密码" />
+					<span class="span">*</span>
+				</div>
+				<div class="mui-input-row inputform1">
+					<input type="text" language="请选择您所在的分组" class="language" id="et_group" placeholder="请选择您所在的分组" />
+					<span class="span">*</span>
+				</div>
+				<div class="mui-input-row form_tijiao">
+					<input type="submit" language="提交" class="language" id="doRegister" value="提交" />
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../js/immersed.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" href="../../main/tab-1.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/commonUI.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/mui.lazyload.js"></script>
+		<script type="text/javascript" src="../../../js/mui.lazyload.img.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../js/maincomment.js"></script>
+
+		<style>
+			.mui-bar-tab {
+				bottom: auto;
+				padding: 0px 4px;
+			}
+			
+			.mui-bar {
+				-webkit-box-shadow: 0 0 0px rgba(0, 0, 0, .85);
+				box-shadow: 0 0 0px rgba(0, 0, 0, .85);
+			}
+			
+			#refreshContainer {}
+			
+			.mui-media-body .mui-ellipsis {
+				padding-right: 0px;
+			}
+			
+			.mui-popover-arrow {
+				display: none;
+			}
+			
+			.mui-bar-tab~.mui-content {
+				margin-bottom: 0px;
+			}
+			
+			.section {
+				margin-left: 50px;
+				margin-right: 30px;
+			}
+			
+			.item {
+				display: flex;
+				flex-direction: column;
+				margin: 5px 10px;
+			}
+			
+			.topitem {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+			}
+			
+			#centercon {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				margin-left: 10px;
+				font-size: 12px;
+			}
+			
+			.img100 {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.img25px {
+				width: 25px;
+				height: 25px;
+			}
+			
+			#bottomitem {
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-end;
+				margin-bottom: 10px;
+			}
+			
+			.zan {
+				width: 26px;
+				height: 22px;
+				margin-right: 20px;
+			}
+			
+			.huifu {
+				width: 26px;
+				height: 22px;
+				margin-right: 10px;
+			}
+			
+			textarea {
+				height: 60px;
+				border: none;
+				background: transparent;
+				font-size: 16px;
+				
+			}
+			
+			.line {
+				margin-left: 10px;
+				margin-right: 10px;
+				border: none;
+				height: 1px;
+				background: rgb(204, 204, 204)
+			}
+			
+			.commentpane {
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 5px;
+			}
+			
+			.atsm {
+				padding-left: 15px;
+				color: #ff8a00;
+				font-size: 20px;
+			}
+			
+			.commitbtn {
+				height: 26px;
+				float: right;
+				text-align: right;
+				margin-right: 10px;
+				font-size: 16px;
+				background: #ff8a00;
+				color: #FFFFFF;
+				line-height: 26px;
+				padding: 0px 10px
+			}
+			
+			.mui-table-view-chevron .mui-table-view-cell {
+				padding: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<nav class="mui-bar mui-bar-tab">
+
+			<a id="me" class="mui-tab-item">
+				<div style="position:relative;color: #FFFFFF;">
+					<span class="language" language="commenttip[0]">我发出的</span>
+					<span id="me_count" style="position: absolute;color: #fff;background:#ff0000;border-radius: 100%;font-size: 12px;font-weight: normal;width: 5px;height: 5px;top: 5px;right: 5px;display: block;"></span>
+				</div>
+			</a>
+			<a id="atme" class="mui-tab-item">
+				<div style="position:relative;color: #FFFFFF;">
+					<span class="language" language="commenttip[1]">@我的</span>
+					<span id="atme_count" style="position: absolute;color: #fff;background:#ff0000;border-radius: 100%;font-size: 12px;font-weight: normal;width: 5px;height: 5px;top: 5px;right: 5px;display: block;"></span>
+				</div>
+			</a>
+			<a id="hot" class="mui-tab-item">
+				<div style="color: #FFFFFF;" class="language" language="commenttip[2]">热词</div>
+			</a>
+
+		</nav>
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper" style="padding-bottom: 50px;margin-top: 50px;">
+			<div class="mui-scroll">
+				<ul id="commentlist" class="mui-table-view mui-table-view-chevron" style="background: #f7f7f7;">
+					<!--<li class="mui-table-view-cell">
+
+						<div class="item">
+							<div id="" class="topitem">
+								<div id="" style="width: 55px;">
+									<img id="headicon" src="../../../img/image01.png" style="width: 35px;height: 35px;" onerror="this.src='../../../img/image01.png'" />
+								</div>
+								<div id="centercon">
+									<div>
+										<span class="language" language="评论人"></span>
+										<span id="name"></span>
+										<span style="color:#999999;">shijia</span>
+									</div>
+									<div>
+										<span style="color:#ff8a00;">address</span>
+									</div>
+									<div>
+										<div style="font-size: 14px; color:#919191;word-break: break-word;">111111111111111111111111111111111111111111</div>
+									</div>
+									<div style="display: flex;flex-direction: column;">
+										<div style="display: flex;">
+											<div style="margin: 5px;width: 30%;text-align: center;">
+												<img src="../../../img/60x60.gif" class="img100" />
+											</div>
+											<div style="margin: 5px;width: 30%;text-align: center;">
+												<img src="../../../img/60x60.gif" style="width: 100%;height: 100%;" />
+											</div>
+											<div style="margin: 5px;width: 30%;text-align: center;">
+												<img src="../../../img/60x60.gif" style="width: 100%;height: 100%;" />
+											</div>
+
+										</div>
+
+										<div style="display: flex;">
+											<div style="margin: 5px;width: 30%;text-align: center;">
+												<img src="../../../img/60x60.gif" style="width: 100%;height: 100%;" />
+											</div>
+
+										</div>
+
+									</div>
+									<div style="display: flex;flex-direction: column;background: #f3f3f5;">
+										<span style="word-break: break-word;">1111111111111111111111111111111111111111113333333333333333333</span>
+										<span>111</span>
+									</div>
+
+								</div>
+								<div id="delimg" style="width: 40px;">
+									<img src="../../../img/pic_delete.png" class="img25px" />
+								</div>
+							</div>
+							<div style="display: flex;flex-direction: column;">
+								<div id="bottomitem">
+									<img src="../../../img/pic_zan.png" class="zan" />
+									<img src="../../../img/pic_huifu.png" class="huifu" />
+								</div>
+								<div style="border: 1px solid #c3c3c3;display: none;">
+									<textarea maxlength="100"></textarea>
+									<hr class="line">
+									<div class="commentpane">
+										<div id="atsm">@</div>
+										<div id="commitbtn">提交</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</li>-->
+				</ul>
+			</div>
+		</div>
+	</body>
+
+</html>

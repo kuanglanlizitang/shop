@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../main/tab-1.css" />
+		<link rel="stylesheet" href="../css/picwall.css" />
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/md5.js" ></script>
+		<script type="text/javascript" src="../../../js/commonUI.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/mui.lazyload.js"></script>
+		<script type="text/javascript" src="../../../js/mui.lazyload.img.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../js/mainphoto.js"></script>
+		<script type="text/javascript" src="../../../js/hz2py.js"></script>
+		<style>
+			.mui-bar-tab {
+				bottom: auto;
+				padding: 0px 4px;
+			}
+			
+			.mui-bar {
+				-webkit-box-shadow: 0 0 0px rgba(0, 0, 0, .85);
+				box-shadow: 0 0 0px rgba(0, 0, 0, .85);
+			}
+			
+			#refreshContainer {}
+			
+			.mui-media-body .mui-ellipsis {
+				padding-right: 0px;
+			}
+			
+			.mui-popover-arrow {
+				display: none;
+			}
+			.mui-bar-tab~.mui-content{
+				margin-bottom: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="pageone" style="display: none;">
+			<div style="-webkit-box-shadow: 0 0 0px rgba(0, 0, 0, .85);box-shadow: 0 0 1px rgba(0, 0, 0, .85);background-color: #f7f7f7">
+				<nav class="mui-bar mui-bar-tab">
+					<a id="citylabel" class="mui-tab-item" >
+						<div><span class="mui-spinner"></span><span language="geoing" class="language"></span></div>
+					</a>
+					<a id="pop1" class="mui-tab-item">
+						<div>&nbsp;</div>
+					</a>
+					<a id="pop2" class="mui-tab-item">
+						<div>&nbsp;</div>
+					</a>
+					<a id="pop3" class="mui-tab-item">
+						<div>&nbsp;</div>
+					</a>
+					<a id="pageoneswitch" class="mui-tab-item" style="width: 40px;">
+						<img id="icontop" src="../../../img/pic_photo.png" />
+					</a>
+				</nav>
+				<div id="switchphoto" style="display: block;"></div>
+				<div id="refreshContainer" class="mui-content mui-scroll-wrapper" style="padding-bottom: 50px;margin-top: 50px;">
+					<div class="mui-scroll">
+						<ul id="storelist" class="mui-table-view mui-table-view-chevron" style="background: #f7f7f7;">
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="pagetwo">
+			<div id="" style="-webkit-box-shadow: 0 0 0px rgba(0, 0, 0, .85);box-shadow: 0 0 1px rgba(0, 0, 0, .85);background-color: #f7f7f7">
+
+				<nav class="mui-bar mui-bar-tab">
+					<a id="pop_time" class="mui-tab-item">
+						<div>&nbsp;</div>
+					</a>
+					<a id="pop_category" class="mui-tab-item">
+						<div>&nbsp;</div>
+					</a>
+					<a id="pop_brand" class="mui-tab-item">
+						<div>&nbsp;</div>
+					</a>
+					<a id="pop_sort" class="mui-tab-item">
+						<div>&nbsp;</div>
+					</a>
+					<a id="pagetwoswitch" class="mui-tab-item" style="width: 40px;">
+						<img id="icontop" src="../../../img/icon2list.png" />
+					</a>
+				</nav>
+				<div id="switchphoto" style="display: block;padding-top: 50px;">
+					<div id="photo_tags" style="position: fixed;z-index:100;overflow-x: auto;width:100%;height:30px;white-space: nowrap;background: #f7f7f7;">
+
+					</div>
+
+					<div id="tag" class="mui-popover" style="height: 200px;max-height: 200px;">
+						<div class="mui-scroll-wrapper">
+							<ul class="mui-table-view">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div id="refreshContainer2" class="mui-content mui-scroll-wrapper" style="margin-top: 80px;">
+					<div class="mui-scroll">
+						<ul id="photolist" class="mui-table-view mui-table-view-chevron">
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.css" />
+		<link rel="stylesheet" href="../css/route.css" />
+		<link rel="stylesheet" href="../../../css/dateRange.css" />
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/mui.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../../../js/dateRange.js"></script>
+<!--		<script type="text/javascript" src="../js/logDateControl.js"></script>
+-->		<script type="text/javascript" src="../js/mainroute.js"></script>
+		<script type="text/javascript" src="../../../js/bdmapv3.js"></script>
+	</head>
+
+	<body>
+		<div class="header">
+			<div id="datesel" style=" position:absolute; top: 45px; background-color:#101010;background: rgba(0, 0, 0, 0.5);display: none;width: 100%;height: 100%;">
+				<div id="data_sel">
+
+				</div>
+			</div>
+		</div>
+
+		<div style="text-align: center;">
+
+			<div hidden="hidden">
+				<span id="year" name="year"></span>
+				<span id="month" name="month"></span>
+				<span id="day" name="day"></span>
+				<span id="index" name="index">0</span>
+			</div>
+			<div id="divroute_last" style="position:absolute;left:5px;border: none;color: #ff8a00;text-align: center;font-size: 14px;margin-top: 2px;" onclick="pre();" class="language" language="routetip[3]">上一周</div>
+			<span id="spanroute_date" style="font-size: 20px;color: #000;">日历</span>
+			<div id="divroute_next" style="position:absolute;right:5px;border: none;color: #ff8a00;text-align: center;font-size: 14px;display: inline;margin-top: 2px;" onclick="next();" class="language" language="routetip[4]">下一周</div>
+			<table cellpadding="3" cellspacing="0" id="logCalendar">
+				<tr>
+					<td rowspan="2" style="padding:0">
+						<table width="100%" cellpadding="3" height="100%" cellspacing="0" id="daysList">
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
+		<div class="dcontent">
+			<div style="margin-top: 10px;">
+				<div id="nodata" style="line-height: 80px;clear: both;margin: 20px 5px 0px 5px;background: #FFFFFF;display: none;">
+					<img src="../../../img/pic_xingcheng.png" style="height:80px;float:left;" />
+					<span id="spanroute_nodata" style="margin-left: 5px;font-size: 14px;font-weight:bold;text-overflow:ellipsis;" class="language" language="routetip[0]">当日无任何行程，点击右上角进行新增</span>
+				</div>
+
+				<ul id="list">
+
+					<!--<li style="margin-top: 10px;background: #FFFFFF;">
+						<div style="padding: 5px 5px;">
+							<div>
+								<a href="#popover" id="openPopover">
+									<img src="../../../img/pic_route_bianji.png" id="dropdownMenu1" style="height:25px;position: absolute; right: 0px;" />
+								</a>
+								<div id="popover" class="mui-popover" style="width: 80px;">
+									<ul class="mui-table-view">
+										<li class="">
+											<a href="#">Item1</a>
+										</li>
+										<li class="mui-table-view-cell">
+											<a href="#">Item2</a>
+										</li>
+										<li class="mui-table-view-cell">
+											<a href="#">Item3</a>
+										</li>
+										<li class="mui-table-view-cell">
+											<a href="#">Item4</a>
+										</li>
+										<li class="mui-table-view-cell">
+											<a href="#">Item5</a>
+										</li>
+									</ul>
+								</div>
+								<div style="padding: 0px 10px;">
+									<img src="pic/pic_route_date.png" style="width:20px;height:20px;margin-top: 15px;float: left;" />
+									<span style="margin-left: 5px;float: left;margin-top: 17px;font-size: 16px;font-weight:bold;text-overflow:ellipsis;overflow: hidden;white-space: nowrap;width: 80%;">当日无任何行程，点击右上角进行新增</span>
+									<div style="clear: left;position: relative;top:5px">
+										<div>
+											<span style="color: #CCCCCC;">行程日期：</span>
+											<span style="margin-left: 5px;margin-top: 5px;">08-19</span>
+										</div>
+									</div>
+
+									<div id="map1" style="height:200px;margin-top: 10px;margin: 0px 15px;background: #FF0000;"></div>
+
+
+									<div >
+										<div class="mui-table-view-cell mui-collapse" >
+											<a class="mui-navigate-left" href="#" >面板1</a>
+											<div class="mui-collapse-content" style="width: 100%;">
+												<div class="well" style="background: #FFFFFF;">
+													<ul>
+														<li style="clear: both;"><img src="../../../img/pic_route_dot_1.png" style="width:12px;height:25px;float: left;margin-top: 2px;" /><span style="float: left;margin-left: 5px;">地址111111111111111111111111111111111</span></li>
+
+														<li style="clear: both;line-height: 40px;"><img src="pic/pic_route_dot_reverse.png" style="width:12px;height:25px;float: left;margin-top: 2px;" /><span style="float: left;margin-left: 5px;">地址1111111111111111</span></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										
+																		<div style="position:relative;float: right; top: 10px;right: 5px;">
+										<a style="margin-bottom: 10px; margin-right: 5px;text-decoration: underline;color: #CCCCCC;">
+											查看行程
+										</a>
+									</div>
+
+									</div>
+									
+									
+									
+
+									<!--<div style="height:25px;margin-top: 10px;">
+										<a role="button" style="color: #080808;" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+											门店清单
+										</a>
+									</div>
+
+									<div class="collapse" id="collapseExample1" aria-expanded="false">
+										<div class="well" style="background: #FFFFFF;">
+											<ul>
+												<li style="clear: both;"><img src="pic/pic_route_dot.png" style="width:12px;height:25px;float: left;margin-top: 2px;" /><span style="float: left;margin-left: 5px;">地址111111111111111111111111111111111</span></li>
+
+												<li style="clear: both;line-height: 40px;"><img src="pic/pic_route_dot_reverse.png" style="width:12px;height:25px;float: left;margin-top: 2px;" /><span style="float: left;margin-left: 5px;">地址1111111111111111</span></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</li>-->
+
+				</ul>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>

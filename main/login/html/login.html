@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/login.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<style>
+			.shareicon {
+				width: 60px;
+			}
+		</style>
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/init.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../js/login.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<div class="container">
+				<div class="logo">
+					<img src="../pic/login_logo.png" style="width: 200px;height: 110px;" />
+				</div>
+				<div class="pane">
+					<div class="logintype">
+						<div id="maillogin" class="logintype_nav">
+							<img src="../pic/youxianglight.png" />
+							<span id="span_youxianglogin" language="邮箱登录" class="language" style="color:#7d7d7d">邮箱登录</span>
+						</div>
+						<div id="idlogin" class="logintype_nav">
+							<img src="../pic/gonghao.png"><span id="span_gonghaologin" language="工号登录" class="language" style="color:#7d7d7d"></span></label>
+						</div>
+					</div>
+					<div id="input_form">
+						<div class="mui-input-row inputform">
+							<div class="image_div"><img src="../pic/login_icon_user.png" style="width:20px;height:20px;" /></div>
+							<input id="input_content" type="text" value="" language="email" class="language" placeholder="请输入邮箱" style="width: 45%;float:left;background-color: #ccc;border: 0px;">
+							<div id="suffix" style="float:right;height:35px;padding-top:8px;padding-right:9px;"><span style="color:#7d7d7d;">@unilever.com</span></div>
+						</div>
+
+						<div class="mui-input-row">
+							<div class="inputform">
+								<div class="image_div">
+									<img src="../pic/login_icon_lock.png" style="width:20px;height:20px;" />
+								</div>
+								<input id="input_pass" type="password" value="" language="请输入iVisit登录密码" class="language" placeholder="请输入iVisit登录密码" style="width: 60%;float:left;background-color: #ccc;border: 0px;" />
+								<div style="height:40px;padding-top:8px;padding-right: 10px;position: absolute;right:2px;">
+									<span id="wangjimima1" class="language" language="忘记密码" style="text-decoration:underline;font-size:12px;">忘记密码</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="options" style="display: none;">
+						<div class="mui-input-row mui-checkbox mui-left">
+							<label id="span_repwd1" language="记住密码" class="language"></label>
+							<input name="checkbox1" type="checkbox" checked>
+						</div>
+						<div class="mui-input-row mui-checkbox mui-left" style="text-align: right;">
+							<label id="span_autologin1" language="自动登录" class="language"></label>
+							<input name="checkbox1" type="checkbox" checked>
+						</div>
+					</div>
+					<div class="loginbtn">
+						<button id="loginimg" language="邮箱登录" class="language" style="width: 100%;background-color: #ff8a00;color: white;"></button>
+					</div>
+					<div align="center" id="div-languagebg" class="bg">
+					</div>
+					<div align="center" id="div_language" class="configpane">
+
+						<div id="div_chinese" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;">
+							<a style="width:100%;text-align:right;text-decoration:none;" data-transition="none" data-tap-toggle="false">
+								<span style="color:#ff8a00;font-weight:normal;text-shadow: 0px 0px #40730e; " language="简体中文" class="language">简体中文</span>
+							</a>
+						</div>
+						<div id="div_English" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;">
+							<a style="width:100%;text-align:right;text-decoration:none;" data-transition="none" data-tap-toggle="false">
+								<span style="color:#ff8a00;font-weight:normal;text-shadow: 0px 0px #40730e; " language="English" class="language">English</span>
+							</a>
+						</div>
+						<div onClick="cancelLanguage();" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;"><span id="span_lancancel" class="language" language="config[2]" style="color:#ff8a00;text-shadow: 0px 0px #40730e; ">取消</span></div>
+
+					</div>
+
+					<div align="center" id="div_wufa" class="configpane">
+
+						<div id="div_wufaregister" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;">
+							<a style="width:100%;text-align:right;text-decoration:none;" data-transition="none" data-tap-toggle="false">
+								<span id="span_wufaregister" style="color:#ff8a00;font-weight:normal;text-shadow: 0px 0px #40730e; " language="注册新账户" class="language">注册新账户</span>
+							</a>
+						</div>
+						<div id="div_wufasetting" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;">
+							<a style="width:100%;text-align:right;text-decoration:none;" data-transition="none" data-tap-toggle="false">
+								<span id="span_wufasetting" style="color:#ff8a00;font-weight:normal;text-shadow: 0px 0px #40730e; " language="设置" class="language">设置</span>
+							</a>
+						</div>
+						<div onClick="cancelWufa();" align="center" class="divrad" style="margin-top:5px;padding-top:8px;padding-bottom:8px;background-color:#eee;width:100%;float:left;text-align:center;"><span id="span_wufacancel" class="language" language="config[2]" style="color:#ff8a00;text-shadow: 0px 0px #40730e; ">取消</span></div>
+
+					</div>
+					<div class="config">
+						<div style="float:left;margin-left:36%;">
+							<a href="javascript:chooesLan();" style="text-decoration:none;" data-transition="none" data-tap-toggle="false"><span id="span_langg" style="font-weight:normal;font-size:13px;color:grey;" language="Language" class="language"></span></a>
+						</div>
+						<div style="">
+							<a href="javascript:chooesWufa();" style="text-decoration:none;" data-transition="none" data-tap-toggle="false"><span id="span_wufa" style="font-weight:normal;font-size:13px;color:grey;" language="登录助手" class="language" data-type="HTML"></span></a>
+						</div>
+					</div>
+				</div>
+				<div class="share">
+					<div id="share" align="center" style="width:100%;height:36px;line-height:36px;margin-top:30px;">
+						<img id="imgshare" src="../pic/ivisit_flag.png" style="width:32px; height:32px;" />
+					</div>
+					
+					
+					<div align="center" style="width:100%;height:20px;line-height:16px;margin-top:5px;">
+						<span id="span_share_text" style="font-size:12px;color:#999" language="分享安装地址" class="language">分享安装地址</span>
+					</div>
+				</div>
+			</div>
+			
+			<!--<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">-->
+						<!-- 可选择菜单 -->
+						<!--<div class="mui-row" style="background: #FFF;margin: 8px;text-align: center;border-radius: 4px;">
+							<div style="padding: 5px;" class="language" language="shareTo"></div>
+							<div onclick="share('1')" class="mui-col-sm-4 mui-col-xs-4">
+								<img class="shareicon" src="../../../img/yt_wechat.png" />
+								<div class="language" language="yt_wechat"></div>
+							</div>
+							<div onclick="share('2')" class="mui-col-sm-4 mui-col-xs-4">
+								<img class="shareicon" src="../../../img/yt_wechatmoments.png" />
+								<div class="language" language="yt_wechatmoments" style="white-space: nowrap;"></div>
+							</div>
+							<div onclick="share('3')" class="mui-col-sm-4 mui-col-xs-4">
+								<img class="shareicon" src="../../../img/yt_wechatfavorite.png" />
+								<div class="language" language="yt_wechatfavorite" style="white-space: nowrap;"></div>
+							</div>
+							<div onclick="share('4')" class="mui-col-sm-4 mui-col-xs-4">
+								<img class="shareicon" src="../../../img/yt_shortmessage.png" />
+								<div class="language" language="yt_shortmessage"></div>
+							</div>
+							<div onclick="share('5')" class="mui-col-sm-4 mui-col-xs-4">
+								<img class="shareicon" src="../../../img/yt_email.png" />
+								<div class="language" language="yt_email"></div>
+							</div>
+							<div onclick="share('6')" class="mui-col-sm-4 mui-col-xs-4">
+								<img class="shareicon" src="../../../img/yt_copylink.png" />
+								<div class="language" language="yt_copylink"></div>
+							</div>
+						</div>-->
+						<!-- 取消菜单 -->
+						<!--<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a href="#sheet1"><b class="language" language="取消"></b></a>
+							</li>
+						</ul>
+					</div>
+		</div>-->
+		<script type="text/javascript" src="../../../js/immersed.js"></script>
+
+	</body>
+
+</html>

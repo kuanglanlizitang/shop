@@ -1,0 +1,90 @@
+.mui-bar-tab {
+	background-image: url(../../img/nav_bar_bg.png);
+	background-size: 100%;
+}
+
+.mui-bar-tab .mui-tab-item {
+	color: #FFFFFF;
+	padding-top: 5px;
+}
+
+.mui-bar-tab .mui-tab-item.mui-active {
+	color: #ff8a00;
+	background: #FFFFFF;
+}
+
+a img {
+	width: 30px;
+	height: 30px;
+}
+
+.u {
+	background-position: 50%;
+	height: 44px;
+	background-repeat: no-repeat;
+	background-image: url(../../img/peoplepic.png);
+	background-size: 50%;
+}
+
+.img {
+	height: 30px;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.mui-badge {
+	position: absolute;
+	color: #FFFFFF;
+	background: #dd524d;
+}
+
+
+/*底部按钮开始*/
+
+.mui-bar-tab .mui-tab-item.tab1 .img {
+	background-image: url(../../img/store.png);
+}
+
+.mui-bar-tab .mui-tab-item.tab1.mui-active .img {
+	background-image: url(../../img/store_highlight.png);
+}
+
+.mui-bar-tab .mui-tab-item.tab2 .img {
+	background-image: url(../../img/route.png);
+}
+
+.mui-bar-tab .mui-tab-item.tab2.mui-active .img {
+	background-image: url(../../img/route_highlight.png);
+}
+
+.mui-bar-tab .mui-tab-item.tab3 .img {
+	background-image: url(../../img/comment.png);
+}
+
+.mui-bar-tab .mui-tab-item.tab3.mui-active .img {
+	background-image: url(../../img/comment_highlight.png);
+}
+
+.mui-bar-tab .mui-tab-item.tab4 .img {
+	background-image: url(../../img/picwall.png);
+}
+
+.mui-bar-tab .mui-tab-item.tab4.mui-active .img {
+	background-image: url(../../img/picwall_highlight.png);
+}
+
+
+/*底部按钮结束*/
+
+#input {
+	background: #FA9A29;
+	height: 34px;
+	line-height: 34px;
+	text-align: left;
+	padding-left: 10px;
+	margin: 5px 0px;
+	border-radius: 17px;
+	display: flex;
+}

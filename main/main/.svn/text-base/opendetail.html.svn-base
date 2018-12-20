@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			header {
+				width: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				font-size: 17px;
+				text-align: center;
+				line-height: 44px;
+				background: #ff8a00;
+				z-index: 9999;
+				line-height: 44px;
+			}
+			
+			#header .nvbt {
+				width: 10%;
+				height: 100%;
+				float: left;
+				color: #FFFFFF;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				line-height: 44px;
+			}
+			#wrapper{
+				margin-top: 45px;
+			}
+			.textcontainer{
+				margin-left: 30px;
+				margin-right: 30px;
+			}
+			.textcontainer span{
+				display: inline-block;
+				width: 25%;
+			}
+			.textcontainer input{
+				width: 73%;
+				margin-bottom: 4px;
+			}
+			.sex{
+				width: 105px;
+				float: left;
+				margin-left: 6px;
+				text-align: center;
+			}
+			#span_sex{
+				float: left;
+				width: 25%;
+				height: 40px;
+				padding-top: 12px;
+			}
+			#m_div{
+				background: #e1e1e1;
+			}
+			#f_div{
+				background: #e1e1e1;
+			}
+			#pop_picture1 input{
+				background: #ffffff;
+				color: #ff8a00;
+				width: 80%;
+				margin: 2px 9%;
+			}
+		</style>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../js/language.js"></script>
+		<script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../js/init.js"></script>
+		<script type="text/javascript" src="../../js/uuid.js"></script>
+		<script type="text/javascript" src="../../js/utils.js"></script>
+		<script type="text/javascript" src="../../js/common.js"></script>
+		<script type="text/javascript" src="opendetail.js"></script>
+	</head>
+
+	<body>
+		
+		<div data-role="page" id="myself" class="ui-page">
+			<header id="header" class="mui-bar-nav">
+				<a class="nvbt mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<div style="width:75%;float:left;text-align: center;font-size: 16px;color: #FFFFFF;"><span id="title_span_myprofile" class="language" language="opendetail[0]" style="font-weight:normal;">我的资料</span></div>
+				<div style="width:10%;float:left;text-align: center;font-size: 16px;color: #FFFFFF;"><span id="title_done" class="language" language="opendetail[1]" onclick="submit_myself();" style="font-weight:normal;">完成</span></div>
+			</header>
+			
+			<div id="wrapper" data-role="content">
+				<div class="person-img" style="text-align:center;padding-top: 5px;padding-bottom: 5px;">
+					<img id="headImage" style="border-radius: 50%;width: 140px;height: 140px;margin-top: 10px;" src="../../img/image01.png" onerror="this.src='../../img/image01.png'"/>
+				</div>
+				<div class="textcontainer">
+					<span class="span language" id="span_namenn" language="opendetail[2]">姓名:</span>
+					<input type="text" id="name_myself" value='' />
+				</div>
+				<div class="textcontainer">
+					<span class="span language" id="span_email" language="opendetail[3]">邮箱:</span>
+					<input type="text" id="email_myself" readonly=""></input>
+				</div>
+				<div class="textcontainer">
+					<span class="span language" id="span_accountttt" language="opendetail[4]">工号:</span>
+					<input type="text"  id="username_myself" readonly="true"></input>
+				</div>
+				<div class="textcontainer">
+					<span class="span language" id="span_contact_info" language="opendetail[5]">联系方式:</span>
+					<input type="text" id="phone_myself" value='' />
+				</div>
+				<div class="textcontainer">
+					<span class="span language" id="span_sex" language="opendetail[6]">性别:</span>
+					<div style="float: left;width: 74%;">
+						<div id="m_div" class="sex" onclick="selM();">
+							<img id="m_icon" style="" src="../../img/male_light.png">
+							<span id="span_male" class="language" language="opendetail[7]">男</span>
+						</div>
+						<div id="f_div" class="sex" onclick="selF();">
+							<img id="f_icon" style="" src="../../img/female.png">
+							<span id="span_female" style="" class="language" language="opendetail[8]">女</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a href="#init" data-rel="popup" data-position-to="window"></a>
+			<!--<div data-role="popup" id="init">
+				<img alt="" src="image/loading.gif">
+			</div>-->
+			<div id="pop_picture1" style="width: 100%;background: #dddddd;display: none;opacity:0.6;position: absolute;top: 0px;left: 0px;height: 100%;">
+				<div style="position: absolute;left: 30px;bottom: 5px;width: 80%;">	
+					<input id="myself_carm"  onclick="camera();" class="divrad language" language="opendetail[9]" data-role="none" type="button" value="拍照" />
+					<input id="myself_album"  onclick="gallery();" class="divrad"  data-role="none" type="button" value="从相册选取" />
+					<input id="myself_cancel" onclick="deletecancel();" class="divrad" data-role="none" type="button" value="取消" />
+				</div>
+			</div>
+			<!--<div data-role="popup" id="init"  data-theme="b">
+				<img style="margin-top: 10px;" alt="" src="pic/loading.gif">
+			</div>-->
+			<div id="pop_photo_myself1"></div>
+		</div>
+		<script type="text/javascript" src="../../js/immersed.js"></script>
+	</body>
+
+</html>

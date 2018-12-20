@@ -1,0 +1,75 @@
+#gradelist {
+	width: 100%;
+}
+
+#gradelist>ul>li {
+	margin-top: 40px !important;
+}
+
+
+
+.star_score {
+	background: url(../../../img/star.png);
+	background-size: 70px 70px;
+	width: 200px;
+	height: 70px;
+	position: relative;
+}
+
+.star_score a {
+	height: 70px;
+	display: block;
+	text-indent: -999em;
+	position: absolute;
+	left: 0;
+}
+
+.star_score a:hover {
+	background: url(../../../img/starsybig.png);
+	background-size: 70px 70px;
+	left: 0;
+}
+
+.star_score a.clibg {
+	background: url(../../../img/starsybig.png);
+	background-size: 70px 70px;
+	left: 0;
+}
+
+.show_number {
+	padding-left: 50px;
+	padding-top: 20px;
+}
+
+.show_number li {
+	width: 240px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-right: 5px;
+	margin-bottom: 20px;
+}
+
+.atar_Show {
+	background: url(../../../img/star.png);
+	width: 160px;
+	height: 21px;
+	position: relative;
+	float: left;
+}
+
+.atar_Show p {
+	background: url(../../../img/starsybig.png);
+	left: 0;
+	height: 21px;
+	width: 134px;
+}
+
+.show_number li span {
+	display: inline-block;
+	line-height: 21px;
+}
+
+#gradecontent textarea::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #CCCCCC;
+}

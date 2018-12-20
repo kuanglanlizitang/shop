@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/ivisit.css">
+		<link rel="stylesheet" href="menu-1.css">
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/mui.lazyload.js"></script>
+		<script src="../../js/mui.lazyload.img.js"></script>
+		<script src="../../js/language.resources.js"></script>
+		<script src="../../js/language.js"></script>
+		<script src="../../js/utils.js"></script>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar-nav">
+			<div class="nvbt mui-icon mui-icon-back" onclick="mui.back()"></div>
+			<div id="title" class="nvtt language" language="spanfoot_zuji">
+			</div>
+			<div class="nvbt language" language="spanfoot_share" onclick="showshare()"></div>
+		</header>
+		<div id="content" class="mui-content">
+			<div style="margin: 30px 10px;">
+				<div class="linearr" style="text-align:center;">
+					<img id="imgstaffpic" src="../../img/image01.png" onerror="this.src='../../img/image01.png'">
+					<div style="position: relative;top:-12px;"><span id="spanchenghao" style="color:#fff"></span></div>
+					<div style="position: relative;top:-14px;"><span class="language" language="spanfootp_monthsign" style="font-size:12px;color:#fff"></span><span id="spanmonthqiandao" style="font-size:12px;color:#fff"></span>
+						<span language="spanfootp_yearsign" class="language" style="font-size:12px;color:#fff"></span><span id="spanyearqiandao" style="font-size:12px;color:#fff"></span>
+					</div>
+					<div style="position: relative;top:-20px;"><span style="font-size:10px;color:#ffeedd" class="language" language="spanfoot_beat"></span><span id="spanbeat" style="font-size:10px;color:#ffeedd"></span><span class="language" language="spanfoot_user" style="font-size:10px;color:#ffeedd"></span></div>
+
+					<div class="line-process">
+						<div id="cir1" class="circle" style="left: -webkit-calc(12.5% - 5px);"></div>
+						<div id="cir2" class="circle" style="left: -webkit-calc(37.5% - 6px);"></div>
+						<div id="cir3" class="circle" style="left: -webkit-calc(62.5% - 6px);"></div>
+						<div id="cir4" class="circle" style="left: -webkit-calc(87.5% - 7px);"></div>
+						<div class="linebg"></div>
+						<div id="cir5" class="linereach"></div>
+						<div id="footpop" style="display: none;">
+							<div class="top"><span class="language" language="Visited"></span><span id="footpoptext"></span></div>
+							<div class="bottom"></div>
+						</div>
+					</div>
+					<div class="processtab">
+						<div class="tab20"><span id="kandiancainiao" class="language" language="看店菜鸟"></span></div>
+						<div class="tab30"><span id="kandianxinshou" class="language" language="看店新手"></span></div>
+						<div class="tab30"><span id="kandiandaren" class="language" language="看店达人"></span></div>
+						<div class="tab20"><span id="kandianzhuanjia" class="language" language="看店专家"></span></div>
+					</div>
+				</div>
+				<div style="width: 100%;text-align: left;padding-left: 5px;padding-right:5px;padding-top:5px;background: #fff;margin-top: 5px;"><img style="height:20px;padding-left:10px;" src="../../img/pic_customer_logo.png"><span language="VisitedStore" class="language" style="color:#000;position:relative;top:-4px;font-size: 14px;padding-left:5px;"></span></div>
+				<div style="display: block;right: 10px;left: 10px;bottom: 0;margin-left: 10px;margin-right: 10px;height: 1px;-webkit-transform: scaleY(.5);transform: scaleY(.5);background-color: #c8c7cc;">
+				</div>
+				<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul id="storelist" class="mui-table-view mui-table-view-chevron">
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+				<!-- 可选择菜单 -->
+				<div class="mui-row" style="background: #FFF;margin: 8px;text-align: center;border-radius: 4px;">
+					<div style="padding: 5px;" class="language" language="shareTo"></div>
+					<div onclick="share('1')" class="mui-col-sm-4 mui-col-xs-4">
+						<img class="shareicon" src="../../img/yt_wechat.png" />
+						<div class="language" language="yt_wechat"></div>
+					</div>
+					<div onclick="share('2')" class="mui-col-sm-4 mui-col-xs-4">
+						<img class="shareicon" src="../../img/yt_wechatmoments.png" />
+						<div class="language" language="yt_wechatmoments"></div>
+					</div>
+					<div onclick="share('3')" class="mui-col-sm-4 mui-col-xs-4">
+						<img class="shareicon" src="../../img/yt_wechatfavorite.png" />
+						<div class="language" language="yt_wechatfavorite"></div>
+					</div>
+					<div onclick="share('4')" class="mui-col-sm-4 mui-col-xs-4">
+						<img class="shareicon" src="../../img/yt_shortmessage.png" />
+						<div class="language" language="yt_shortmessage"></div>
+					</div>
+					<div onclick="share('5')" class="mui-col-sm-4 mui-col-xs-4">
+						<img class="shareicon" src="../../img/yt_email.png" />
+						<div class="language" language="yt_email"></div>
+					</div>
+					<div onclick="share('6')" class="mui-col-sm-4 mui-col-xs-4" style="display: none;">
+						<img class="shareicon" src="../../img/yt_copylink.png" />
+						<div class="language" language="yt_copylink"></div>
+					</div>
+				</div>
+				<!-- 取消菜单 -->
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a href="#sheet1"><b class="language" language="取消"></b></a>
+					</li>
+				</ul>
+			</div>
+			<script src="../../js/immersed.js"></script>
+			<script type="text/javascript" charset="utf-8">
+				mui.init({
+					swipeBack: false
+				});
+
+				function showshare() {
+					mui('#sheet1').popover('toggle');
+				}
+
+				function share(index) {
+					mui('#sheet1').popover('hide');
+					setTimeout(function() {
+						bitmap = new plus.nativeObj.Bitmap('test');
+						plus.webview.currentWebview().draw(bitmap, function() {
+							bitmap.save('_doc/capture.jpg', {
+								overwrite: true,
+								quality: 50,
+								format: 'jpg'
+							}, function(e) {
+								if(index == '4') {
+									if(plus.os.name == "Android") {
+										var Intent = plus.android.importClass("android.content.Intent");
+										var Uri = plus.android.importClass("android.net.Uri");
+										var intent = new Intent(Intent.ACTION_SEND);
+										intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+										intent.setType("image/jpg");
+										intent.putExtra("compose_mode", false);
+										intent.putExtra("exit_on_sent", true);
+										intent.putExtra("sms_body", "");
+										intent.setClassName("com.android.mms", "com.android.mms.ui.ComposeMessageActivity");
+										intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(e.target));
+										plus.android.runtimeMainActivity().startActivity(Intent.createChooser(intent, "请选择短信类应用"));
+									} else {
+										plus.MMS.sendMMS('', e.target, 'mms', function() {
+
+										}, function(err) {
+											mui.alert(Language.getValue('shareerr')[2], Language.getValue('shareerr')[0], Language.getValue('shareerr')[5],null,'div');
+										});
+									}
+								} else if(index == '5') {
+									if(plus.os.name == "Android") {
+										var Intent = plus.android.importClass("android.content.Intent");
+										var Uri = plus.android.importClass("android.net.Uri");
+										var uri = Uri.parse("mailto:");
+										//String[] email = {"3802**92@qq.com"};  
+										var intent = new Intent(Intent.ACTION_SENDTO, uri);
+										intent.putExtra(Intent.EXTRA_CC, ""); // 抄送人  
+										intent.putExtra(Intent.EXTRA_SUBJECT, ""); // 主题  
+										intent.putExtra(Intent.EXTRA_TEXT, ""); // 正文  
+										intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(e.target));
+										plus.android.runtimeMainActivity().startActivity(Intent.createChooser(intent, "请选择邮件类应用"));
+
+									} else {
+										plus.MMS.sendMMS('', e.target, 'email', function() {
+
+										}, function(err) {
+											if(err == 1) {
+												mui.alert(Language.getValue('shareerr')[3], Language.getValue('shareerr')[1], Language.getValue('shareerr')[5],null,'div');
+											} else if(err == 2) {
+												mui.alert(Language.getValue('shareerr')[4], Language.getValue('shareerr')[1], Language.getValue('shareerr')[5],null,'div');
+											}
+										});
+									}
+								} else {
+									var share = shares[shareids[index - 1].id];
+									if(share) {
+										if(share.authenticated) {
+											shareMessage(share, shareids[index - 1].ex, e.target);
+										} else {
+											share.authorize(function() {
+												shareMessage(share, shareids[index - 1].ex, e.target);
+											}, function(e) {
+												console.log("认证授权失败：" + e.code + " - " + e.message);
+											});
+										}
+									} else {
+										mui.toast("无法获取分享服务，请检查manifest.json中分享插件参数配置，并重新打包")
+									}
+								}
+							}, function(e) {
+								alert(JSON.stringify(e));
+								console.log("保存失败");
+							});
+						}, function(e) {
+							console.log('截屏绘制图片失败：' + JSON.stringify(e));
+						});
+					}, 300);
+				}
+
+				var bitmap = null;
+
+				function shareMessage(share, ex, path) {
+					var msg = {
+						extra: {
+							scene: ex
+						}
+					};
+					msg.pictures = [path];
+					share.send(msg, function() {}, function(e) {
+					});
+					//					msg.href = "http://www.dcloud.io/hellomui/";
+					//					msg.title = "最接近原生APP体验的高性能前端框架";
+					//					msg.content = "我正在体验HelloMUI，果然很流畅，基本看不出和原生App的差距";
+					//					msg.thumbs = ["_www/img/thumbs.png"];
+				}
+
+				var shares = {};
+				var shareids = [{
+					id: "weixin",
+					ex: "WXSceneSession"
+				}, {
+					id: "weixin",
+					ex: "WXSceneTimeline"
+				}, {
+					id: "weixin",
+					ex: "WXSceneFavorite"
+				}];
+				mui.plusReady(function() {
+					if(plus.os.name != 'Android') {
+						var HyperingMms = {
+							sendMMS: function(arg1, arg2, arg3, successCallback, errorCallback) {
+								var success = typeof successCallback !== 'function' ? null : function(args) {
+										successCallback(args);
+									},
+									fail = typeof errorCallback !== 'function' ? null : function(code) {
+										errorCallback(code);
+									};
+								callbackID = window.plus.bridge.callbackId(success, fail);
+								// 通知Native层plugintest扩展插件运行”PluginTestFunction”方法
+								return window.plus.bridge.exec("HyperingMms", "sendMMS", [callbackID, arg1, arg2, arg3]);
+							}
+						};
+						window.plus.MMS = HyperingMms;
+					}
+					plus.share.getServices(function(s) {
+						if(s && s.length > 0) {
+							for(var i = 0; i < s.length; i++) {
+								var t = s[i];
+								shares[t.id] = t;
+							}
+						}
+					}, function() {
+						console.log("获取分享服务列表失败");
+					});
+
+					Language.init();
+					lazyLoadApi = mui('#refreshContainer .mui-scroll').imageLazyload({
+						autoDestroy: false,
+						placeholder: '../../img/60x60.gif'
+					});
+					mui('.mui-scroll-wrapper').scroll({
+						indicators: false,
+						deceleration: 0.0006,
+						bounce: true
+					});
+					HttpGet({
+						type: 'myTrackSearch',
+						staff_code: plus.storage.getItem("staff_code")
+					}, function(datas) {
+						if(datas != 0 && datas != 1 && datas.data.length > 0) {
+							if(datas.data[0].HEAD_IMAGE != "") {
+								document.getElementById("imgstaffpic").src = getImageUrl(datas.data[0].HEAD_IMAGE, 'name');
+							}
+							document.getElementById("spanchenghao").innerText = Language.getValue(datas.data[0].TITLE);
+							document.getElementById("spanmonthqiandao").innerText = datas.data[0].CUR_MON_COUNT;
+							document.getElementById("spanyearqiandao").innerText = datas.data[0].SIGN_COUNT;
+							setProgress(datas.data[0].SIGN_COUNT);
+							document.getElementById("spanbeat").innerText = datas.data[0].BEAT;
+						}
+					}, function(error) {
+						alert(JSON.stringify(error));
+					}, null);
+					HttpGet({
+						type: 'storeSignSearch',
+						staff_code: plus.storage.getItem("staff_code"),
+						language: plus.storage.getItem("language")
+					}, function(datas) {
+						if(datas != 0 && datas != 1 && datas.data.length > 0) {
+							var storelist = document.getElementById("storelist");
+							mui.each(datas.data, function(index, obj) {
+								var li = document.createElement('li');
+								var obj1=obj.SIGN_DATE.split(".");
+								li.className = 'xcell';
+								li.innerHTML = '<img data-lazyload="' + getImageUrl(obj.STORE_PICTURE, 'name') + '"/><div class="xbody"><div class="xline1"><div>' + obj.STORE_NAME + '</div><span>' + obj.STORE_CODE + '</span></div><div class="xtime">' + obj1[0] + '</div></div>';
+								storelist.appendChild(li);
+							});
+							lazyLoadApi.refresh(true);
+						}
+					}, function(error) {
+						alert(JSON.stringify(error));
+					}, 'getData');
+				});
+
+				function setProgress(num) {
+					document.getElementById("cir1").className = 'circle reach';
+					document.getElementById("cir2").className = 'circle reach';
+					document.getElementById("cir3").className = 'circle reach';
+					document.getElementById("cir4").className = 'circle reach';
+					document.getElementById("cir5").style.display = '';
+					document.getElementById("footpop").style.display = '';
+					document.getElementById("footpoptext").innerText = num;
+					if(num >= 200) {
+						document.getElementById("cir5").style.width = '75%';
+						document.getElementById("footpop").style.marginLeft = '70%';
+					} else if(num >= 70) {
+						document.getElementById("cir4").className = 'circle';
+						document.getElementById("cir5").style.width = (50 + (num - 70) * 25 / 130) + '%';
+						document.getElementById("footpop").style.marginLeft = (45 + (num - 70) * 25 / 130) + 2 + '%';
+					} else if(num >= 30) {
+						document.getElementById("cir3").className = 'circle';
+						document.getElementById("cir4").className = 'circle';
+						document.getElementById("cir5").style.width = (5 * num + 50) / 8 + '%';
+						document.getElementById("footpop").style.marginLeft = ((5 * num + 50) / 8 - 5) + '%';
+					} else if(num > 0) {
+						document.getElementById("cir2").className = 'circle';
+						document.getElementById("cir3").className = 'circle';
+						document.getElementById("cir4").className = 'circle';
+						document.getElementById("cir5").style.display = '';
+						document.getElementById("cir5").style.width = (num * 5 / 6) + '%';
+						document.getElementById("footpop").style.marginLeft = ((num * 5 / 6) - 5) + 2 + '%';
+					} else if(num == 0) {
+						document.getElementById("cir1").className = 'circle';
+						document.getElementById("cir2").className = 'circle';
+						document.getElementById("cir3").className = 'circle';
+						document.getElementById("cir4").className = 'circle';
+						document.getElementById("cir5").style.display = 'none';
+						document.getElementById("footpop").style.display = 'none';
+					}
+				}
+			</script>
+	</body>
+
+</html>

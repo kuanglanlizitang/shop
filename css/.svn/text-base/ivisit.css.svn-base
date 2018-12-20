@@ -1,0 +1,91 @@
+* {
+	-webkit-user-select: none;
+	-ms-touch-select: none;
+	-ms-touch-action: none;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: Arial;
+	font-size: 16px;
+	color: #6c6c6c;
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-text-size-adjust: none;
+}
+
+header {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	font-size: 17px;
+	text-align: center;
+	line-height: 44px;
+	background: #ff8a00;
+	/*background: -webkit-linear-gradient(top,rgba(215,75,40,1),rgba(215,75,40,0.8));*/
+	z-index: 9999;
+	/*border-bottom: 1px solid rgba(215,75,40,0.8);*/
+	-ms-touch-action: none;
+	line-height: 44px;
+}
+
+#header a {
+	color: #ffffff;
+}
+
+.nvbt {
+	width: 15%;
+	height: 100%;
+	float: left;
+	color: #FFFFFF;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	line-height: 44px;
+}
+
+.nvbt:active {
+	background-color: rgba(170, 170, 170, 0.1);
+}
+
+.nvtt {
+	width: 70%;
+	height: 100%;
+	color: #FFFFFF;
+	float: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+::-webkit-input-placeholder {
+	/* WebKit, Blink, Edge */
+	color: #FFFFFF;
+}
+
+.dropdowntext {
+	left: -50% !important;
+	min-width: 160px !important;
+	text-align: center !important;
+}
+
+ul {
+	list-style-type: none;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+	display: block;
+}

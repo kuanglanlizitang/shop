@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/login.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+	</head>
+
+	<body style="background-color: #FFFFFF;">
+		<div class="mui-content">
+
+			<div style="width: 100%;height:150px;background: #ff8a00;text-align: center;padding-top: 10px;">
+				<div>
+					<img id="head_personal1" src="../pic/image01.png" onclick="toMyself(1);" style="border-radius:30px;text-align: center;width: 60px;height: 60px;top:20px;left: 10px;" onerror="this.src='pic/image01.png'" /><br>
+					<span id="name1" style="font-size: 16px;text-align: center;width: 100%;color: #fff;"></span><br>
+					<span style="font-size: 14px;text-align: left;width: 100%;color: #ffeedd;" id="span_lastlogin1">上次登录：</span><span id="date1" style="font-size: 14px;color: #ffeedd;">2017-9-25</span><br>
+					<span style="font-size: 14px;text-align: left;width: 100%;color: #ffeedd;" id="span_logintimes1">累计登录：</span><span id="totle1" style="font-size: 14px;color: #ffeedd;">20</span>&nbsp;<span id="span_timessss1" style="font-size: 14px;color: #ffeedd;">次</span>
+				</div>
+			</div>
+
+			<div style="background-color: #FFFFFF;">
+
+				<div id="tap_zuji" style="padding-top:10px;text-align:left;height:25px;" onclick="toMyzuji(1);">
+					<a href="" style="text-decoration: none;">
+						<img style="float:left;width: 20px;margin-left:20px;margin-top:3px;" height="20px;" src="../pic/pic_zuji.png">
+						<span style="float:left;font-size: 20px;color: #6d6d6d;font-weight:normal;margin-left:15px;" id="span_zuji1">我的足迹</span>
+					</a>
+				</div>
+
+				<div id="tap_myzan" style="display:none;margin-top:20px;text-align:left;height:25px;" onclick="toMyreceivezan(1);">
+					<a href="" style="text-decoration: none;">
+						<img style="float:left;width: 20px;margin-left:20px;margin-top:3px;" height="20px;" src="../pic/pic_like.png">
+						<span style="float:left;font-size: 20px;color: #6d6d6d;font-weight:normal;margin-left:15px;" id="span_mycomms">我收到的赞</span>
+						<div id="p_divvv" class="divrad6" style="margin-top:3px;margin-right:3px;display:block;float:right;height:20px;width:20px;background-color:#ff0000;" align="center">
+							<span style="color:#fff;font-size:16px;font-weight:normal;">1</span>
+						</div>
+					</a>
+				</div>
+
+				<div id="tap_version" style="margin-top:20px;text-align:left;height:25px;" onclick="toVersioninfo(1);">
+					<a href="" style="text-decoration: none;">
+						<img style="float:left;width: 20px;margin-left:20px;margin-top:3px;" height="20px;" src="../pic/pic_kdsq.png">
+						<span style="float:left;font-size: 20px;color: #6d6d6d;font-weight:normal;margin-left:15px;" id="span_about1">关于看店神器</span>
+
+						<span id="p_div" style="float:left;color:#fff;font-size:16px;font-weight:normal;">1</span>
+
+					</a>
+				</div>
+
+				<div id="tap_share" style="margin-top:20px;text-align:left;height:25px;" onclick="toshareinstalladdress();">
+					<a href="" style="text-decoration: none;">
+						<img style="float:left;width: 20px;margin-left:20px;margin-top:3px;" height="20px;" src="../pic/pic_fenxiang.png">
+						<span style="float:left;font-size: 20px;color: #6d6d6d;font-weight:normal;margin-left:15px;" id="span_share1">分享安装地址</span></a>
+				</div>
+
+				<div id="tap_setting" style="margin-top:20px;text-align:left;height:25px;" onclick="tosetting(1);">
+					<a href="" style="text-decoration: none;">
+						<img style="float:left;width: 20px;margin-left:20px;margin-top:3px;" height="20px;" src="../pic/pic_setting.png">
+						<span style="float:left;font-size: 20px;color: #6d6d6d;font-weight:normal;margin-left:15px;" id="span_settings1">设置</span></a>
+				</div>
+
+				<div id="tap_logout" style="margin-top:20px;text-align:left;height:25px;" onclick="tologout();">
+					<a href="" style="text-decoration: none;">
+						<img style="float:left;width: 20px;margin-left:20px;margin-top:3px;" height="20px;" src="../pic/pic_close.png">
+						<span style="float:left;font-size: 20px;color: #6d6d6d;font-weight:normal;margin-left:15px;" id="span_signout1">注销</span></a>
+				</div>
+			</div>
+
+	</body>
+
+</html>

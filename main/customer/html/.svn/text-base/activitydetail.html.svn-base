@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../../css/dateRange.css" />
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../../../js/dateRange.js"></script>
+		<script type="text/javascript" src="../js/activitydetail.js"></script>
+		<style>
+			/*#top span {
+				border: 1px #FF8A00 solid;
+				border-radius: 10px;
+				padding: 0px 5px;
+				color: #FF8A00;
+				background: white;
+			}*/
+			
+			body {
+				background: #f9f9f9;
+			}
+			
+			.activity_itemdiv {
+				width: 100%;
+				background-color: #ff8a00;
+				margin-top: 4px;
+				height: 20px;
+				line-height: 20px;
+				font-size: 12px;
+				text-align: left;
+			}
+			
+			.psnew_itemdiv_agdetail {
+				width: 100%;
+				height: auto;
+				background-color: #e0e0e0;
+				line-height: 18px;
+				color: #aaaaaa;
+				font-size: 12px;
+				line-height: 18px;
+				text-align: left;
+				word-wrap: break-word;
+				word-break: break-all;
+			}
+			
+			#cxtable0 {
+				/*width: 98%;*/
+				/*margin-top: 3px;*/
+				/*margin-left: 1%;*/
+				border-spacing: 0px;
+				border-collapse: collapse;
+				margin-bottom: 4px;
+			}
+			
+			#cxtable0 td {
+				border: 0px solid #F97C27;
+				padding: 0px 0px 0px 0px;
+				color: #000000;
+				height: auto;
+			}
+			
+			#cxtable0 td img {
+				margin-top: 3px;
+				height: 19px;
+				width: 19px;
+				margin-left: -22px;
+			}
+			
+			#cxtable0 td span {
+				position: relative;
+				top: -4px;
+				font-size: 14px;
+				left: 7px;
+			}
+			
+			.cxtable1 {
+				/*width: 98%;*/
+				/*margin-top: 3px;*/
+				/*margin-left: 1%;*/
+				border-spacing: 0px;
+				border-collapse: collapse;
+				margin-bottom: 4px;
+			}
+			
+			.cxtable3 {
+				width: 98%;
+				/*margin-top: 3px;*/
+				margin-left: 1%;
+				border-spacing: 0px;
+				border-collapse: collapse;
+				margin-bottom: 4px;
+			}
+			
+			.cxtable2 {
+				width: 94%;
+				/* 	margin-top: 5px; */
+				/*margin-left: 1%;*/
+				border-spacing: 0px;
+				border-collapse: collapse;
+				margin-bottom: 4px;
+				margin: auto;
+			}
+			
+			.cxtabletd1 {
+				/* 	border-right: 1px solid #f1f1f1; */
+				/* 	border-bottom: 1px solid #f1f1f1; */
+				/* 	border-right: 1px solid #f1f1f1; */
+				border: 1px solid #f1f1f1;
+				padding: 0px 0px 0px 0px;
+				color: #000000;
+				height: auto;
+			}
+			
+			.cxtabletd3 {
+				border-right: 1px solid #f1f1f1;
+				border-top: 1px solid #f1f1f1;
+				/*border: 1px solid #f1f1f1; */
+				padding: 0px 0px 0px 0px;
+				color: #000000;
+				height: auto;
+			}
+			
+			.cxtabletd4 {
+				border-left: 1px solid #f1f1f1;
+				border-top: 1px solid #f1f1f1;
+				/*border: 1px solid #f1f1f1; */
+				padding: 0px 0px 0px 0px;
+				color: #000000;
+				height: auto;
+			}
+			
+			.cxtabletd5 {
+				border-top: 1px solid #f1f1f1;
+				/*border: 1px solid #f1f1f1; */
+				padding: 0px 0px 0px 0px;
+				color: #000000;
+				height: auto;
+			}
+			
+			.cxtabletd2 {
+				/* 	border-right: 1px solid #f1f1f1; */
+				/* 	border-bottom: 1px solid #f1f1f1; */
+				/* 	border-right: 1px solid #f1f1f1; */
+				border: 1px solid #f1f1f1;
+				padding: 0px 0px 0px 0px;
+				color: #000000;
+				height: auto;
+				align-content: center;
+				margin: auto;
+			}
+			
+			.cxtabletd6 {
+				/* 	border-right: 1px solid #f1f1f1; */
+				/* 	border-bottom: 1px solid #f1f1f1; */
+				/* 	border-right: 1px solid #f1f1f1; */
+				border: 1px solid #f1f1f1;
+				padding: 0px 0px 0px 0px;
+				color: #000000;
+				height: auto;
+				margin: auto;
+			}
+			
+			.cxtabletdimg1 {
+				margin-top: 3px;
+				height: 19px;
+				width: 19px;
+				margin-left: -22px;
+			}
+			
+			.cxtabletdspan1 {
+				position: relative;
+				top: -4px;
+				font-size: 12px;
+				left: 7px;
+			}
+			
+			.cxtabletdspan2 {
+				position: relative;
+				top: -4px;
+				font-size: 10px;
+				left: 7px;
+			}
+			
+			.cxtabletdspan3 {
+				position: relative;
+				font-size: 10px;
+			}
+			
+			.cxtabletdspan4 {
+				position: relative;
+				font-size: 10px;
+				text-align: center;
+			}
+			
+			.cxtabletdspan5 {
+				position: relative;
+				font-size: 10px;
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+			
+			.cxtabletdspan7 {
+				position: relative;
+				font-size: 10px;
+				padding-left: 10px;
+				padding-right: 10px;
+				text-align: center;
+			}
+			
+			.cxtabletdspan8 {
+				position: relative;
+				font-size: 10px;
+				padding-left: 10px;
+				padding-right: 10px;
+				top: -30%;
+			}
+			
+			table {
+				text-align: center;
+			}
+			td{
+				height: 42px;
+				width: 52px;
+			}
+			
+			.ta_calendar {
+				position: fixed;
+				top: 45px ;
+			}
+			
+			.acttab {
+				background: #fff;
+				font-weight: normal;
+				border-radius: 10px;
+				text-align: center;
+				border-style: groove;
+				border: 1px solid;
+				border-color: #FD8B0C;
+				font-size: 12px;
+				color: #FD8B0C;
+				padding-left: 5px;
+				padding-right: 5px;
+				padding-top: 1px;
+				padding-bottom: 1px;
+				margin-left: 8px;
+				margin-right: 8px;
+			}
+			
+			.acttabselect {
+				background: #FD8B0C;
+				font-weight: normal;
+				border-radius: 10px;
+				text-align: center;
+				border-style: groove;
+				border: 1px solid;
+				border-color: #FD8B0C;
+				font-size: 12px;
+				color: #fff;
+				padding-left: 5px;
+				padding-right: 5px;
+				padding-top: 1px;
+				padding-bottom: 1px;
+				margin-left: 8px;
+				margin-right: 8px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header">
+			<div class="nvbt iback" style="margin-top: 8px;margin-left: 8px;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			</div>
+			<div style="display: flex;justify-content: space-around;">
+
+				<div class="nvtt" style="width: 80%;">
+					<div style="background: #ffaa46;margin: 5px 0px;height: 35px;display: flex;justify-content: space-around;border-radius: 10px; ">
+						<input id="comm_inputt_store" style="-webkit-user-select:auto;background: #ffaa46;width: 100%;height: 30px;background-color: #ffaa46; color: #fff; border: 0px;  font-size: 12px;text-align: left; " placeholder="活动名称（支持过往三个月活动查询）" class="language" language="activity[0]" />
+						<div id="key_search_store" style="width: 15%; height: 30px; ">
+							<img src="../../../img/search.png" style="">
+						</div>
+					</div>
+
+				</div>
+				<div style="width: 35px; height: 35px; border-radius: 5px; background-color: #ffaa46;  background-image: url(../../../img/activity_date.png); background-size: 20px 20px; background-repeat: no-repeat; background-position: center;margin-top: 5px;">
+					<div class="divrad" style="width: 100%; height: 100%; background-image: none; background-size: 12px 12px; background-repeat: no-repeat; background-position: 23px 0px;" id="div_ca" name="">
+
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id="container">
+			<div id="top" style="margin-top: 50px;display: flex;justify-content: space-around;padding: 5px;">
+				<div><span id="spandate1" onclick="activityTabClick(this);" class="language acttab acttabselect" language="activity[1]">已开档</span></div>
+				<div><span id="spandate2" onclick="activityTabClick(this);" class="language acttab" language="activity[2]">7天内即将开档</span></div>
+				<div><span id="spandate3" onclick="activityTabClick(this);" class="language acttab" language="activity[3]">未开档</span></div>
+				<div><span id="spandate4" onclick="activityTabClick(this);" class="language acttab" language="activity[4]">历史活动</span></div>
+			</div>
+			<div>
+				<div id="agactivity_container"></div>
+				<div id="isaactivity_container"></div>
+				<div id="no_storedeactivity" style="height: 60px;width: 100%;text-align: center;padding-top: 50px;display: none;">
+					<span id="noStore_deactivity" style="color: #000;font-size: 20px;"></span>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../js/immersed.js"></script>
+		<script>
+			var topp = parseInt($(".ta_calendar").css("top"));
+			
+			$(".ta_calendar").css("top",(top+immersed)+"px");
+		</script>
+	</body>
+
+</html>

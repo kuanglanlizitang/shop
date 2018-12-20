@@ -1,0 +1,39 @@
+#progress {
+	width: 80%;
+	margin: 10px 10%;
+	position: absolute;
+	top: 60%;
+	height: 6px;
+}
+
+#label {
+	text-align: center;
+	position: absolute;
+	top: -webkit-calc(60% + 20px);
+	width: 100%;
+	line-height: 30px;
+	font-size: .8em;
+	font-weight: bold;
+	color: #333333;
+}
+
+.mui-progressbar span {
+	background: #FC7509;
+}
+
+.top {
+	width: 40%;
+	margin: 30% 30% 10% 30%;
+	max-width: 100%;
+	text-align: center;
+}
+
+.bottom {
+	height: auto;
+	position: absolute;
+	bottom: 0px;
+	margin-left: 5%;
+	width: 90%;
+	left: 0px;
+	text-align: center;
+}

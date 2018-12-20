@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/highcharts.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../js/saledetail.js"></script>
+		<style>
+			ul{
+				overflow:hidden;
+			}
+			
+			ul li {
+				float: left;
+				width: 25%;
+				text-align: center;
+			}
+			
+			.yellow {
+				border-radius: 4px;
+				background: yellow;
+				font-size: 14px;
+				margin: 5px;
+				padding: 5px;
+			}
+			
+			.grey{
+				border-radius: 4px;
+				background: #E0E0E0;
+				font-size: 14px;
+				margin: 5px;
+				padding: 5px;
+			}
+			.blue{
+				border-radius: 4px;
+				background: #23A4FF;
+				font-size: 14px;
+				margin: 5px;
+				padding: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header">
+			<div class="nvbt iback" style="margin-top: 8px;margin-left: 8px;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			</div>
+			<div class="nvtt">
+				<div class="language" language="sale[0]">
+					门店历史销量
+				</div>
+			</div>
+		</header>
+		<div id="container">
+		<div id="top" style="margin-top: 44px;display: flex;justify-content: space-between;padding-left: 20px;padding-right: 20px;background: white;">
+			<div id="name" style="font-size: 12px;"></div>
+			<div id="code" style="font-size: 12px;"></div>
+		</div>
+		<div id="tags">
+			<ul>
+				
+			</ul>
+		</div>
+		<div style="display: flex;justify-content: space-around;padding-left: 20px;padding-right: 20px;background: white;">
+			<div id="all" style="font-size: 10px;color: #f6a0c8;">11</div>
+			<div id="cate" style="font-size: 10px;color: #f6a0c8;">11</div>
+		</div>
+		<div id="sale_chart" style="width: 100%;height: 380px;background-color: #fff;">
+			<div id="chart_div" style="height:100%;width: 100%;">
+			</div>
+			<div id="no_sale" style="height: 100%;width: 100%;text-align: center;display: none;padding-top: 50px;">
+				<span id="noSale" class="language" language="customerdetail1[3]" style="color: #000;font-size: 20px;">当前品类销量没有数据</span>
+			</div>
+		</div>
+		</div>
+		<script type="text/javascript" src="../../../js/immersed.js"></script>
+	</body>
+
+</html>

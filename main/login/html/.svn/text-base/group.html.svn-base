@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../js/register.js"></script>
+		<style type="text/css">
+			header {
+				width: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				font-size: 17px;
+				text-align: center;
+				line-height: 44px;
+				background: #ff8a00;
+				z-index: 9999;
+				line-height: 44px;
+			}
+			
+			#header .nvbt {
+				width: 15%;
+				height: 100%;
+				float: left;
+				color: #FFFFFF;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				line-height: 44px;
+			}
+			
+			#title span {
+				width: 15%;
+				height: 100%;
+				color: #FFFFFF;
+				overflow: hidden;
+				line-height: 44px;
+				margin-left: -56px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar-nav">
+			<a class="nvbt mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<div id="title" class="nvtt">
+				<span>group</span>
+			</div>
+		</header>
+		<div id="container">
+			<ul id="regist_ul" class="mui-table-view" style="margin-top: 44px;">
+
+			</ul>
+		</div>
+		<script type="text/javascript">
+			mui.init();
+			var condition;
+			var math = Math.random();
+			mui.plusReady(function() {
+				Language.init();
+				condition = {
+					type: "iVRegisterGroup",
+					math
+				};
+				HttpGet(condition, function(data) {
+					if(data != "1") {
+						var content = "";
+						for(var i = 0; i < data.data.length; i++) {
+							content += '<li  class="mui-table-view-cell"><a class="mui-navigate" title="'+data.data[i].GROUP_CODE+'">' + data.data[i].GROUP_NAME + '</a></li>';
+						};
+						$("#regist_ul").append(content);
+					}
+				}, function() {}, "loading");
+
+				mui('.mui-table-view').on('tap', 'li', function() {
+					console.log($(this).find("a").text());
+					plus.webview.getWebviewById("group").close();
+					var	m_group = plus.webview.getWebviewById("register");
+					mui.fire(m_group, "group_result", {
+						gcode:$(this).find("a").text(),
+						code:$(this).find("a").attr("title")
+					})
+				})
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../../css/ivisit.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../main/tab-1.css" />
+		<link rel="stylesheet" href="../../main/menu-1.css">
+		<link rel="stylesheet" href="../css/picwall.css" />
+		<script type="text/javascript" src="../../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/mui.lazyload.js"></script>
+		<script type="text/javascript" src="../../../js/mui.lazyload.img.js"></script>
+		<script type="text/javascript" src="../../../js/language.resources.js"></script>
+		<script type="text/javascript" src="../../../js/language.js"></script>
+		<script type="text/javascript" src="../../../js/utils.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../../../js/hz2py.js"></script>
+		<script type="text/javascript" src="../../../js/iSlider.animate.min.js"></script>
+		<script type="text/javascript" src="../../../js/iSlider.min.js"></script>
+		<script type="text/javascript" src="../js/imagedetail.js"></script>
+		<style>
+			.shareicon {
+				width: 60px;
+			}
+		</style>
+	</head>
+
+	<body style="background: #f8f8f8">
+		<header id="header">
+			<div class="nvbt iback" style="margin-top: 8px;margin-left: 8px;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			</div>
+			<div class="nvtt">
+				<div class="language" language="imagedetail[0]">
+					照片详情
+				</div>
+			</div>
+			<div id="gotoStore" style="color: white;margin-right: 5px;" class="language" language="imagedetail[1]">看店</div>
+		</header>
+		<div id="container" class="mui-content">
+		<div style="text-align:center;width: 100%;">
+			
+			<div id="iSlider-wrapper" class="bigdiv">
+				<!--<div class="indexP"><span style="width: auto;height: 20px;background: rgba(0, 0, 0, 0.6);">	' + 4 + '/' + 4 + '</span></div><div class="bigname"><div style="width: 85%;padding-right: 40px; text-overflow:ellipsis;white-space: nowrap;overflow: hidden;float: left;">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div><img style="position: absolute;right: 40px;" width="17px" src="pic/activity_date.png"><span style="position: absolute;right: 20px;">11</span></div></div><img class="bigimgB"  src="http://be-fe.github.io/static/images/iSlider-card/5.jpg">-->
+			</div>
+			<div class="bigpane">
+				<div>
+					<img id="imgzan" src="../../../img/zan.png" style="width: 50px; height: 50px; " />
+					<br/><span id="zancount" style="color: #B5B5B5;">0</span>
+				</div>
+				<div>
+					<img id="imghate" src="../../../img/cai.png" style="width: 50px; height: 50px; margin:0px 50px;" />
+					<br/><span id="hatecount" style="color: #B5B5B5;">0</span>
+				</div>
+				<div id="share" style="display: inline-block;">
+					<img id="imgshare" src="../../../img/fx.png" style="width: 50px; height: 50px; " />
+					<br/><span id="spanphoto_share" style="color: #B5B5B5;" class="language" language="imagedetail[2]">分享</span>
+				</div>
+			</div>
+		</div>
+		
+		<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action " >
+			<!-- 可选择菜单 -->
+			<div class="mui-row" style="background: #FFF;margin: 8px;text-align: center;border-radius: 4px;">
+				<div style="padding: 5px;" class="language" language="shareTo"></div>
+				<div onclick="share('1')" class="mui-col-sm-4 mui-col-xs-4">
+					<img class="shareicon" src="../../../img/yt_wechat.png" />
+					<div class="language" language="yt_wechat">111</div>
+				</div>
+				<div onclick="share('2')" class="mui-col-sm-4 mui-col-xs-4">
+					<img class="shareicon" src="../../../img/yt_wechatmoments.png" />
+					<div class="language" language="yt_wechatmoments" style="white-space: nowrap;"></div>
+				</div>
+				<div onclick="share('3')" class="mui-col-sm-4 mui-col-xs-4">
+					<img class="shareicon" src="../../../img/yt_wechatfavorite.png" />
+					<div class="language" language="yt_wechatfavorite" style="white-space: nowrap;"></div>
+				</div>
+				<div onclick="share('4')" class="mui-col-sm-4 mui-col-xs-4">
+					<img class="shareicon" src="../../../img/yt_shortmessage.png" />
+					<div class="language" language="yt_shortmessage"></div>
+				</div>
+				<div onclick="share('5')" class="mui-col-sm-4 mui-col-xs-4">
+					<img class="shareicon" src="../../../img/yt_email.png" />
+					<div class="language" language="yt_email"></div>
+				</div>
+				<div onclick="share('6')" class="mui-col-sm-4 mui-col-xs-4" >
+					<img class="shareicon" src="../../../img/yt_copylink.png" />
+					<div class="language" language="yt_copylink"></div>
+				</div>
+			</div>
+			<!-- 取消菜单 -->
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#sheet1"><b class="language" language="取消"></b></a>
+				</li>
+			</ul>
+		</div>
+		<canvas id="scc"></canvas>
+</div>
+		<script type="text/javascript" src="../../../js/immersed.js"></script>
+	</body>
+
+</html>
